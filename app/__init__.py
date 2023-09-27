@@ -1,5 +1,7 @@
 from flask import Flask
+from flask_cors import CORS
 from app.routes import home
+from app.db import init_db
 
 
 def create_app(test_config=None):
@@ -10,9 +12,11 @@ def create_app(test_config=None):
         SECRET_KEY = 'super_secret_key'
     )
 
-    @app.route('/hello')
-    def hello():
-        return 'hello world'
+    # init cors with flask app;
+    CORS(app, resources={r"/api/*": {"origins": "*"}})
+ 
     app.register_blueprint(home)
+    init_db(app)
+
 
     return app
