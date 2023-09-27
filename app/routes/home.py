@@ -1,5 +1,7 @@
 import json
 from flask import Blueprint, send_from_directory, current_app, jsonify, request, session
+from app.models import Category, Product
+from app.db import get_db
 
 bp = Blueprint('home', __name__, url_prefix='/')
 
@@ -40,3 +42,21 @@ def serve_logo192():
 @bp.route('/logo512.png')
 def serve_logo512():
     return send_from_directory('../frontend/build', 'logo512.png')
+
+# category route
+@bp.route('/api/category/<int:id>', methods=['GET'])
+def get_category(id):
+    db = get_db()
+    
+    category = db.query(Category).filter_by(id = id).one_or_none()
+
+    if category:
+        category_info = {
+            'category_id': category.id,
+            'category_name': category.name,
+            'category_mobile': category.mobile_image,
+            'category_tablet': category.tablet_image,
+            'category_destktop': category.desktop_image
+        }
+        return jsonify(category_info)
+# product route
