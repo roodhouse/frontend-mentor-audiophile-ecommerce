@@ -12,6 +12,7 @@ function App() {
   // home page
     // hero
     // category - shared
+      // also use for moblie menu 
     // promotion  
     // copy - shared
   // footer - shared
