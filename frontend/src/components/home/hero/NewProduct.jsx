@@ -8,13 +8,13 @@ function NewProduct() {
   return (
     <>
         <div id="newProductContainer" className='flex flex-col items-center'>
-            <div id="newProductHeaderWrapper" className='mb-4'>
+            <div id="newProductHeaderWrapper" className='mb-4 md:mb-6'>
                 <NewProductHeader />
             </div>
             <div id="newProductTitleWrapper" className='mb-6'>
                 <NewProductTitle />
             </div>
-            <div id="newProductCopyWrapper" className='mb-[28px]'>
+            <div id="newProductCopyWrapper" className='mb-[28px] md:mb-10'>
                 <NewProductCopy />
             </div>
             <div id="newProductButtonWrapper">
