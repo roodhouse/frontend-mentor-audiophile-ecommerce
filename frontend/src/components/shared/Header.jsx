@@ -12,7 +12,7 @@ function Header() {
   return (
     <>
       <div id="headerContainer">
-          <div id="headerContentContainer" className='w-full h-[76px] bg-black flex px-6 items-center justify-between md:h-[90px] md:px-10 xl:px-[12%] xl:h-24'>
+          <div id="headerContentContainer" style={home ? {backgroundColor: 'transparent'} : {backgroundColor: '#000'}} className='w-full h-[76px] flex px-6 items-center justify-between md:h-[90px] md:px-10 xl:px-[12%] xl:h-24'>
             <div id="hamburgerWrapper" className='xl:hidden'>
               <HamburgerIcon />
             </div>

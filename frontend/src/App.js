@@ -8,7 +8,6 @@ function App() {
 
   const { categories, products, singleProduct, singleCategory } = useMain()
 
-  // header - shared
   // home page
     // hero
     // category - shared
@@ -25,7 +24,7 @@ function App() {
     <div id='app' className="App font-display">
       <div id='mainWrapper'>
         <div id='mainContainer'>
-        <div id='headerWrapper'>
+        <div id='headerWrapper' className='absolute w-full'>
             <Header />
           </div>
           <div id='homeWrapper'>
