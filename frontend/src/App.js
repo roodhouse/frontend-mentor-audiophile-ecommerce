@@ -23,8 +23,8 @@ function App() {
   return (
     <div id='app' className="App font-display">
       <div id='mainWrapper'>
-        <div id='mainContainer'>
-        <div id='headerWrapper' className='absolute w-full'>
+        <div id='mainContainer' className='flex justify-center bg-[#131313]'>
+        <div id='headerWrapper' className='absolute w-full z-30'>
             <Header />
           </div>
           <div id='homeWrapper'>

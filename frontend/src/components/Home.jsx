@@ -4,8 +4,8 @@ import Hero from './home/Hero'
 function Home() {
   return (
     <>
-        <div id="homeContainer">
-            <div id="heroWrapper">
+        <div id="homeContainer" className='flex justify-center max-w-[375px]'>
+            <div id="heroWrapper" className='relative w-full h-screen overflow-hidden'>
               <Hero />
             </div>
         </div>
