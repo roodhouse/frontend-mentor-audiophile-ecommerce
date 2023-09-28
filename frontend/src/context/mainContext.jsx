@@ -5,10 +5,11 @@ const MainContext = createContext();
 
 // define a provider component to wrap
 const MainProvider = ({ children }) => {
-  const [singleCategory, setSingleCategory] = useState(null);
-  const [singleProduct, setSingleProduct] = useState(null);
-  const [categories, setCategories] = useState(null);
-  const [products, setProducts] = useState(null);
+  const [ singleCategory, setSingleCategory ] = useState(null);
+  const [ singleProduct, setSingleProduct ] = useState(null);
+  const [ categories, setCategories ] = useState(null);
+  const [ products, setProducts ] = useState(null);
+  const [ home, setHome ] = useState(true)
 
   useEffect(() => {
     fetch("http://127.0.0.1:5000/api/category/")
@@ -58,7 +59,7 @@ const MainProvider = ({ children }) => {
       });
   }, []);
 
-  return <MainContext.Provider value={{ singleCategory, singleProduct, categories, products}}>{children}</MainContext.Provider>;
+  return <MainContext.Provider value={{ singleCategory, singleProduct, categories, products, home}}>{children}</MainContext.Provider>;
 };
 
 // create custom hook for using the context
