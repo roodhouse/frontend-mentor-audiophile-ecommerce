@@ -9,6 +9,7 @@ function App() {
 
   const { categories, products, singleProduct, singleCategory } = useMain()
 
+  
   // home page
     // hero
       // full screen spacing of copy
@@ -32,7 +33,7 @@ function App() {
             <div id='homeWrapper'>
               <Home />
             </div>
-            <div id='categoryWrapper' className='bg-white pt-10'>
+            <div id='categoryWrapper' className='bg-white pt-92px'>
               <CategorySection />
             </div>
             {/* <div id='productWrapper'>
