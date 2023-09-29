@@ -7,6 +7,7 @@ function CategorySection() {
   return (
     <>
       <div id="categorySectionContainer" className='px-6'>
+        <img src="/assets/product-xx59-headphones/mobile/image-category-page-preview.jpg" alt="test" />
         { categories ? (
           categories.map((category) => (
             <div key={category.category_id} id={`${category.category_name}SectionContainer`} className='bg-offWhite rounded-lg mb-[68px] flex flex-col items-center h-[165px]'>
