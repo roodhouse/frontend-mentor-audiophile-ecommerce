@@ -10,6 +10,7 @@ function App() {
 
   // home page
     // hero
+      // full screen spacing of copy
     // category - shared
       // also use for moblie menu 
     // promotion  

@@ -7,7 +7,7 @@ import SeeProductOrange from '../../shared/buttons/SeeProductOrange'
 function NewProduct() {
   return (
     <>
-        <div id="newProductContainer" className='flex flex-col items-center'>
+        <div id="newProductContainer" className='flex flex-col items-center xl:items-start'>
             <div id="newProductHeaderWrapper" className='mb-4 md:mb-6'>
                 <NewProductHeader />
             </div>
