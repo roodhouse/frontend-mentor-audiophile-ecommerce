@@ -13,19 +13,22 @@ db.add_all([
         name='headphones', 
         mobile_image='/assets/product-xx59-headphones/mobile/image-category-page-preview.jpg', 
         tablet_image='/assets/product-xx59-headphones/tablet/image-category-page-preview.jpg', 
-        desktop_image='/assets/product-xx59-headphones/desktop/image-category-page-preview.jpg'
+        desktop_image='/assets/product-xx59-headphones/desktop/image-category-page-preview.jpg',
+        thumbnail='/assets/shared/desktop/image-category-thumbnail-headphones.png' 
         ),
     Category(
         name='speakers', 
         mobile_image='/assets/product-zx7-speaker/mobile/image-category-page-preview.jpg', 
         tablet_image='/assets/product-zx7-speaker/tablet/image-category-page-preview.jpg', 
-        desktop_image='/assets/product-zx7-speaker/desktop/image-category-page-preview.jpg'
+        desktop_image='/assets/product-zx7-speaker/desktop/image-category-page-preview.jpg',
+        thumbnail='/assets/shared/desktop/image-category-thumbnail-speakers.png' 
         ),
     Category(
         name='earphones', 
         mobile_image='/assets/product-yx1-earphones/mobile/image-category-page-preview.jpg', 
         tablet_image='/assets/product-yx1-earphones/tablet/image-category-page-preview.jpg', 
-        desktop_image='/assets/product-yx1-earphones/desktop/image-category-page-preview.jpg'
+        desktop_image='/assets/product-yx1-earphones/desktop/image-category-page-preview.jpg',
+        thumbnail='/assets/shared/desktop/image-category-thumbnail-earphones.png' 
         )
 ])
 

@@ -14,6 +14,7 @@ function App() {
     // hero
       // full screen spacing of copy
     // category - shared
+          /// images showing now.... adjust size etc
       // also use for moblie menu 
     // promotion  
     // copy - shared

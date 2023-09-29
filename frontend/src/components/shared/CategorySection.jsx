@@ -7,11 +7,11 @@ function CategorySection() {
   return (
     <>
       <div id="categorySectionContainer" className='px-6'>
-        <img src="/assets/product-xx59-headphones/mobile/image-category-page-preview.jpg" alt="test" />
+        
         { categories ? (
           categories.map((category) => (
             <div key={category.category_id} id={`${category.category_name}SectionContainer`} className='bg-offWhite rounded-lg mb-[68px] flex flex-col items-center h-[165px]'>
-              <div id={`${category.category_name}SectionImage`} className='w-[80px] h-[104px] mb-9 mt-[-52px]' />
+              <div id={`${category.category_name}SectionImage`} className='w-[80px] h-[104px] mb-9 mt-[-52px] bg-cover bg-no-repeat bg-center' style={{backgroundImage: `url(${category.category_thumbnail})`}} />
               <div id={`${category.category_name}SectionTitle`} className='mb-[17px] text-black text-center text-[15px] font-bold leading-normal tracking-[1.071px] uppercase'>
                 <p>{category.category_name}</p>
               </div>
