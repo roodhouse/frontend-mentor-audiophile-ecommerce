@@ -11,9 +11,8 @@ function App() {
 
   
   // home page
-    // hero
-      // full screen spacing of copy
     // category - shared
+          // need to fix spacing of hero section now... here!!!
           /// images showing now.... adjust size etc
       // also use for moblie menu 
     // promotion  
