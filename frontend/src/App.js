@@ -34,9 +34,10 @@ function App() {
             <div id='homeWrapper'>
               <Home />
             </div>
-            <div id='categoryWrapper' className='bg-white pt-[92px]'>
-              <CategorySection />
-            </div>
+            {/* <div id='categoryWrapper'>
+              <Category />
+            </div> */}
+            
             {/* <div id='productWrapper'>
               <Product />
             </div> */}

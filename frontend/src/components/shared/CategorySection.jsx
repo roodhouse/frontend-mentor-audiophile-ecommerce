@@ -6,11 +6,11 @@ function CategorySection() {
   console.log(categories)
   return (
     <>
-      <div id="categorySectionContainer" className='px-6'>
+      <div id="categorySectionContainer" className='px-6 flex flex-col items-center'>
         
         { categories ? (
           categories.map((category) => (
-            <div key={category.category_id} id={`${category.category_name}SectionContainer`} className='bg-offWhite rounded-lg mb-[68px] flex flex-col items-center h-[165px] cursor-pointer group'>
+            <div key={category.category_id} id={`${category.category_name}SectionContainer`} className='bg-offWhite rounded-lg mb-[68px] flex flex-col items-center h-[165px] w-[327px] cursor-pointer group'>
               <div id={`${category.category_name}SectionImage`} className='w-[80px] h-[104px] mt-[-40px] bg-cover bg-no-repeat bg-center' style={{backgroundImage: `url(${category.category_thumbnail})`}} />
               <div id={`${category.category_name}SectionTitle`} className='mb-[17px] text-black text-center text-[15px] font-bold leading-normal tracking-[1.071px] uppercase'>
                 <p>{category.category_name}</p>
