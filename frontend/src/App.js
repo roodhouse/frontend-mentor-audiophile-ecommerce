@@ -11,13 +11,12 @@ function App() {
 
   
   // home page
-    // category - shared
-          // need to fix spacing of hero section now... here!!!
-          /// images showing now.... adjust size etc
-      // also use for moblie menu 
+
     // promotion  
     // copy - shared
-  // footer - shared
+    // footer - shared
+    // mobile menu  -- use category shared
+
   // category page
   // product page
   // checkout page
