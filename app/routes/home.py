@@ -68,6 +68,7 @@ def get_all_categories():
                 "category_mobile": category.mobile_image,
                 "category_tablet": category.tablet_image,
                 "category_destktop": category.desktop_image,
+                "category_thumbnail": category.thumbnail
             }
             for category in categories
         ]

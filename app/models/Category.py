@@ -9,3 +9,4 @@ class Category(Base):
     mobile_image = Column(String(500), nullable=False)
     tablet_image = Column(String(500), nullable=False)
     desktop_image = Column(String(500), nullable=False)
+    thumbnail = Column(String(500), nullable=False)
