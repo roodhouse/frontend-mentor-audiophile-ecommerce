@@ -12,7 +12,7 @@ function App() {
   
   // home page
 
-    // promotion  
+    // promotion  /// spacing from top full screen
     // copy - shared
     // footer - shared
     // mobile menu  -- use category shared
