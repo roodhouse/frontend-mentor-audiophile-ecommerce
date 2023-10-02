@@ -10,7 +10,9 @@ const MainProvider = ({ children }) => {
   const [ categories, setCategories ] = useState(null);
   const [ products, setProducts ] = useState(null);
   const [ home, setHome ] = useState(true)
+  const [ mobileMenu, setMobileMenu ] = useState(false)
 
+  // Fetch requests
   useEffect(() => {
     fetch("http://127.0.0.1:5000/api/category/")
       .then((response) => {
@@ -59,7 +61,21 @@ const MainProvider = ({ children }) => {
       });
   }, []);
 
-  return <MainContext.Provider value={{ singleCategory, singleProduct, categories, products, home}}>{children}</MainContext.Provider>;
+  // Functions
+
+  // Display the mobile menu
+  const mobileMenuOn = () => {
+    setMobileMenu(true)
+    console.log('on')
+  }
+  // Hide the mobile menu
+  const mobileMenuOff = () => {
+    setMobileMenu(false)
+    console.log('off')
+  }
+
+
+  return <MainContext.Provider value={{ singleCategory, singleProduct, categories, products, home, mobileMenu, mobileMenuOn, mobileMenuOff}}>{children}</MainContext.Provider>;
 };
 
 // create custom hook for using the context
