@@ -12,8 +12,7 @@ function App() {
   
   // home page
 
-    // promotion  
-    // copy - shared
+    // copy - shared - here
     // footer - shared
     // mobile menu  -- use category shared
 

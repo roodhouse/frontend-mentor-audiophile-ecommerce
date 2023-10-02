@@ -1,6 +1,7 @@
 import React from 'react'
 import Hero from './home/Hero'
 import CategorySection from './shared/CategorySection'
+import PromotionSection from './home/Promotion'
 
 function Home() {
   return (
@@ -11,6 +12,9 @@ function Home() {
             </div>
             <div id='categorySectionWrapper' className='bg-white pt-[92px] w-full md:pt-[148px] xl:pt-[200px]'>
               <CategorySection />
+            </div>
+            <div id="promotionSectionWrapper" className='w-full pt-[120px] md:pt-[96px] xl:pt-[168px] bg-white'>
+              <PromotionSection />
             </div>
         </div>
     </>
