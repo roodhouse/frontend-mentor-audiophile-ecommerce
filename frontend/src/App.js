@@ -41,7 +41,7 @@ function App() {
             {/* <div id='checkoutWrapper'>
               <Checkout />
             </div> */}
-            <div id='footerWrapper'>
+            <div id='footerWrapper' className='bg-almostBlack w-full'>
               <Footer />
             </div>
           </div>

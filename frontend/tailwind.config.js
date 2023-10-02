@@ -11,7 +11,7 @@ module.exports = {
     },
     colors: {
       black: '#000000',
-      almostBlack: '#FBAF85',
+      almostBlack: '#101010',
       maskBlack: '#191919',
       white: '#ffffff',
       offWhite: '#F1F1F1',
