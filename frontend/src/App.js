@@ -24,11 +24,11 @@ function App() {
   return (
     <div id='app' className="App font-display">
       <div id='mainWrapper'>
-        <div id='mainContainer' className='bg-[#131313]'>
+        <div id='mainContainer' className=''>
           <div id='headerWrapper' className='absolute w-full z-30'>
               <Header />
             </div>
-            <div id='homeWrapper'>
+            <div id='homeWrapper' className='mb-[120px] md:mb-[96px] xl:mb-[200px]'>
               <Home />
             </div>
             {/* <div id='categoryWrapper'>
