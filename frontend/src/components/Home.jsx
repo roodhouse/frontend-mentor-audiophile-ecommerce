@@ -2,6 +2,7 @@ import React from 'react'
 import Hero from './home/Hero'
 import CategorySection from './shared/CategorySection'
 import PromotionSection from './home/Promotion'
+import Copy from './shared/Copy'
 
 function Home() {
   return (
@@ -15,6 +16,9 @@ function Home() {
             </div>
             <div id="promotionSectionWrapper" className='w-full pt-[120px] md:pt-[96px] xl:pt-[168px] bg-white'>
               <PromotionSection />
+            </div>
+            <div id="copySectionWrapper" className='w-full pt-[120px] md:pt-[96px] xl:pt-[200px] bg-white'>
+              <Copy />
             </div>
         </div>
     </>
