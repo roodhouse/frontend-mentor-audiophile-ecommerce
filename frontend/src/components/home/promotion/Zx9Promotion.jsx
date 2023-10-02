@@ -16,7 +16,7 @@ function Zx9Promotion() {
                     <div id="zx9PromotionCopyContainer" className='text-white text-center text-[15px] font-medium leading-[25px] opacity-[0.75] px-6 mb-6 md:px-[171px] md:mb-10 xl:text-left xl:p-0'>
                         <p>Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.</p>
                     </div>
-                    <div id="zx9PromotionActionContainer">
+                    <div id="zx9PromotionActionContainer" className='cursor-pointer'>
                         <Button />
                     </div>
                 </div>

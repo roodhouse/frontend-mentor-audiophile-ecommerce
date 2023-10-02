@@ -9,11 +9,6 @@ function App() {
 
   const { categories, products, singleProduct, singleCategory } = useMain()
 
-  
-  // home page
-
-    // copy - shared - here
-    // footer - shared
     // mobile menu  -- use category shared
 
   // category page
