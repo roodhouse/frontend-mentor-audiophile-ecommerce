@@ -17,7 +17,7 @@ function NewProduct() {
             <div id="newProductCopyWrapper" className='mb-[28px] md:mb-10'>
                 <NewProductCopy />
             </div>
-            <div id="newProductButtonWrapper">
+            <div id="newProductButtonWrapper" className='cursor-pointer'>
                 <SeeProductOrange />
             </div>
         </div>
