@@ -62,6 +62,7 @@ class Product(Base):
 
     # define the relationships to other models
     category_id = Column(Integer, ForeignKey('categories.id'))
+    category_name = Column(String(250), nullable=False)
     category = relationship('Category', backref='products')
     
     # images = relationship('Images', backref='products', cascade='all, delete-orphan')

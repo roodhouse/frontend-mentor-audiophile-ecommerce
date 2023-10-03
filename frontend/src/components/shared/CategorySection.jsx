@@ -3,7 +3,7 @@ import { useMain } from '../../context/mainContext'
 
 function CategorySection() {
   const { categories } = useMain()
-  console.log(categories)
+
   return (
     <>
       <div id="categorySectionContainer" className='px-6 flex flex-col items-center md:flex-row md:justify-between md:px-10 xl:px-[0] xl:justify-center'>

@@ -9,8 +9,10 @@ const MainProvider = ({ children }) => {
   const [ singleProduct, setSingleProduct ] = useState(null);
   const [ categories, setCategories ] = useState(null);
   const [ products, setProducts ] = useState(null);
-  const [ home, setHome ] = useState(true)
+  const [ home, setHome ] = useState(false)
   const [ mobileMenu, setMobileMenu ] = useState(false)
+  const [ categoryPage, setCategoryPage ] = useState('speakers')
+  
 
   // Fetch requests
   useEffect(() => {
@@ -89,7 +91,7 @@ const MainProvider = ({ children }) => {
   }
 
 
-  return <MainContext.Provider value={{ singleCategory, singleProduct, categories, products, home, mobileMenu, mobileMenuOn, mobileMenuOff}}>{children}</MainContext.Provider>;
+  return <MainContext.Provider value={{ singleCategory, singleProduct, categories, products, home, categoryPage, mobileMenu, mobileMenuOn, mobileMenuOff}}>{children}</MainContext.Provider>;
 };
 
 // create custom hook for using the context
