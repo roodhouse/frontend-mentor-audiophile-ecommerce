@@ -70,9 +70,9 @@ db.add_all([
         incl_four_quan=1,
         incl_five='Travel pouch',
         incl_five_quan=1,
-        main_image_mobile='/assets/product-yx1-earphones/mobile/image-category-page-preview.jpg',
-        main_image_tablet='/assets/product-yx1-earphones/tablet/image-category-page-preview.jpg',
-        main_image_desktop='/assets/product-yx1-earphones/desktop/image-category-page-preview.jpg',
+        main_image_mobile='/assets/product-yx1-earphones/mobile/image-product.jpg',
+        main_image_tablet='/assets/product-yx1-earphones/tablet/image-product.jpg',
+        main_image_desktop='/assets/product-yx1-earphones/desktop/image-product.jpg',
         gallery_one_mobile='/assets/product-yx1-earphones/mobile/image-gallery-1.jpg',
         gallery_one_tablet='/assets/product-yx1-earphones/tablet/image-gallery-1.jpg',
         gallery_one_desktop='/assets/product-yx1-earphones/desktop/image-gallery-1.jpg',
@@ -81,7 +81,10 @@ db.add_all([
         gallery_two_desktop='/assets/product-yx1-earphones/desktop/image-gallery-2.jpg',
         gallery_three_mobile='/assets/product-yx1-earphones/mobile/image-gallery-3.jpg',
         gallery_three_tablet='/assets/product-yx1-earphones/tablet/image-gallery-3.jpg',
-        gallery_three_desktop='/assets/product-yx1-earphones/desktop/image-gallery-3.jpg'
+        gallery_three_desktop='/assets/product-yx1-earphones/desktop/image-gallery-3.jpg',
+        category_image_mobile='/assets/product-yx1-earphones/mobile/image-category-page-preview.jpg',
+        category_image_tablet='/assets/product-yx1-earphones/tablet/image-category-page-preview.jpg',
+        category_image_desktop='/assets/product-yx1-earphones/desktop/image-category-page-preview.jpg'
     ),
     Product(
         slug='xx59-headphones', 
@@ -126,7 +129,10 @@ db.add_all([
         gallery_two_desktop='/assets/product-xx59-headphones/desktop/image-gallery-2.jpg',
         gallery_three_mobile='/assets/product-xx59-headphones/mobile/image-gallery-3.jpg',
         gallery_three_tablet='/assets/product-xx59-headphones/tablet/image-gallery-3.jpg',
-        gallery_three_desktop='/assets/product-xx59-headphones/desktop/image-gallery-3.jpg'
+        gallery_three_desktop='/assets/product-xx59-headphones/desktop/image-gallery-3.jpg',
+        category_image_mobile='/assets/product-xx59-headphones/mobile/image-category-page-preview.jpg',
+        category_image_tablet='/assets/product-xx59-headphones/tablet/image-category-page-preview.jpg',
+        category_image_desktop='/assets/product-xx59-headphones/desktop/image-category-page-preview.jpg'
     ),
     Product(
         slug='xx99-mark-one-headphones', 
@@ -171,7 +177,10 @@ db.add_all([
         gallery_two_desktop='/assets/product-xx99-mark-one-headphones/desktop/image-gallery-2.jpg',
         gallery_three_mobile='/assets/product-xx99-mark-one-headphones/mobile/image-gallery-3.jpg',
         gallery_three_tablet='/assets/product-xx99-mark-one-headphones/tablet/image-gallery-3.jpg',
-        gallery_three_desktop='/assets/product-xx99-mark-one-headphones/desktop/image-gallery-3.jpg'
+        gallery_three_desktop='/assets/product-xx99-mark-one-headphones/desktop/image-gallery-3.jpg',
+        category_image_mobile='/assets/product-xx99-mark-one-headphones/mobile/image-category-page-preview.jpg',
+        category_image_tablet='/assets/product-xx99-mark-one-headphones/tablet/image-category-page-preview.jpg',
+        category_image_desktop='/assets/product-xx99-mark-one-headphones/desktop/image-category-page-preview.jpg'
     ),
     Product(
         slug='xx99-mark-two-headphones', 
@@ -218,7 +227,10 @@ db.add_all([
         gallery_two_desktop='/assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg',
         gallery_three_mobile='/assets/product-xx99-mark-two-headphones/mobile/image-gallery-3.jpg',
         gallery_three_tablet='/assets/product-xx99-mark-two-headphones/tablet/image-gallery-3.jpg',
-        gallery_three_desktop='/assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg'
+        gallery_three_desktop='/assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg',
+        category_image_mobile='/assets/product-xx99-mark-two-headphones/mobile/image-category-page-preview.jpg',
+        category_image_tablet='/assets/product-xx99-mark-two-headphones/tablet/image-category-page-preview.jpg',
+        category_image_desktop='/assets/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg'
     ),
     Product(
         slug='zx7-speaker', 
@@ -265,7 +277,10 @@ db.add_all([
         gallery_two_desktop='/assets/product-zx7-speaker/desktop/image-gallery-2.jpg',
         gallery_three_mobile='/assets/product-zx7-speaker/mobile/image-gallery-3.jpg',
         gallery_three_tablet='/assets/product-zx7-speaker/tablet/image-gallery-3.jpg',
-        gallery_three_desktop='/assets/product-zx7-speaker/desktop/image-gallery-3.jpg'
+        gallery_three_desktop='/assets/product-zx7-speaker/desktop/image-gallery-3.jpg',
+        category_image_mobile='/assets/product-zx7-speaker/mobile/image-category-page-preview.jpg',
+        category_image_tablet='/assets/product-zx7-speaker/tablet/image-category-page-preview.jpg',
+        category_image_desktop='/assets/product-zx7-speaker/desktop/image-category-page-preview.jpg'
     ),
     Product(
         slug='zx9-speaker', 
@@ -312,7 +327,10 @@ db.add_all([
         gallery_two_desktop='/assets/product-zx9-speaker/desktop/image-gallery-2.jpg',
         gallery_three_mobile='/assets/product-zx9-speaker/mobile/image-gallery-3.jpg',
         gallery_three_tablet='/assets/product-zx9-speaker/tablet/image-gallery-3.jpg',
-        gallery_three_desktop='/assets/product-zx9-speaker/desktop/image-gallery-3.jpg'
+        gallery_three_desktop='/assets/product-zx9-speaker/desktop/image-gallery-3.jpg',
+        category_image_mobile='/assets/product-zx9-speaker/mobile/image-category-page-preview.jpg',
+        category_image_tablet='/assets/product-zx9-speaker/tablet/image-category-page-preview.jpg',
+        category_image_desktop='/assets/product-zx9-speaker/desktop/image-category-page-preview.jpg'
     )
 ])
 

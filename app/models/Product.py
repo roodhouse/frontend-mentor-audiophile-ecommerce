@@ -41,6 +41,9 @@ class Product(Base):
     gallery_three_mobile = Column(String(250), nullable=False)
     gallery_three_tablet = Column(String(250), nullable=False)
     gallery_three_desktop = Column(String(250), nullable=False)
+    category_image_mobile = Column(String(250), nullable=False)
+    category_image_tablet = Column(String(250), nullable=False)
+    category_image_desktop = Column(String(250), nullable=False)
 
     others_one_slug = Column(String(250), nullable=False)
     others_one_name = Column(String(250), nullable=False)

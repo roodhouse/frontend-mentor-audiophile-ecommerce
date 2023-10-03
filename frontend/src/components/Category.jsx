@@ -25,16 +25,16 @@ function Category() {
   return (
     <>
       <div id="categoryContainer">
-        <div id="categoryHeadingWrapper" className='mb-16'>
+        <div id="categoryHeadingWrapper" className='mb-16 md:mb-[120px] xl:mb-[160px]'>
           <CategoryHeading />
         </div>
-        <div id="categoryContent" className='bg-white px-6'>
+        <div id="categoryContent" className='bg-white px-6 md:px-10 xl:px-[165px]'>
           <div id="categoryProductDetailsWrapper">
             {currentCategory.map((item) => (
               <CategoryDetails key={item.id} item={item} />
             ))}
           </div>
-          <div id='categoryCategoriesSectionWrapper' className='pt-10 mb-[52px]'>
+          <div id='categoryCategoriesSectionWrapper' className='pt-10 mb-[120px]'>
             <CategorySection />
           </div>
           <div id='categoryCopyWrapper'>
