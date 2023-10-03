@@ -4,10 +4,11 @@ import HamburgerIcon from './header/HamburgerIcon'
 import DesktopMenu from './header/DesktopMenu'
 import Logo from './header/Logo'
 import CartIcon from './header/CartIcon'
+import MobileMenu from './header/MobileMenu'
 
 function Header() {
 
-  const { home } = useMain()
+  const { home, mobileMenu } = useMain()
 
   return (
     <>
@@ -27,6 +28,9 @@ function Header() {
             </div>
           </div>
           <div id='headerLine' className='w-full h-[1px] bg-white opacity-[0.104] md:w-auto md:mx-10 xl:mx-[12%]' />
+          <div id="mobileMenuWrapper" style={mobileMenu ? {display:'block'} : {display: 'none'}}>
+              <MobileMenu />
+            </div>
       </div>
     </>
   )

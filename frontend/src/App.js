@@ -7,7 +7,7 @@ import Footer from './components/shared/Footer'
 
 function App() {
 
-  const { categories, products, singleProduct, singleCategory } = useMain()
+  const { categories, products, singleProduct, singleCategory, mobileMenu } = useMain()
 
     // mobile menu  -- use category shared
 
@@ -15,6 +15,8 @@ function App() {
   // product page
   // checkout page
   // cart module
+console.log(mobileMenu)
+
     
   return (
     <div id='app' className="App font-display">
