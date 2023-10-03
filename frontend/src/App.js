@@ -9,15 +9,11 @@ function App() {
 
   const { categories, products, singleProduct, singleCategory, mobileMenu } = useMain()
 
-    // mobile menu  -- use category shared
-
   // category page
   // product page
   // checkout page
   // cart module
-console.log(mobileMenu)
 
-    
   return (
     <div id='app' className="App font-display">
       <div id='mainWrapper'>
