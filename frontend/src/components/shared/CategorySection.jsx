@@ -2,7 +2,13 @@ import React from 'react'
 import { useMain } from '../../context/mainContext'
 
 function CategorySection() {
-  const { categories } = useMain()
+  const { categories, categoryClick } = useMain()
+
+  const handleClick = (e) => {
+    const containerDiv = e.currentTarget
+    const categoryName = containerDiv.getAttribute('data-name')
+    categoryClick(categoryName)
+  }
 
   return (
     <>
@@ -10,7 +16,7 @@ function CategorySection() {
         
         { categories ? (
           categories.map((category) => (
-            <div key={category.category_id} id={`${category.category_name}SectionContainer`} className='bg-offWhite rounded-lg mb-[68px] md:mb-0 flex flex-col items-center h-[165px] xl:h-[204px] w-[327px] cursor-pointer group md:w-[223px] xl:w-[350px] xl:mr-[30px] xl:last:mr-0'>
+            <div key={category.category_id} onClick={handleClick} data-name={category.category_name} id={`${category.category_name}SectionContainer`} className='bg-offWhite rounded-lg mb-[68px] md:mb-0 flex flex-col items-center h-[165px] xl:h-[204px] w-[327px] cursor-pointer group md:w-[223px] xl:w-[350px] xl:mr-[30px] xl:last:mr-0'>
               <div id={`${category.category_name}SectionImage`} className='w-[80px] xl:w-[178px] h-[104px] xl:h-full mt-[-40px] xl:mt-[-75px] xl:mb-[-50px] bg-cover bg-no-repeat bg-center' style={{backgroundImage: `url(${category.category_thumbnail})`}} />
               <div id={`${category.category_name}SectionTitle`} className='mb-[17px] text-black text-center text-[15px] font-bold leading-normal tracking-[1.071px] uppercase xl:text-[18px] xl:leading-normal xl:tracking-[1.286px] xl:mt-[36px]'>
                 <p>{category.category_name}</p>
