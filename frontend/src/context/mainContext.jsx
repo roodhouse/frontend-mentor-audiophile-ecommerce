@@ -66,11 +66,28 @@ const MainProvider = ({ children }) => {
   // Display the mobile menu
   const mobileMenuOn = () => {
     setMobileMenu(true)
+    
     console.log('on')
+
+    function disableScroll() {
+      // Get the current page scroll position
+     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+     let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+          // if any scroll is attempted, set this to the previous value
+            window.onscroll = function() {
+            window.scrollTo(scrollLeft, scrollTop);
+          };
+  };
+  disableScroll()
+  
   }
   // Hide the mobile menu
   const mobileMenuOff = () => {
     setMobileMenu(false)
+    function enableScroll() {
+      window.onscroll = function() {};
+  }
+  enableScroll()
     console.log('off')
   }
 
