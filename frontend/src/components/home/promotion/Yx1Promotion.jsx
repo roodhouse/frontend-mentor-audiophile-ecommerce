@@ -1,7 +1,17 @@
 import React from 'react'
 import SeeProductTransparent from '../../shared/buttons/SeeProductTransparent'
+import { useMain } from '../../../context/mainContext'
 
 function Yx1Promotion() {
+
+    const { productClick } = useMain()
+
+    const handleClick = (e) => {
+        const containerDiv = e.currentTarget
+        const productName = containerDiv.getAttribute('data-name')
+        productClick(productName)
+    }
+
   return (
     <>
         <div id="Yx1PromotionContainer" className='w-[327px] md:w-[689px] xl:w-[1110px] md:flex md:justify-between'>
@@ -10,7 +20,7 @@ function Yx1Promotion() {
                 <div id="yx1PromoDetailsTitle" className='text-black text-[28px] leading-normal tracking-[2px] font-bold uppercase pt-[41px] md:pt-[101px] pl-6 md:pl-[41px] xl:pl-[95px] mb-8'>
                     <p>YX1 Earphones</p>
                 </div>
-                <div id="yx1PromoSeeProduct" className='pl-6 pb-[41px] md:pl-[41px] xl:pl-[95px]'>
+                <div id="yx1PromoSeeProduct" onClick={handleClick} data-name='YX1 Wireless Earphones' className='pl-6 pb-[41px] md:pl-[41px] xl:pl-[95px]'>
                     <SeeProductTransparent />
                 </div>
             </div>

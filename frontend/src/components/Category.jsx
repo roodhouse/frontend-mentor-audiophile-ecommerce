@@ -27,8 +27,6 @@ function Category() {
         }
       },[categoryPage])
 
-    console.log(currentCategory)
-
   return (
     <>
       <div id="categoryContainer">

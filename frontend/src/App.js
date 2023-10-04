@@ -2,18 +2,19 @@ import './App.css';
 import { useMain } from './context/mainContext';
 import Home from './components/Home';
 import Category from './components/Category';
+import Products from './components/Products';
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
 function App() {
 
-  const { categories, products, singleProduct, singleCategory, mobileMenu, home, categoryPage } = useMain()
+  const { categories, products, singleProduct, singleCategory, mobileMenu, home, categoryPage, productPage, history } = useMain()
 
-  // category page
-    // spacing on ful screen still off... issue with categories...
   // product page
   // checkout page
   // cart module
+
+  console.log(history)
 
   return (
     <div id='app' className="App font-display">
@@ -28,10 +29,9 @@ function App() {
             <div id='categoryWrapper' style={categoryPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
               <Category />
             </div>
-            
-            {/* <div id='productWrapper'>
-              <Product />
-            </div> */}
+            <div id='productWrapper' style={productPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
+              <Products />
+            </div>
             {/* <div id='checkoutWrapper'>
               <Checkout />
             </div> */}
