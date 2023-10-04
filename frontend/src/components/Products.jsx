@@ -3,6 +3,7 @@ import { useMain } from '../context/mainContext'
 import ProductHeading from './products/ProductHeading'
 import ProductDetails from './products/ProductDetails'
 import ProductFeatures from './products/productDetails/ProductFeatures'
+import ProductGallery from './products/ProductGallery'
 
 function Products() {
 
@@ -31,8 +32,10 @@ function Products() {
                     <div id={`product_${currentProduct[0].id}_FeaturesBoxWrapper`} className='pb-[88px]'>
                         <ProductFeatures product={currentProduct} />
                     </div>
-                    {/* features and in the box section */}
-                    {/* gallery section */}
+                    <div id={`product_${currentProduct[0].id}_GalleryWrapper`} className='pb-[120px]'>
+                        <ProductGallery product={currentProduct} />
+                    </div>
+                    
                     {/* also may like section */}
                 </div>
             ) : ''
