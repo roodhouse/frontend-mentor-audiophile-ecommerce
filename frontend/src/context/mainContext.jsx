@@ -9,9 +9,9 @@ const MainProvider = ({ children }) => {
   const [ singleProduct, setSingleProduct ] = useState(null);
   const [ categories, setCategories ] = useState(null);
   const [ products, setProducts ] = useState(null);
-  const [ home, setHome ] = useState(false)
+  const [ home, setHome ] = useState(true)
   const [ mobileMenu, setMobileMenu ] = useState(false)
-  const [ categoryPage, setCategoryPage ] = useState('speakers')
+  const [ categoryPage, setCategoryPage ] = useState('')
   
 
   // Fetch requests

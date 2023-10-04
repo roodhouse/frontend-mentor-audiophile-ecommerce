@@ -8,7 +8,7 @@ import SeeProductOrange from '../shared/buttons/SeeProductOrange'
 function CategoryDetails({item}) {
   return (
     <>
-        <div id={`categoryProductDetailsContainer_item${item.id}`} className='mb-[120px] xl:mb-[160px] flex flex-col items-center xl:flex-row'>
+        <div id={`categoryProductDetailsContainer_item${item.id}`} className='mb-[120px] xl:mb-[160px] flex flex-col items-center xl:flex-row xl:justify-between'>
             <div id={`categoryProductImageWrapper_item${item.id}`} className='mb-8 md:mb-[52px] xl:mb-0'>
                 <CategoryImage item={item} />
             </div>

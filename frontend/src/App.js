@@ -10,6 +10,7 @@ function App() {
   const { categories, products, singleProduct, singleCategory, mobileMenu, home, categoryPage } = useMain()
 
   // category page
+    // spacing on ful screen still off... issue with categories...
   // product page
   // checkout page
   // cart module
@@ -24,7 +25,7 @@ function App() {
             <div id='homeWrapper' className='mb-[120px] md:mb-[96px] xl:mb-[200px]' style={home ? {display: 'block'} : {display: 'none'}}>
               <Home />
             </div>
-            <div id='categoryWrapper' style={categoryPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px]'>
+            <div id='categoryWrapper' style={categoryPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
               <Category />
             </div>
             

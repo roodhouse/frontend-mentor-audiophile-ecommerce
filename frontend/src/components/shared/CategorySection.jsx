@@ -2,7 +2,7 @@ import React from 'react'
 import { useMain } from '../../context/mainContext'
 
 function CategorySection() {
-  const { categories, categoryClick } = useMain()
+  const { categories, categoryClick, home } = useMain()
 
   const handleClick = (e) => {
     const containerDiv = e.currentTarget
@@ -12,7 +12,7 @@ function CategorySection() {
 
   return (
     <>
-      <div id="categorySectionContainer" className='px-6 flex flex-col items-center md:flex-row md:justify-between md:px-10 xl:px-[0] xl:justify-center'>
+      <div id="categorySectionContainer" style={home && window.innerWidth < 1280 ? {'justify-content': 'space-between'} : {'justify-content': 'center'}} className='px-6 flex flex-col items-center md:flex-row md:justify-between md:px-10 xl:px-[0]'>
         
         { categories ? (
           categories.map((category) => (

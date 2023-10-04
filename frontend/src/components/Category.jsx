@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CategoryHeading from './category/CategoryHeading'
 import CategoryDetails from './category/CategoryDetails'
 import { useMain } from '../context/mainContext'
@@ -8,17 +8,24 @@ import Copy from './shared/Copy'
 function Category() {
     
     const { categoryPage, categories, singleCategory, products } = useMain()
-    console.log(products)
-
-    // const currentCategory = () => {
-    //   products.filter((item) => item.category_name === categoryPage)
-    // }
 
     const currentCategory = products 
       ? products
           .filter((item) => item.category_name === categoryPage)
           .sort((a,b) => (a.new === b.new ? 0 : a.new ? -1: 1))
       : []
+
+      useEffect(() => {
+        const categoryGroup = document.getElementById('categoryProductDetailsWrapper')
+        console.log(categoryGroup.children)
+        if (categoryGroup.children.length > 1) {
+          console.log('great')
+          const newOrder = categoryGroup.children[1]
+          console.log(newOrder)
+          newOrder.firstChild.classList.add('xl:order-2')
+
+        }
+      },[categoryPage])
 
     console.log(currentCategory)
 
@@ -28,13 +35,13 @@ function Category() {
         <div id="categoryHeadingWrapper" className='mb-16 md:mb-[120px] xl:mb-[160px]'>
           <CategoryHeading />
         </div>
-        <div id="categoryContent" className='bg-white px-6 md:px-10 xl:px-[165px]'>
+        <div id="categoryContent" className='bg-white px-6 md:px-10 xl:px-[5%] custom:px-[165px]'>
           <div id="categoryProductDetailsWrapper">
             {currentCategory.map((item) => (
               <CategoryDetails key={item.id} item={item} />
             ))}
           </div>
-          <div id='categoryCategoriesSectionWrapper' className='pt-10 mb-[120px]'>
+          <div id='categoryCategoriesSectionWrapper' className='pt-10 mb-[120px] xl:pt-[75px] xl:mb-[160px]'>
             <CategorySection />
           </div>
           <div id='categoryCopyWrapper'>
