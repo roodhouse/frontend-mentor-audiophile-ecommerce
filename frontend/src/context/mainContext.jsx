@@ -132,13 +132,10 @@ const MainProvider = ({ children }) => {
 
   // Go back from product page
   const goBack = () => {
-    console.log(`current history: ${history}`)
     if (history.length >= 1) {
       const newHistory = [...history]
-      console.log(newHistory)
       let previousPage = newHistory.pop()
       if ( previousPage === 'home' ) {
-        console.log('here')
         setHome(previousPage)
         setCategoryPage('')
         setProductPage('')
@@ -154,8 +151,6 @@ const MainProvider = ({ children }) => {
         setCategoryPage('')
         setMobileMenu(false)
       }
-      console.log(previousPage)
-      console.log(newHistory)
       setHistory(newHistory)
     }
   }
