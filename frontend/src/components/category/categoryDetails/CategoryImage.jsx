@@ -8,7 +8,6 @@ function CategoryImage({item}) {
     useEffect(() => {
         // condition here to set different size of background images
         const screenWidth = window.innerWidth
-        console.log(screenWidth)
         if (screenWidth < 768) {
           setBackground(item.category_image_mobile)
         }

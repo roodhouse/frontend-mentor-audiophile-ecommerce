@@ -1,3 +1,8 @@
+#product_2_BoxItemTwoQuan, #product_6_BoxItemOneQuan, #product_6_BoxItemTwoQuan, #product_4_BoxItemTwoQuan, #product_3_BoxItemTwoQuan,
+#product_5_BoxItemOneQuan, #product_5_BoxItemTwoQuan, #product_1_BoxItemOneQuan, #product_1_BoxItemTwoQuan {
+    margin-right: 21px;
+}
+
 @media (min-width: 768px) {
     #product_item6_TitleContainer, #product_item5_TitleContainer {
         width: 275px;

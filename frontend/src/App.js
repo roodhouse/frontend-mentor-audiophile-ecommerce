@@ -1,4 +1,5 @@
 import './App.css';
+import { useEffect } from 'react';
 import { useMain } from './context/mainContext';
 import Home from './components/Home';
 import Category from './components/Category';
@@ -14,8 +15,6 @@ function App() {
   // checkout page
   // cart module
 
-  console.log(history)
-
   return (
     <div id='app' className="App font-display">
       <div id='mainWrapper'>
@@ -29,7 +28,7 @@ function App() {
             <div id='categoryWrapper' style={categoryPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
               <Category />
             </div>
-            <div id='productWrapper' style={productPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
+            <div id='productWrapper' style={productPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] px-6 md:px-10 xl:px-[165px] mb-[120px] xl:mb-[160px]'>
               <Products />
             </div>
             {/* <div id='checkoutWrapper'>

@@ -124,6 +124,8 @@ const MainProvider = ({ children }) => {
     setMobileMenu(false)
     setCategoryPage('')
     setProductPage(productName)
+    window.scrollTo(0,0)
+    enableScroll()
   }
 
   const navigate = (pageName)=> {

@@ -1,27 +1,43 @@
 import React from 'react'
 import { useMain } from '../context/mainContext'
 import ProductHeading from './products/ProductHeading'
+import ProductDetails from './products/ProductDetails'
+import ProductFeatures from './products/productDetails/ProductFeatures'
 
 function Products() {
 
     const { products, productPage } = useMain()
 
-    console.log(products)
 
     const currentProduct = products
         ? products
             .filter((item) => item.name === productPage)
         : []
 
+    console.log(productPage)
     console.log(currentProduct)
 
   return (
     <>
-        <div id="productContainer">
-            <div id="productHeadingWrapper" className='pt-4 pl-6 pb-6'>
-                <ProductHeading />
-            </div>
-        </div>
+        {
+            currentProduct.length > 0 ? (
+                <div id={`product_${currentProduct[0].id}_Container`}>
+                    <div id={`product_${currentProduct[0].id}_HeadingWrapper`} className='pt-4 pb-6'>
+                         <ProductHeading product={currentProduct} />
+                    </div>
+                    <div id={`product_${currentProduct[0].id}_DetailsWrapper`} className='pb-[88px]'>
+                        <ProductDetails product={currentProduct} />
+                    </div>
+                    <div id={`product_${currentProduct[0].id}_FeaturesBoxWrapper`} className='pb-[88px]'>
+                        <ProductFeatures product={currentProduct} />
+                    </div>
+                    {/* features and in the box section */}
+                    {/* gallery section */}
+                    {/* also may like section */}
+                </div>
+            ) : ''
+        }
+        
     </>
   )
 }
