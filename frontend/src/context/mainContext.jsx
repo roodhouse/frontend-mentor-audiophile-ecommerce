@@ -11,6 +11,8 @@ const MainProvider = ({ children }) => {
   const [ products, setProducts ] = useState(null);
   const [ home, setHome ] = useState(true)
   const [ mobileMenu, setMobileMenu ] = useState(false)
+  const [ categoryPage, setCategoryPage ] = useState('')
+  
 
   // Fetch requests
   useEffect(() => {
@@ -63,36 +65,55 @@ const MainProvider = ({ children }) => {
 
   // Functions
 
+  // **** misc ****
+      // enable scroll
+  function enableScroll() {
+    window.onscroll = function() {};
+  }
+
+      // disable scroll
+  function disableScroll() {
+    // Get the current page scroll position
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+        // if any scroll is attempted, set this to the previous value
+          window.onscroll = function() {
+          window.scrollTo(scrollLeft, scrollTop);
+        };
+  };
+  // **** State changes ****
+
+  const homeClick = () => {
+    setHome(true)
+    setMobileMenu(false)
+    setCategoryPage('')
+    window.scrollTo(0,0)
+    enableScroll()
+  }
+
+  const categoryClick = (categoryName) => {
+    setHome(false)
+    setMobileMenu(false)
+    setCategoryPage(categoryName)
+    window.scrollTo(0,0)
+    enableScroll()
+    
+  }
+
   // Display the mobile menu
   const mobileMenuOn = () => {
     setMobileMenu(true)
-    
-    console.log('on')
-
-    function disableScroll() {
-      // Get the current page scroll position
-     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-     let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-          // if any scroll is attempted, set this to the previous value
-            window.onscroll = function() {
-            window.scrollTo(scrollLeft, scrollTop);
-          };
-  };
-  disableScroll()
-  
+    disableScroll()
   }
+
   // Hide the mobile menu
   const mobileMenuOff = () => {
     setMobileMenu(false)
-    function enableScroll() {
-      window.onscroll = function() {};
-  }
-  enableScroll()
-    console.log('off')
+    enableScroll()
   }
 
 
-  return <MainContext.Provider value={{ singleCategory, singleProduct, categories, products, home, mobileMenu, mobileMenuOn, mobileMenuOff}}>{children}</MainContext.Provider>;
+  return <MainContext.Provider value={{ singleCategory, singleProduct, categories, products, home, categoryPage, mobileMenu, mobileMenuOn, mobileMenuOff, homeClick, categoryClick}}>{children}</MainContext.Provider>;
 };
 
 // create custom hook for using the context

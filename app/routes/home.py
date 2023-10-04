@@ -153,6 +153,10 @@ def get__all_products():
                 "others_three_tablet": product.others_three_tablet,
                 "others_three_desktop": product.others_three_desktop,
                 "category_id": product.category_id,
+                "category_name": product.category_name,
+                "category_image_mobile": product.category_image_mobile,
+                "category_image_tablet": product.category_image_tablet,
+                "category_image_desktop": product.category_image_desktop
             }
             for product in products
         ]

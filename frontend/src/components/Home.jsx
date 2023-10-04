@@ -11,8 +11,10 @@ function Home() {
             <div id="heroWrapper" className='relative w-full max-w-[375px] md:max-w-[768px] xl:max-w-[100%] h-[600px] overflow-hidden md:h-[729px]'>
               <Hero />
             </div>
-            <div id='categorySectionWrapper' className='bg-white pt-[92px] w-full md:pt-[148px] xl:pt-[200px]'>
-              <CategorySection />
+            <div id="catContain" className='bg-white w-full flex justify-center'>
+              <div id='categorySectionWrapper' className='bg-white pt-[92px] w-full md:flex md:justify-center md:pt-[148px] xl:pt-[200px] xl:w-[1110px]'>
+                <CategorySection />
+              </div>
             </div>
             <div id="promotionSectionWrapper" className='w-full pt-[120px] md:pt-[96px] xl:pt-[168px] bg-white'>
               <PromotionSection />

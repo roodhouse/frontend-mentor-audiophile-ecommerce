@@ -1,0 +1,10 @@
+@media (min-width: 768px) {
+    #product_item6_TitleContainer, #product_item5_TitleContainer {
+        width: 275px;
+    }
+
+    #categoryCategoriesSectionWrapper #categorySectionContainer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
