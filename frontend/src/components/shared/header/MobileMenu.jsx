@@ -7,7 +7,7 @@ function MobileMenu() {
     const { mobileMenuOff } = useMain()
   return (
     <>
-        <div id="mobileMenuContainer" className='bg-white pt-[72px] h-[737px] md:h-[340px] rounded-[0_0_8px_8px]'>
+        <div id="mobileMenuContainer" className='bg-white pt-[72px] h-[737px] md:h-[340px] md:flex md:justify-center rounded-[0_0_8px_8px]'>
             <CategorySection />
         </div>
         <div id="mobileMenuMask" onClick={mobileMenuOff} className='h-screen bg-black opacity-[0.4]'/>

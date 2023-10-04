@@ -12,7 +12,7 @@ function CategorySection() {
 
   return (
     <>
-      <div id="categorySectionContainer" style={home && window.innerWidth < 1280 ? {'justify-content': 'space-between'} : {'justify-content': 'center'}} className='px-6 flex flex-col items-center md:flex-row md:justify-between md:px-10 xl:px-[0]'>
+      <div id="categorySectionContainer" className='px-6 flex flex-col items-center md:w-full md:max-w-[768px] xl:max-w-full md:flex-row md:justify-between md:px-10 xl:px-[0]'>
         
         { categories ? (
           categories.map((category) => (
