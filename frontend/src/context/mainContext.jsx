@@ -13,8 +13,11 @@ const MainProvider = ({ children }) => {
   const [ mobileMenu, setMobileMenu ] = useState(false)
   const [ categoryPage, setCategoryPage ] = useState('')
   const [ productPage, setProductPage ] = useState('')
+  const [ cartMenu, setCartMenu ] = useState(false)
+  const [ cart, setCart ] = useState([])
   const [ history, setHistory ] = useState([])
   const [ quantity, setQuantity ] = useState(1)
+  const [ cartActivity, setCartActvity ] = useState(0)
 
   // Fetch requests
   useEffect(() => {
@@ -103,6 +106,7 @@ const MainProvider = ({ children }) => {
     setHome('home')
     setQuantity(1)
     setMobileMenu(false)
+    setCartMenu(false)
     setProductPage('')
     setCategoryPage('')
     window.scrollTo(0,0)
@@ -115,6 +119,7 @@ const MainProvider = ({ children }) => {
     setHome('')
     setQuantity(1)
     setMobileMenu(false)
+    setCartMenu(false)
     setProductPage('')
     setCategoryPage(categoryName)
     window.scrollTo(0,0)
@@ -128,6 +133,7 @@ const MainProvider = ({ children }) => {
     setHome('')
     setQuantity(1)
     setMobileMenu(false)
+    setCartMenu(false)
     setCategoryPage('')
     setProductPage(productName)
     window.scrollTo(0,0)
@@ -167,6 +173,7 @@ const MainProvider = ({ children }) => {
   // Display the mobile menu
   const mobileMenuOn = () => {
     setMobileMenu(true)
+    setCartMenu(false)
     disableScroll()
   }
 
@@ -176,24 +183,9 @@ const MainProvider = ({ children }) => {
     enableScroll()
   }
 
-  // Add quantity
-  const addOne = () => {
-    let newQuan = quantity + 1
-    setQuantity(newQuan)
-  }
-  
-  // Reduce quantity
-  const reduceOne = () => {
-    let newQuan = quantity - 1
-    if (newQuan < 1) {
-      setQuantity(1)
-    } else {
-      setQuantity(newQuan)
-    }
-  }
-
   // **** Cart fucntionality **** // 
 
+  // add item items to cart // 
   const addToCart = (itemName) => {
     if( typeof localStorage !== 'undefined' ) {
       if ( localStorage.length === 0 ) {
@@ -213,7 +205,42 @@ const MainProvider = ({ children }) => {
           currentCart.push(cartItem)
           localStorage.setItem('cart', JSON.stringify(currentCart))
       }
-    }  
+    }
+    setCartActvity(cartActivity + 1)
+  }
+
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem('cart')))
+  },[cartActivity])
+
+  // Add quantity
+  const addOne = () => {
+    let newQuan = quantity + 1
+    setQuantity(newQuan)
+  }
+  
+  // Reduce quantity
+  const reduceOne = () => {
+    let newQuan = quantity - 1
+    if (newQuan < 1) {
+        setQuantity(1)
+    } else {
+        setQuantity(newQuan)
+    }
+  }
+  
+  // Show cart menu
+  const cartMenuOn = () => {
+    setMobileMenu(false)
+    setCartMenu(true)
+    console.log(cartMenu)
+    disableScroll()
+  }
+
+  // Hide cart menu
+  const cartMenuOff = () => {
+    setCartMenu(false)
+    enableScroll()
   }
 
 
@@ -221,7 +248,8 @@ const MainProvider = ({ children }) => {
     {
       { 
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, mobileMenu, addToCart, 
-        mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne
+        mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
+        cartMenuOn, cartMenuOff, cartMenu, cart
       }
     }>
     {children}
