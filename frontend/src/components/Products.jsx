@@ -4,6 +4,7 @@ import ProductHeading from './products/ProductHeading'
 import ProductDetails from './products/ProductDetails'
 import ProductFeatures from './products/productDetails/ProductFeatures'
 import ProductGallery from './products/ProductGallery'
+import AlsoSection from './products/productDetails/AlsoSection'
 
 function Products() {
 
@@ -34,6 +35,9 @@ function Products() {
                     </div>
                     <div id={`product_${currentProduct[0].id}_GalleryWrapper`} className='pb-[120px]'>
                         <ProductGallery product={currentProduct} />
+                    </div>
+                    <div id={`product_${currentProduct[0].id}_AlsoSectionWrapper`} className='pb-[120px]'>
+                        <AlsoSection product={currentProduct} />
                     </div>
                     
                     {/* also may like section */}
