@@ -20,23 +20,23 @@ function Products() {
     <>
         {
             currentProduct.length > 0 ? (
-                <div id={`product_${currentProduct[0].id}_Container`} className='max-w-[327px] md:max-w-[690px] flex flex-col'>
-                    <div id={`product_${currentProduct[0].id}_HeadingWrapper`} className='pt-4 md:pt-8 pb-6'>
+                <div id={`product_${currentProduct[0].id}_Container`} className='max-w-[327px] md:max-w-[690px] xl:max-w-[1110px] flex flex-col'>
+                    <div id={`product_${currentProduct[0].id}_HeadingWrapper`} className='pt-4 md:pt-8 xl:pt-[29px] pb-6 xl:pb-[56px]'>
                          <ProductHeading product={currentProduct} />
                     </div>
-                    <div id={`product_${currentProduct[0].id}_DetailsWrapper`} className='pb-[88px] md:pb-[120px]'>
+                    <div id={`product_${currentProduct[0].id}_DetailsWrapper`} className='pb-[88px] md:pb-[120px] xl:pb-[160px]'>
                         <ProductDetails product={currentProduct} />
                     </div>
-                    <div id={`product_${currentProduct[0].id}_FeaturesBoxWrapper`} className='pb-[88px] md:pb-[120px]'>
+                    <div id={`product_${currentProduct[0].id}_FeaturesBoxWrapper`} className='pb-[88px] md:pb-[120px] xl:pb-[160px]'>
                         <ProductFeatures product={currentProduct} />
                     </div>
-                    <div id={`product_${currentProduct[0].id}_GalleryWrapper`} className='pb-[120px]'>
+                    <div id={`product_${currentProduct[0].id}_GalleryWrapper`} className='pb-[120px] xl:pb-[160px]'>
                         <ProductGallery product={currentProduct} />
                     </div>
-                    <div id={`product_${currentProduct[0].id}_AlsoSectionWrapper`} className='pb-[120px]'>
+                    <div id={`product_${currentProduct[0].id}_AlsoSectionWrapper`} className='pb-[120px] xl:pb-[160px]'>
                         <AlsoSection product={currentProduct} />
                     </div>
-                    <div id={`product_${currentProduct[0].id}_CategorySectionWrapper`} className='mt-10 pb-[52px] md:pb-[120px]'>
+                    <div id={`product_${currentProduct[0].id}_CategorySectionWrapper`} className='mt-10 xl:mt-[75px] pb-[52px] md:pb-[120px] xl:mb-[160px]'>
                         <CategorySection />
                     </div>
                     <div id={`product_${currentProduct[0].id}_CopySectionWrapper`} className=''>

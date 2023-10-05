@@ -25,7 +25,7 @@ function GalleryOne({product}) {
   return (
     <>
          <div id={`product_${product.id}_GalleryOneContainer`}>
-            <div id={`product_${product.id}_GalleryOne`} className='w-[327px] md:w-[277px] h-[174px] rounded-lg bg-cover bg-no-repeat mb-6 md:mb-0' style={{backgroundImage: `url(${background})`}} />
+            <div id={`product_${product.id}_GalleryOne`} className='w-[327px] md:w-[277px] xl:w-[445px] h-[174px] xl:h-[280px] rounded-lg bg-cover bg-no-repeat mb-6 md:mb-0' style={{backgroundImage: `url(${background})`}} />
          </div>
     </>
   )

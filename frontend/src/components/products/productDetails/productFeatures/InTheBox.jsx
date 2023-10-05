@@ -3,8 +3,8 @@ import React from 'react'
 function InTheBox({ product }) {
   return (
     <>
-        <div id={`product_${product.id}_BoxContainer`} className='md:flex'>
-            <div id={`product_${product.id}_BoxTitleContainer`} className='md:w-[339px] text-black text-2xl md:text-[32px] leading-9 tracking-[0.857px] md:tracking-[1.143px] font-bold uppercase mb-6 md:mb-0 md:mr-[11px]'>
+        <div id={`product_${product.id}_BoxContainer`} className='md:flex xl:flex-col'>
+            <div id={`product_${product.id}_BoxTitleContainer`} className='md:w-[339px] text-black text-2xl md:text-[32px] leading-9 tracking-[0.857px] md:tracking-[1.143px] font-bold uppercase mb-6 md:mb-0 xl:mb-8 md:mr-[11px] xl:mr-0'>
                 <p>In The Box</p>
             </div>
             <div id={`product_${product.id}_BoxContentsContainer`}>

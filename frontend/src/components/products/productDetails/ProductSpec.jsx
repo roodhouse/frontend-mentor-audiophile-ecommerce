@@ -25,7 +25,7 @@ function ProductSpec({ product }) {
             <div id={`product_${product.id}_DescWrapper`} className='mb-6 md:mb-8'>
                 <ProductDesc product={product} />
             </div>
-            <div id={`product_${product.id}_PriceWrapper`} className='mb-8'>
+            <div id={`product_${product.id}_PriceWrapper`} className='mb-8 xl:mb-[47px]'>
                 <ProductPrice product={product} />
             </div>
             <div id={`product_${product.id}_QuanCartContainer`} className='flex'>

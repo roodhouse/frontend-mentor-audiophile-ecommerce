@@ -11,7 +11,7 @@ function AlsoSection({product}) {
   return (
     <>
         <div id={`product_${theProduct.id}_AlsoSectionContainer`}>
-            <div id={`product_${theProduct.id}_AlsoTitleContainer`} className='text-black text-2xl md:text-[32px] leading-9 tracking-[0.857px] md:tracking-[1.143px] font-bold uppercase text-center mb-10 md:mb-[56px]'>
+            <div id={`product_${theProduct.id}_AlsoTitleContainer`} className='text-black text-2xl md:text-[32px] leading-9 tracking-[0.857px] md:tracking-[1.143px] font-bold uppercase text-center mb-10 md:mb-[56px] xl:mb-16'>
                 <p>You Also May Like</p>
             </div>
             <div id={`product_${theProduct.id}_AlsoSectionProductContainer`} className='md:flex md:justify-between'>
