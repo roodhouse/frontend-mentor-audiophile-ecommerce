@@ -5,6 +5,8 @@ import ProductDetails from './products/ProductDetails'
 import ProductFeatures from './products/productDetails/ProductFeatures'
 import ProductGallery from './products/ProductGallery'
 import AlsoSection from './products/productDetails/AlsoSection'
+import CategorySection from './shared/CategorySection'
+import Copy from './shared/Copy'
 
 function Products() {
 
@@ -39,7 +41,13 @@ function Products() {
                     <div id={`product_${currentProduct[0].id}_AlsoSectionWrapper`} className='pb-[120px]'>
                         <AlsoSection product={currentProduct} />
                     </div>
-                    
+                    <div id={`product_${currentProduct[0].id}_CategorySectionWrapper`} className='mt-10 pb-[52px]'>
+                        <CategorySection />
+                    </div>
+                    <div id={`product_${currentProduct[0].id}_CopySectionWrapper`} className=''>
+                        <Copy />
+                    </div>
+
                     {/* category section */}
                     {/* copy section */}
                 </div>
