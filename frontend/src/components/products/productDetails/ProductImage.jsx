@@ -4,7 +4,6 @@ import { useMain } from '../../../context/mainContext'
 function ProductImage({ product }) {
 
     const [ background, setBackground ] = useState('')
-
     const { productPage } = useMain()
 
     useEffect(() => {
@@ -21,8 +20,6 @@ function ProductImage({ product }) {
         }
 
     },[productPage])
-
-    console.log(background)
 
   return (
     <>

@@ -11,21 +11,16 @@ import Copy from './shared/Copy'
 function Products() {
 
     const { products, productPage } = useMain()
-
-
     const currentProduct = products
         ? products
             .filter((item) => item.name === productPage)
         : []
 
-    console.log(productPage)
-    console.log(currentProduct)
-
   return (
     <>
         {
             currentProduct.length > 0 ? (
-                <div id={`product_${currentProduct[0].id}_Container`}>
+                <div id={`product_${currentProduct[0].id}_Container`} className='max-w-[327px] flex flex-col'>
                     <div id={`product_${currentProduct[0].id}_HeadingWrapper`} className='pt-4 pb-6'>
                          <ProductHeading product={currentProduct} />
                     </div>
@@ -47,9 +42,6 @@ function Products() {
                     <div id={`product_${currentProduct[0].id}_CopySectionWrapper`} className=''>
                         <Copy />
                     </div>
-
-                    {/* category section */}
-                    {/* copy section */}
                 </div>
             ) : ''
         }

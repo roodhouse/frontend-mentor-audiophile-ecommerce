@@ -12,6 +12,10 @@ function App() {
   const { categories, products, singleProduct, singleCategory, mobileMenu, home, categoryPage, productPage, history } = useMain()
 
   // product page
+    // tablet
+    // desktop
+    // quantity button
+    // add to cart button
     
   // checkout page
   // cart module
@@ -29,7 +33,7 @@ function App() {
             <div id='categoryWrapper' style={categoryPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
               <Category />
             </div>
-            <div id='productWrapper' style={productPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] px-6 md:px-10 xl:px-[165px] mb-[120px] xl:mb-[160px]'>
+            <div id='productWrapper' style={productPage ? {display: 'flex'} : {display: 'none'}} className='justify-center pt-[76px] px-6 md:px-10 xl:px-[165px] mb-[120px] xl:mb-[160px]'>
               <Products />
             </div>
             {/* <div id='checkoutWrapper'>
