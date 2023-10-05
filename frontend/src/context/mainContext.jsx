@@ -192,10 +192,35 @@ const MainProvider = ({ children }) => {
     }
   }
 
+  // **** Cart fucntionality **** // 
+
+  const addToCart = (itemName) => {
+    if( typeof localStorage !== 'undefined' ) {
+      if ( localStorage.length === 0 ) {
+          let cartItem = [
+            {
+              name: itemName,
+              quantity: quantity
+            }
+          ]
+          localStorage.setItem('cart', JSON.stringify(cartItem))
+      } else {
+          let cartItem = {
+              name: itemName,
+              quantity: quantity
+            }
+          let currentCart = JSON.parse(localStorage.getItem('cart'))
+          currentCart.push(cartItem)
+          localStorage.setItem('cart', JSON.stringify(currentCart))
+      }
+    }  
+  }
+
+
   return <MainContext.Provider value=
     {
       { 
-        singleCategory, singleProduct, categories, products, home, categoryPage, productPage, mobileMenu, 
+        singleCategory, singleProduct, categories, products, home, categoryPage, productPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne
       }
     }>

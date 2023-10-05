@@ -2,7 +2,6 @@ import React from 'react'
 
 function Features({ product }) {
 
-    console.log(product)
     const formatted = product.features.replace(/\n\n/g, '<br /><br />')
 
   return (

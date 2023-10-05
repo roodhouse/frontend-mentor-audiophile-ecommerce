@@ -11,11 +11,8 @@ function App() {
 
   const { categories, products, singleProduct, singleCategory, mobileMenu, home, categoryPage, productPage, history } = useMain()
 
-  // product page
-    // add to cart button
-    
-  // checkout page
   // cart module
+  // checkout page
 
   return (
     <div id='app' className="App font-display">
