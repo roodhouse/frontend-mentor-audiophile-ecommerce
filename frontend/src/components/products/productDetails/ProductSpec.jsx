@@ -32,7 +32,7 @@ function ProductSpec({ product }) {
                 <div id={`product_${product.id}_QuanWrapper`} className='mr-4'>
                     <ProductQuantity product={product} />
                 </div>
-                <div id={`product_${product.id}_CartWrapper`}>
+                <div id={`product_${product.id}_CartWrapper`} className='cursor-pointer'>
                     <AddToCart product={product} />
                 </div>
             </div>

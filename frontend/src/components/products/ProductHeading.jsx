@@ -8,7 +8,7 @@ function ProductHeading({ product }) {
     const { goBack } = useMain()
   return (
     <>
-        <div id={`product_${theProduct.id}_HeadingContainer`} onClick={goBack} className='text-black text-[15px] leading-[25px] font-medium opacity-50'>
+        <div id={`product_${theProduct.id}_HeadingContainer`} onClick={goBack} className='text-black text-[15px] leading-[25px] font-medium opacity-50 cursor-pointer'>
             <p>Go Back</p>
         </div>
     </>

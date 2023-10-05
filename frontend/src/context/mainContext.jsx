@@ -14,7 +14,7 @@ const MainProvider = ({ children }) => {
   const [ categoryPage, setCategoryPage ] = useState('')
   const [ productPage, setProductPage ] = useState('')
   const [ history, setHistory ] = useState([])
-  
+  const [ quantity, setQuantity ] = useState(1)
 
   // Fetch requests
   useEffect(() => {
@@ -97,9 +97,11 @@ const MainProvider = ({ children }) => {
     }
   }
 
+  // Home state
   const homeClick = () => {
     navigate(currentState())
     setHome('home')
+    setQuantity(1)
     setMobileMenu(false)
     setProductPage('')
     setCategoryPage('')
@@ -107,9 +109,11 @@ const MainProvider = ({ children }) => {
     enableScroll()
   }
 
+  // Category state
   const categoryClick = (categoryName) => {
     navigate(currentState())
     setHome('')
+    setQuantity(1)
     setMobileMenu(false)
     setProductPage('')
     setCategoryPage(categoryName)
@@ -118,9 +122,11 @@ const MainProvider = ({ children }) => {
     
   }
 
+  // Product state
   const productClick = (productName) => {
     navigate(currentState())
     setHome('')
+    setQuantity(1)
     setMobileMenu(false)
     setCategoryPage('')
     setProductPage(productName)
@@ -128,6 +134,7 @@ const MainProvider = ({ children }) => {
     enableScroll()
   }
 
+  // save a navigation history so 'go back' works
   const navigate = (pageName)=> {
     setHistory((prevHistory) => [...prevHistory, pageName])
   }
@@ -169,14 +176,27 @@ const MainProvider = ({ children }) => {
     enableScroll()
   }
 
+  // Add quantity
+  const addOne = () => {
+    let newQuan = quantity + 1
+    setQuantity(newQuan)
+  }
   
-
+  // Reduce quantity
+  const reduceOne = () => {
+    let newQuan = quantity - 1
+    if (newQuan < 1) {
+      setQuantity(1)
+    } else {
+      setQuantity(newQuan)
+    }
+  }
 
   return <MainContext.Provider value=
     {
       { 
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, mobileMenu, 
-        mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history
+        mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne
       }
     }>
     {children}
