@@ -47,18 +47,21 @@ class Product(Base):
 
     others_one_slug = Column(String(250), nullable=False)
     others_one_name = Column(String(250), nullable=False)
+    others_one_short = Column(String(250), nullable=False)
     others_one_mobile = Column(String(250), nullable=False)
     others_one_tablet = Column(String(250), nullable=False)
     others_one_desktop = Column(String(250), nullable=False)
 
     others_two_slug = Column(String(250), nullable=False)
     others_two_name = Column(String(250), nullable=False)
+    others_two_short = Column(String(250), nullable=False)
     others_two_mobile = Column(String(250), nullable=False)
     others_two_tablet = Column(String(250), nullable=False)
     others_two_desktop = Column(String(250), nullable=False)
 
     others_three_slug = Column(String(250), nullable=False)
     others_three_name = Column(String(250), nullable=False)
+    others_three_short = Column(String(250), nullable=False)
     others_three_mobile = Column(String(250), nullable=False)
     others_three_tablet = Column(String(250), nullable=False)
     others_three_desktop = Column(String(250), nullable=False)

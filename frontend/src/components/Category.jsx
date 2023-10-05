@@ -17,17 +17,12 @@ function Category() {
 
       useEffect(() => {
         const categoryGroup = document.getElementById('categoryProductDetailsWrapper')
-        console.log(categoryGroup.children)
         if (categoryGroup.children.length > 1) {
-          console.log('great')
           const newOrder = categoryGroup.children[1]
-          console.log(newOrder)
           newOrder.firstChild.classList.add('xl:order-2')
 
         }
       },[categoryPage])
-
-    console.log(currentCategory)
 
   return (
     <>

@@ -9,9 +9,11 @@ const MainProvider = ({ children }) => {
   const [ singleProduct, setSingleProduct ] = useState(null);
   const [ categories, setCategories ] = useState(null);
   const [ products, setProducts ] = useState(null);
-  const [ home, setHome ] = useState(true)
+  const [ home, setHome ] = useState('home')
   const [ mobileMenu, setMobileMenu ] = useState(false)
   const [ categoryPage, setCategoryPage ] = useState('')
+  const [ productPage, setProductPage ] = useState('')
+  const [ history, setHistory ] = useState([])
   
 
   // Fetch requests
@@ -66,6 +68,7 @@ const MainProvider = ({ children }) => {
   // Functions
 
   // **** misc ****
+
       // enable scroll
   function enableScroll() {
     window.onscroll = function() {};
@@ -81,23 +84,77 @@ const MainProvider = ({ children }) => {
           window.scrollTo(scrollLeft, scrollTop);
         };
   };
+
   // **** State changes ****
 
+  function currentState() {
+    if (home) {
+      return home
+    } else if (categoryPage) {
+      return categoryPage
+    } else if (productPage) {
+      return productPage
+    }
+  }
+
   const homeClick = () => {
-    setHome(true)
+    navigate(currentState())
+    setHome('home')
     setMobileMenu(false)
+    setProductPage('')
     setCategoryPage('')
     window.scrollTo(0,0)
     enableScroll()
   }
 
   const categoryClick = (categoryName) => {
-    setHome(false)
+    navigate(currentState())
+    setHome('')
     setMobileMenu(false)
+    setProductPage('')
     setCategoryPage(categoryName)
     window.scrollTo(0,0)
     enableScroll()
     
+  }
+
+  const productClick = (productName) => {
+    navigate(currentState())
+    setHome('')
+    setMobileMenu(false)
+    setCategoryPage('')
+    setProductPage(productName)
+    window.scrollTo(0,0)
+    enableScroll()
+  }
+
+  const navigate = (pageName)=> {
+    setHistory((prevHistory) => [...prevHistory, pageName])
+  }
+
+  // Go back from product page
+  const goBack = () => {
+    if (history.length >= 1) {
+      const newHistory = [...history]
+      let previousPage = newHistory.pop()
+      if ( previousPage === 'home' ) {
+        setHome(previousPage)
+        setCategoryPage('')
+        setProductPage('')
+        setMobileMenu(false)
+      } else if ( previousPage === 'headphones' || previousPage === 'speakers' || previousPage === 'earphones' ) {
+        setCategoryPage(previousPage)
+        setHome('')
+        setProductPage('')
+        setMobileMenu(false)
+      } else if ( previousPage === 'YX1 Wireless Earphones' || previousPage === 'XX59 Headphones' || previousPage === 'XX99 Mark I Headphones' || previousPage === 'XX99 Mark II Headphones' || previousPage === 'ZX7 Speaker' || previousPage === 'ZX9 Speaker' ) {
+        setProductPage(previousPage)
+        setHome('')
+        setCategoryPage('')
+        setMobileMenu(false)
+      }
+      setHistory(newHistory)
+    }
   }
 
   // Display the mobile menu
@@ -112,8 +169,18 @@ const MainProvider = ({ children }) => {
     enableScroll()
   }
 
+  
 
-  return <MainContext.Provider value={{ singleCategory, singleProduct, categories, products, home, categoryPage, mobileMenu, mobileMenuOn, mobileMenuOff, homeClick, categoryClick}}>{children}</MainContext.Provider>;
+
+  return <MainContext.Provider value=
+    {
+      { 
+        singleCategory, singleProduct, categories, products, home, categoryPage, productPage, mobileMenu, 
+        mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history
+      }
+    }>
+    {children}
+  </MainContext.Provider>;
 };
 
 // create custom hook for using the context

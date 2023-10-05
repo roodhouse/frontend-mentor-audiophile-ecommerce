@@ -18,7 +18,7 @@ function NewProduct() {
                 <NewProductCopy />
             </div>
             <div id="newProductButtonWrapper" className='cursor-pointer'>
-                <SeeProductOrange />
+                <SeeProductOrange name={'XX99 Mark II Headphones'} />
             </div>
         </div>
     </>
