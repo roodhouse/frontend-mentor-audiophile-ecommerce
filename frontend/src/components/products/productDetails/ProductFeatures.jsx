@@ -9,7 +9,7 @@ function ProductFeatures({ product }) {
   return (
     <>
         <div id={`product_${product.id}_FeaturesBoxContainer`}>
-            <div id={`product_${product.id}_FeaturesWrapper`} className='mb-[88px]'>
+            <div id={`product_${product.id}_FeaturesWrapper`} className='mb-[88px] md:mb-[120px]'>
                 <Features product={theProduct} />
             </div>
             <div id={`product_${product.id}_BoxWrapper`}>

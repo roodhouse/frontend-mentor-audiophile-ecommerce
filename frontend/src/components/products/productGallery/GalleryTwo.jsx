@@ -24,7 +24,7 @@ function GalleryTwo({product}) {
   return (
     <>
          <div id={`product_${product.id}_GalleryTwoContainer`}>
-            <div id={`product_${product.id}_GalleryTwo`} className='w-[327px] h-[174px] rounded-lg bg-cover bg-no-repeat mb-6' style={{backgroundImage: `url(${background})`}} />
+            <div id={`product_${product.id}_GalleryTwo`} className='w-[327px] md:w-[277px] h-[174px] rounded-lg bg-cover bg-no-repeat mb-6 md:mb-0' style={{backgroundImage: `url(${background})`}} />
          </div>
     </>
   )

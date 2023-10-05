@@ -8,7 +8,7 @@ function Features({ product }) {
   return (
     <>
         <div id={`product_${product.id}_FeaturesContainer`}>
-            <div id={`product_${product.id}_FeaturesTitleContainer`} className='text-black text-2xl leading-9 tracking-[0.857px] font-bold uppercase mb-6'>
+            <div id={`product_${product.id}_FeaturesTitleContainer`} className='text-black text-2xl md:text-[32px] leading-9 tracking-[0.857px] md:tracking-[1.143px] font-bold uppercase mb-6 md:mb-8'>
                 <p>Features</p>
             </div>
             <div id={`product_${product.id}_FeaturesCopyContainer`} className='text-black text-[15px] leading-[25px] font-medium opacity-50'>

@@ -24,11 +24,11 @@ function AlsoThree({ product }) {
 
   return (
     <>
-        <div id={`product_${product.id}_AlsoThreeContainer`}>
-            <div id={`product_${product.id}_AlsoThreeImageContainer`} className='mb-8'>
-                <div id={`product_${product.id}_AlsoThreeImage`} className='w-[327px] h-[120px] rounded-lg bg-cover bg-no-repeat' style={{backgroundImage: `url(${background})`}}/>
+        <div id={`product_${product.id}_AlsoThreeContainer`} className='md:w-[223px]'>
+            <div id={`product_${product.id}_AlsoThreeImageContainer`} className='mb-8 md:mb-10'>
+                <div id={`product_${product.id}_AlsoThreeImage`} className='w-[327px] md:w-[223px] h-[120px] md:h-[318px] rounded-lg bg-cover bg-no-repeat' style={{backgroundImage: `url(${background})`}}/>
             </div>
-            <div id={`product_${product.id}_AlsoThreeTitleContainer`} className='mb-8'>
+            <div id={`product_${product.id}_AlsoThreeTitleContainer`} className='mb-8 md:min-h-[72px] md:flex md:justify-center md:items-center'>
                 <div id={`product_${product.id}_AlsoThreeTitle`} className='text-black text-center text-2xl leading-normal tracking-[1.714px] uppercase font-bold'>
                     <p>{product.others_three_name}</p>
                 </div>

@@ -27,7 +27,7 @@ function Products() {
                     <div id={`product_${currentProduct[0].id}_DetailsWrapper`} className='pb-[88px] md:pb-[120px]'>
                         <ProductDetails product={currentProduct} />
                     </div>
-                    <div id={`product_${currentProduct[0].id}_FeaturesBoxWrapper`} className='pb-[88px]'>
+                    <div id={`product_${currentProduct[0].id}_FeaturesBoxWrapper`} className='pb-[88px] md:pb-[120px]'>
                         <ProductFeatures product={currentProduct} />
                     </div>
                     <div id={`product_${currentProduct[0].id}_GalleryWrapper`} className='pb-[120px]'>
@@ -36,7 +36,7 @@ function Products() {
                     <div id={`product_${currentProduct[0].id}_AlsoSectionWrapper`} className='pb-[120px]'>
                         <AlsoSection product={currentProduct} />
                     </div>
-                    <div id={`product_${currentProduct[0].id}_CategorySectionWrapper`} className='mt-10 pb-[52px]'>
+                    <div id={`product_${currentProduct[0].id}_CategorySectionWrapper`} className='mt-10 pb-[52px] md:pb-[120px]'>
                         <CategorySection />
                     </div>
                     <div id={`product_${currentProduct[0].id}_CopySectionWrapper`} className=''>

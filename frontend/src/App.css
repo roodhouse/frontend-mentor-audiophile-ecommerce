@@ -8,8 +8,12 @@
         width: 275px;
     }
 
-    #categoryCategoriesSectionWrapper #categorySectionContainer {
+    #categoryCategoriesSectionWrapper #categorySectionContainer,
+    #product_1_CategorySectionWrapper #categorySectionContainer, #product_2_CategorySectionWrapper #categorySectionContainer,
+    #product_3_CategorySectionWrapper #categorySectionContainer, #product_4_CategorySectionWrapper #categorySectionContainer,
+    #product_5_CategorySectionWrapper #categorySectionContainer, #product_6_CategorySectionWrapper #categorySectionContainer {
         padding-left: 0;
         padding-right: 0;
     }
+
 }

@@ -24,7 +24,7 @@ function GalleryThree({product}) {
   return (
     <>
          <div id={`product_${product.id}_GalleryThreeContainer`}>
-            <div id={`product_${product.id}_GalleryThree`} className='w-[327px] h-[368px] rounded-lg bg-cover bg-no-repeat' style={{backgroundImage: `url(${background})`}} />
+            <div id={`product_${product.id}_GalleryThree`} className='w-[327px] md:w-[395px] h-[368px] rounded-lg bg-cover bg-no-repeat' style={{backgroundImage: `url(${background})`}} />
          </div>
     </>
   )

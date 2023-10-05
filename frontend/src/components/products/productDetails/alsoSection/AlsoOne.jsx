@@ -24,11 +24,11 @@ function AlsoOne({ product }) {
 
   return (
     <>
-        <div id={`product_${product.id}_AlsoOneContainer`}>
-            <div id={`product_${product.id}_AlsoOneImageContainer`} className='mb-8'>
-                <div id={`product_${product.id}_AlsoOneImage`} className='w-[327px] h-[120px] rounded-lg bg-cover bg-no-repeat' style={{backgroundImage: `url(${background})`}}/>
+        <div id={`product_${product.id}_AlsoOneContainer`} className='md:w-[223px]'>
+            <div id={`product_${product.id}_AlsoOneImageContainer`} className='mb-8 md:mb-10'>
+                <div id={`product_${product.id}_AlsoOneImage`} className='w-[327px] md:w-[223px] h-[120px] md:h-[318px] rounded-lg bg-cover bg-no-repeat' style={{backgroundImage: `url(${background})`}}/>
             </div>
-            <div id={`product_${product.id}_AlsoOneTitleContainer`} className='mb-8'>
+            <div id={`product_${product.id}_AlsoOneTitleContainer`} className='mb-8 md:min-h-[72px] md:flex md:justify-center md:items-center'>
                 <div id={`product_${product.id}_AlsoOneTitle`} className='text-black text-center text-2xl leading-normal tracking-[1.714px] uppercase font-bold'>
                     <p>{product.others_one_name}</p>
                 </div>

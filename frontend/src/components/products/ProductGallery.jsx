@@ -9,16 +9,16 @@ function ProductGallery({ product }) {
 
   return (
         <>
-            <div id={`product_${product.id}_GalleryContainer`}>
-                <div id={`product_${product.id}_GalleryOneTwoContainer`}>
-                    <div id={`product_${product.id}_GalleryOneWrapper`}>
+            <div id={`product_${theProduct.id}_GalleryContainer`} className='md:flex md:justify-between'>
+                <div id={`product_${theProduct.id}_GalleryOneTwoContainer`} className='md:flex md:flex-col md:justify-between'>
+                    <div id={`product_${theProduct.id}_GalleryOneWrapper`}>
                         <GalleryOne product={theProduct} />
                     </div>
-                    <div id={`product_${product.id}_GalleryTwoWrapper`}>
+                    <div id={`product_${theProduct.id}_GalleryTwoWrapper`}>
                         <GalleryTwo product={theProduct} />
                     </div>
                 </div>
-                <div id={`product_${product.id}_GalleryThreeWrapper`}>
+                <div id={`product_${theProduct.id}_GalleryThreeWrapper`}>
                         <GalleryThree product={theProduct} />
                 </div>
             </div>
