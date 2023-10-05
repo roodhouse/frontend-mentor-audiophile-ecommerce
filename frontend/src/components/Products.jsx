@@ -20,11 +20,11 @@ function Products() {
     <>
         {
             currentProduct.length > 0 ? (
-                <div id={`product_${currentProduct[0].id}_Container`} className='max-w-[327px] flex flex-col'>
-                    <div id={`product_${currentProduct[0].id}_HeadingWrapper`} className='pt-4 pb-6'>
+                <div id={`product_${currentProduct[0].id}_Container`} className='max-w-[327px] md:max-w-[690px] flex flex-col'>
+                    <div id={`product_${currentProduct[0].id}_HeadingWrapper`} className='pt-4 md:pt-8 pb-6'>
                          <ProductHeading product={currentProduct} />
                     </div>
-                    <div id={`product_${currentProduct[0].id}_DetailsWrapper`} className='pb-[88px]'>
+                    <div id={`product_${currentProduct[0].id}_DetailsWrapper`} className='pb-[88px] md:pb-[120px]'>
                         <ProductDetails product={currentProduct} />
                     </div>
                     <div id={`product_${currentProduct[0].id}_FeaturesBoxWrapper`} className='pb-[88px]'>

@@ -33,7 +33,7 @@ function App() {
             <div id='categoryWrapper' style={categoryPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
               <Category />
             </div>
-            <div id='productWrapper' style={productPage ? {display: 'flex'} : {display: 'none'}} className='justify-center pt-[76px] px-6 md:px-10 xl:px-[165px] mb-[120px] xl:mb-[160px]'>
+            <div id='productWrapper' style={productPage ? {display: 'flex'} : {display: 'none'}} className='justify-center pt-[76px] md:pt-[90px] px-6 md:px-10 xl:px-[165px] mb-[120px] xl:mb-[160px]'>
               <Products />
             </div>
             {/* <div id='checkoutWrapper'>

@@ -10,8 +10,8 @@ function ProductDetails({ product }) {
     <>
         {
             theProduct ? (
-            <div id={`product_${theProduct.id}_DetailsContainer`}>
-                <div id={`product_${theProduct.id}_ImageWrapper`} className='mb-8'>
+            <div id={`product_${theProduct.id}_DetailsContainer`} className='md:flex md:justify-between md:items-center'>
+                <div id={`product_${theProduct.id}_ImageWrapper`} className='mb-8 md:mb-0'>
                     <ProductImage product={theProduct} />
                 </div>
                 <div id={`product_${theProduct.id}_SpecWrapper`}>

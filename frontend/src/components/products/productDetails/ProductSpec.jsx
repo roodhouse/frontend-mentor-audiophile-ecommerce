@@ -13,22 +13,22 @@ function ProductSpec({ product }) {
 
             {
                 product.new ? (
-                    <div id={`product_${product.id}_NewWrapper`} className='mb-6'>
+                    <div id={`product_${product.id}_NewWrapper`} className='mb-6 md:mb-4'>
                         <ProductNewProduct product={product} />
                     </div>
                 ) : ''
             }
 
-            <div id={`product_${product.id}_TitleWrapper`} className='mb-6'>
+            <div id={`product_${product.id}_TitleWrapper`} className='mb-6 md:mb-8'>
                 <ProductTitle product={product} />
             </div>
-            <div id={`product_${product.id}_DescWrapper`} className='mb-6'>
+            <div id={`product_${product.id}_DescWrapper`} className='mb-6 md:mb-8'>
                 <ProductDesc product={product} />
             </div>
             <div id={`product_${product.id}_PriceWrapper`} className='mb-8'>
                 <ProductPrice product={product} />
             </div>
-            <div id={`product_${product.id}_QuanCartContainer`} className='flex '>
+            <div id={`product_${product.id}_QuanCartContainer`} className='flex'>
                 <div id={`product_${product.id}_QuanWrapper`} className='mr-4'>
                     <ProductQuantity product={product} />
                 </div>
