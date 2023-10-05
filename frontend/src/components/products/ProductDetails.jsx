@@ -5,6 +5,8 @@ import ProductSpec from './productDetails/ProductSpec'
 function ProductDetails({ product }) {
     
     let theProduct = product[0]
+    console.log('from ProductDetails:')
+    console.log(theProduct)
 
   return (
     <>

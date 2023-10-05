@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useMain } from '../../../context/mainContext'
 
 function ProductImage({ product }) {
 
     const [ background, setBackground ] = useState('')
+
+    const { productPage } = useMain()
 
     useEffect(() => {
         // condition here to set different size of background images
@@ -17,7 +20,9 @@ function ProductImage({ product }) {
           setBackground(product.main_image_desktop)   
         }
 
-    },[])
+    },[productPage])
+
+    console.log(background)
 
   return (
     <>

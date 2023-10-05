@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { useMain } from '../../../context/mainContext'
 
-
-function CategoryImage({item}) {
+function CategoryImage({item}) { 
 
     const [ background, setBackground ] = useState('')
+    const { categoryPage } = useMain()
 
     useEffect(() => {
         // condition here to set different size of background images
@@ -18,7 +19,7 @@ function CategoryImage({item}) {
           setBackground(item.category_image_desktop)   
         }
 
-    },[])
+    },[categoryPage])
 
 
   return (

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useMain } from '../../../../context/mainContext'
 import SeeProductOrange from '../../../shared/buttons/SeeProductOrange'
 
 function AlsoThree({ product }) {
 
     const [ background, setBackground ] = useState('')
+    const { productPage } = useMain()
 
     useEffect(() => {
         // condition here to set different size of background images
@@ -18,7 +20,7 @@ function AlsoThree({ product }) {
           setBackground(product.others_three_desktop)   
         }
 
-    },[])
+    },[productPage])
 
   return (
     <>

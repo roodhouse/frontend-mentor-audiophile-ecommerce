@@ -8,6 +8,7 @@ function SeeProductOrange({ name }) {
   const handleClick = (e) => {
     const containerDiv = e.currentTarget 
     const productName = containerDiv.getAttribute('data-name')
+    console.log(`product name from orange button file: ${productName}`)
     productClick(productName)
   }
 
