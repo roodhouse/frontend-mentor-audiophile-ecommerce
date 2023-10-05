@@ -40,7 +40,8 @@ function Products() {
                         <AlsoSection product={currentProduct} />
                     </div>
                     
-                    {/* also may like section */}
+                    {/* category section */}
+                    {/* copy section */}
                 </div>
             ) : ''
         }

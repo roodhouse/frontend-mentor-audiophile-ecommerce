@@ -14,10 +14,10 @@ function AlsoSection({product}) {
             <div id={`product_${product.id}_AlsoTitleContainer`} className='text-black text-2xl leading-9 tracking-[0.857px] font-bold uppercase text-center mb-10'>
                 <p>You Also May Like</p>
             </div>
-            <div id={`product_${product.id}_AlsoOneWrapper`}>
+            <div id={`product_${product.id}_AlsoOneWrapper`} className='mb-[56px]'>
                 <AlsoOne product={theProduct} />
             </div>
-            <div id={`product_${product.id}_AlsoTwoWrapper`}>
+            <div id={`product_${product.id}_AlsoTwoWrapper`} className='mb-[56px]'>
                 <AlsoTwo product={theProduct} />
             </div>
             <div id={`product_${product.id}_AlsoThreeWrapper`}>
