@@ -25,7 +25,7 @@ function CartItems() {
     
   return (
     <>
-        <div id="cartItemsContainer" className='px-7'>
+        <div id="cartItemsContainer" className='px-7 md:px-8'>
             {
                 cartProducts.length > 0 ? (
                     cartProducts.map((item) => (

@@ -22,7 +22,7 @@ function CartSummary() {
 
   return (
     <>
-      <div id="cartSummaryContainer" className='flex justify-between px-7'>
+      <div id="cartSummaryContainer" className='flex justify-between px-7 md:px-8'>
           <div id="totalText" className='text-black text-[15px] font-medium leading-[25px] opacity-50'>
             <p>TOTAL</p>
           </div>

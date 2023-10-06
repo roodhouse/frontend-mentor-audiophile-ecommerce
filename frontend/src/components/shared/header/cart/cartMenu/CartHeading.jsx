@@ -5,7 +5,7 @@ import CartRemoveAll from './cartHeading/CartRemoveAll'
 function CartHeading() {
   return (
     <>
-        <div id="cartHeadingContainer" className='py-8 px-7 flex justify-between'>
+        <div id="cartHeadingContainer" className='py-8 px-7 md:px-8 flex justify-between'>
             <div id="cartCountWrapper">
                 <CartCount />
             </div>
