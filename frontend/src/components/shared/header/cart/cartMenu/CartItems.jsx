@@ -22,8 +22,6 @@ function CartItems() {
             cartProducts.push(products.filter((merch) => merch.name === item.name))
         })
     }
-
-    console.log(cartItems)
     
   return (
     <>
@@ -31,15 +29,17 @@ function CartItems() {
             {
                 cartProducts.length > 0 ? (
                     cartProducts.map((item) => (
-                        <div id={`product_${item[0].sku}_cartContainer`} key={item[0].id} className='mb-6 last:mb-8'>
-                            <div id={`product_${item[0].sku}_cartImageWrapper`}>
-                                <CartImage image={item[0].main_image_mobile} sku={item[0].sku} />
-                            </div>
-                            <div id={`product_${item[0].sku}_cartDetailsWrapper`}>
-                                <CartDetails sku={item[0].sku} price={item[0].price}/>
+                        <div id={`product_${item[0].sku}_cartContainer`} key={item[0].id} className='pb-6 last:pb-8 flex justify-between items-center'>
+                            <div id={`product_${item[0].sku}_imageAndDetailsContainer`} className='flex'>
+                                <div id={`product_${item[0].sku}_cartImageWrapper`} className='mr-4'>
+                                    <CartImage image={item[0].main_image_mobile} sku={item[0].sku} />
+                                </div>
+                                <div id={`product_${item[0].sku}_cartDetailsWrapper`}>
+                                    <CartDetails sku={item[0].sku} price={item[0].price}/>
+                                </div>
                             </div>
                             <div id={`product_${item[0].sku}_cartCounterWrapper`}>
-                                <CartCounter sku={item[0].sku} name={cartItems[cartProducts.indexOf(item)].quantity} index={cartItems[cartProducts.indexOf(item)]} quantity={cartItems[cartProducts.indexOf(item)].quantity} />
+                                <CartCounter sku={item[0].sku} index={cartItems[cartProducts.indexOf(item)]} quantity={cartItems[cartProducts.indexOf(item)].quantity} />
                             </div>
                         </div>
                     ))

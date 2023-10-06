@@ -18,6 +18,7 @@ const MainProvider = ({ children }) => {
   const [ history, setHistory ] = useState([])
   const [ quantity, setQuantity ] = useState(1)
   const [ cartActivity, setCartActvity ] = useState(0)
+  const [ total, setTotal ] = useState(0)
 
   // Fetch requests
   useEffect(() => {
@@ -186,13 +187,14 @@ const MainProvider = ({ children }) => {
   // **** Cart fucntionality **** // 
 
   // add item items to cart // 
-  const addToCart = (itemName) => {
+  const addToCart = (itemName, productPrice) => {
     if( typeof localStorage !== 'undefined' ) {
       if ( localStorage.length === 0 ) {
           let cartItem = [
             {
               name: itemName,
-              quantity: quantity
+              quantity: quantity,
+              price: productPrice
             }
           ]
           localStorage.setItem('cart', JSON.stringify(cartItem))
@@ -204,12 +206,14 @@ const MainProvider = ({ children }) => {
           } else {
             currentCart.push({
               name: itemName,
-              quantity: quantity
+              quantity: quantity,
+              price: productPrice
             })
           }
           localStorage.setItem('cart', JSON.stringify(currentCart))
       }
     }
+    setQuantity(1)
     setCartActvity(cartActivity + 1)
   }
 
@@ -233,6 +237,10 @@ const MainProvider = ({ children }) => {
     }
   },[cartActivity])
 
+  // Cart Current total
+  const totalCart = (all) => {
+    setTotal(all)
+  }
   //
   const updateCartActivity = () => {
     setCartActvity(cartActivity + 1)
@@ -274,7 +282,7 @@ const MainProvider = ({ children }) => {
       { 
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
-        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity
+        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total
       }
     }>
     {children}

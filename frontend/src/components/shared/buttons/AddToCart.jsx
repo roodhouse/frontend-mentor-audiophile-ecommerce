@@ -6,7 +6,7 @@ function AddToCart({ product }) {
   const { addToCart } = useMain()
 
   const handleClick = () => {
-    addToCart(product.name)
+    addToCart(product.name, product.price)
   }
   
   return (
