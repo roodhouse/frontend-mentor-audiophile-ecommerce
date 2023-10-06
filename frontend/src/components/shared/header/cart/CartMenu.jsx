@@ -7,7 +7,7 @@ import CheckoutButton from '../../buttons/CheckoutButton'
 function CartMenu() {
   return (
     <>
-        <div id="cartMenuItemsContainer" className='mx-6 pb-8 bg-white rounded-lg max-w-[327px] md:max-w-[377px] md:w-full'>
+        <div id="cartMenuItemsContainer" className='mx-6 md:mx-0 pb-8 bg-white rounded-lg max-w-[327px] md:max-w-[377px] md:w-full'>
             <div id="cartHeadingWrapper">
                 <CartHeading />
             </div>
