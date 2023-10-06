@@ -13,8 +13,12 @@ const MainProvider = ({ children }) => {
   const [ mobileMenu, setMobileMenu ] = useState(false)
   const [ categoryPage, setCategoryPage ] = useState('')
   const [ productPage, setProductPage ] = useState('')
+  const [ cartMenu, setCartMenu ] = useState(false)
+  const [ cart, setCart ] = useState([])
   const [ history, setHistory ] = useState([])
   const [ quantity, setQuantity ] = useState(1)
+  const [ cartActivity, setCartActvity ] = useState(0)
+  const [ total, setTotal ] = useState(0)
 
   // Fetch requests
   useEffect(() => {
@@ -103,6 +107,7 @@ const MainProvider = ({ children }) => {
     setHome('home')
     setQuantity(1)
     setMobileMenu(false)
+    setCartMenu(false)
     setProductPage('')
     setCategoryPage('')
     window.scrollTo(0,0)
@@ -115,6 +120,7 @@ const MainProvider = ({ children }) => {
     setHome('')
     setQuantity(1)
     setMobileMenu(false)
+    setCartMenu(false)
     setProductPage('')
     setCategoryPage(categoryName)
     window.scrollTo(0,0)
@@ -128,6 +134,7 @@ const MainProvider = ({ children }) => {
     setHome('')
     setQuantity(1)
     setMobileMenu(false)
+    setCartMenu(false)
     setCategoryPage('')
     setProductPage(productName)
     window.scrollTo(0,0)
@@ -167,6 +174,7 @@ const MainProvider = ({ children }) => {
   // Display the mobile menu
   const mobileMenuOn = () => {
     setMobileMenu(true)
+    setCartMenu(false)
     disableScroll()
   }
 
@@ -174,6 +182,68 @@ const MainProvider = ({ children }) => {
   const mobileMenuOff = () => {
     setMobileMenu(false)
     enableScroll()
+  }
+
+  // **** Cart fucntionality **** // 
+
+  // add item items to cart // 
+  const addToCart = (itemName, productPrice) => {
+    if( typeof localStorage !== 'undefined' ) {
+      if ( localStorage.length === 0 ) {
+          let cartItem = [
+            {
+              name: itemName,
+              quantity: quantity,
+              price: productPrice
+            }
+          ]
+          localStorage.setItem('cart', JSON.stringify(cartItem))
+      } else {
+          let currentCart = JSON.parse(localStorage.getItem('cart'))
+          const itemIndex = currentCart.findIndex((item) => item.name === itemName)
+          if (itemIndex != -1){
+            currentCart[itemIndex].quantity += quantity
+          } else {
+            currentCart.push({
+              name: itemName,
+              quantity: quantity,
+              price: productPrice
+            })
+          }
+          localStorage.setItem('cart', JSON.stringify(currentCart))
+      }
+    }
+    setQuantity(1)
+    setCartActvity(cartActivity + 1)
+  }
+
+  // clear cart
+  const clearCart = () => {
+    if ( typeof localStorage !== undefined ) {
+      if ( localStorage.length > 0 ) {
+        localStorage.clear()
+        setCart([])
+        setCartActvity(cartActivity + 1)
+      }
+    }
+  }
+
+  useEffect(() => {
+    let localCart = JSON.parse(localStorage.getItem('cart'))
+    if (localCart === null) {
+      setCart([])
+    } else {
+      setCart(localCart)
+    }
+  },[cartActivity])
+
+  // Cart Current total
+  const totalCart = (all) => {
+    setTotal(all)
+  }
+  //
+  const updateCartActivity = () => {
+    setCartActvity(cartActivity + 1)
   }
 
   // Add quantity
@@ -186,42 +256,33 @@ const MainProvider = ({ children }) => {
   const reduceOne = () => {
     let newQuan = quantity - 1
     if (newQuan < 1) {
-      setQuantity(1)
+        setQuantity(1)
     } else {
-      setQuantity(newQuan)
+        setQuantity(newQuan)
     }
   }
-
-  // **** Cart fucntionality **** // 
-
-  const addToCart = (itemName) => {
-    if( typeof localStorage !== 'undefined' ) {
-      if ( localStorage.length === 0 ) {
-          let cartItem = [
-            {
-              name: itemName,
-              quantity: quantity
-            }
-          ]
-          localStorage.setItem('cart', JSON.stringify(cartItem))
-      } else {
-          let cartItem = {
-              name: itemName,
-              quantity: quantity
-            }
-          let currentCart = JSON.parse(localStorage.getItem('cart'))
-          currentCart.push(cartItem)
-          localStorage.setItem('cart', JSON.stringify(currentCart))
-      }
-    }  
+  
+  // Show cart menu
+  const cartMenuOn = () => {
+    setMobileMenu(false)
+    setCartMenu(true)
+    disableScroll()
   }
+
+  // Hide cart menu
+  const cartMenuOff = () => {
+    setCartMenu(false)
+    enableScroll()
+  }
+
 
 
   return <MainContext.Provider value=
     {
       { 
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, mobileMenu, addToCart, 
-        mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne
+        mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
+        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total
       }
     }>
     {children}

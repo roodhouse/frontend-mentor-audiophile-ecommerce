@@ -6,10 +6,10 @@ import { MainProvider } from './context/mainContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  
     <MainProvider>
       <App />
     </MainProvider>
-  </React.StrictMode>
+  
 );
 

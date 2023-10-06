@@ -5,10 +5,11 @@ import DesktopMenu from './header/DesktopMenu'
 import Logo from './header/Logo'
 import CartIcon from './header/CartIcon'
 import MobileMenu from './header/MobileMenu'
+import Cart from './Cart'
 
 function Header() {
 
-  const { home, mobileMenu } = useMain()
+  const { home, mobileMenu, cartMenu } = useMain()
 
   return (
     <>
@@ -30,7 +31,10 @@ function Header() {
           <div id='headerLine' className='w-full h-[1px] bg-white opacity-[0.104] md:w-auto md:mx-10 xl:mx-[12%]' />
           <div id="mobileMenuWrapper" style={mobileMenu ? {display:'block'} : {display: 'none'}}>
               <MobileMenu />
-            </div>
+          </div>
+          <div id="cartMenuWrapper" style={cartMenu ? {display:'block'} : {display: 'none'}}>
+              <Cart />
+          </div>
       </div>
     </>
   )

@@ -9,10 +9,11 @@ import Footer from './components/shared/Footer'
 
 function App() {
 
-  const { categories, products, singleProduct, singleCategory, mobileMenu, home, categoryPage, productPage, history } = useMain()
+  const { categories, products, singleProduct, singleCategory, mobileMenu, home, categoryPage, productPage, history, total } = useMain()
 
   // cart module
   // checkout page
+
 
   return (
     <div id='app' className="App font-display">
