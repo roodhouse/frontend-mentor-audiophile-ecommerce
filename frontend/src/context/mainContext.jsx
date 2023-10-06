@@ -14,7 +14,7 @@ const MainProvider = ({ children }) => {
   const [ categoryPage, setCategoryPage ] = useState('')
   const [ productPage, setProductPage ] = useState('')
   const [ cartMenu, setCartMenu ] = useState(false)
-  const [ cart, setCart ] = useState('test')
+  const [ cart, setCart ] = useState([])
   const [ history, setHistory ] = useState([])
   const [ quantity, setQuantity ] = useState(1)
   const [ cartActivity, setCartActvity ] = useState(0)
@@ -197,12 +197,16 @@ const MainProvider = ({ children }) => {
           ]
           localStorage.setItem('cart', JSON.stringify(cartItem))
       } else {
-          let cartItem = {
+          let currentCart = JSON.parse(localStorage.getItem('cart'))
+          const itemIndex = currentCart.findIndex((item) => item.name === itemName)
+          if (itemIndex != -1){
+            currentCart[itemIndex].quantity += quantity
+          } else {
+            currentCart.push({
               name: itemName,
               quantity: quantity
-            }
-          let currentCart = JSON.parse(localStorage.getItem('cart'))
-          currentCart.push(cartItem)
+            })
+          }
           localStorage.setItem('cart', JSON.stringify(currentCart))
       }
     }
@@ -221,8 +225,18 @@ const MainProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    setCart(JSON.parse(localStorage.getItem('cart')))
+    let localCart = JSON.parse(localStorage.getItem('cart'))
+    if (localCart === null) {
+      setCart([])
+    } else {
+      setCart(localCart)
+    }
   },[cartActivity])
+
+  //
+  const updateCartActivity = () => {
+    setCartActvity(cartActivity + 1)
+  }
 
   // Add quantity
   const addOne = () => {
@@ -260,7 +274,7 @@ const MainProvider = ({ children }) => {
       { 
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
-        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart
+        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity
       }
     }>
     {children}
