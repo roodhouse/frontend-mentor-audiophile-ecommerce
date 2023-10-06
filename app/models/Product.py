@@ -2,12 +2,6 @@ from app.db import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 
-# Classes: 
-#   Product
-#   Category
-#   Includes
-#   Images
-
 class Product(Base):
     __tablename__ = 'products'
     id = Column(Integer, primary_key=True)
@@ -15,6 +9,7 @@ class Product(Base):
     name = Column(String(250), nullable=False)
     new = Column(Boolean)
     price = Column(Integer, nullable=False)
+    sku = Column(String(250), nullable=False)
     description = Column(String(250), nullable=False)
     features = Column(String(1250), nullable=False)
 

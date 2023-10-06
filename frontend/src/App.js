@@ -12,6 +12,7 @@ function App() {
   const { categories, products, singleProduct, singleCategory, mobileMenu, home, categoryPage, productPage, history } = useMain()
 
   // cart module
+    // issue with cart logging null 8 x 
   // checkout page
 
   return (

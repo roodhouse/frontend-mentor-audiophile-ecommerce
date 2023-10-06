@@ -1,5 +1,6 @@
 import React from 'react'
 import CartHeading from './cartMenu/CartHeading'
+import CartItems from './cartMenu/CartItems'
 
 function CartMenu() {
   return (
@@ -8,9 +9,9 @@ function CartMenu() {
             <div id="cartHeadingWrapper">
                 <CartHeading />
             </div>
-            {/* <div id="cartItemsWrapper">
+            <div id="cartItemsWrapper">
                 <CartItems />
-            </div> */}
+            </div>
             {/* <div id="cartSummaryWrapper">
                 <CartSummary />
             </div> */}

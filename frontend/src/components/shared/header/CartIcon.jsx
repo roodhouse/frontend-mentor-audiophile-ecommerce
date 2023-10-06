@@ -6,7 +6,6 @@ function CartIcon() {
 
   const { cartMenuOn, cartMenuOff, cartMenu } = useMain()
 
-  console.log(cartMenu)
   return (
     <>
         <div id="cartIconContainer" onClick={!cartMenu ? cartMenuOn : cartMenuOff} >

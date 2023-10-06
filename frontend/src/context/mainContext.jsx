@@ -14,7 +14,7 @@ const MainProvider = ({ children }) => {
   const [ categoryPage, setCategoryPage ] = useState('')
   const [ productPage, setProductPage ] = useState('')
   const [ cartMenu, setCartMenu ] = useState(false)
-  const [ cart, setCart ] = useState([])
+  const [ cart, setCart ] = useState('test')
   const [ history, setHistory ] = useState([])
   const [ quantity, setQuantity ] = useState(1)
   const [ cartActivity, setCartActvity ] = useState(0)
@@ -209,6 +209,17 @@ const MainProvider = ({ children }) => {
     setCartActvity(cartActivity + 1)
   }
 
+  // clear cart
+  const clearCart = () => {
+    if ( typeof localStorage !== undefined ) {
+      if ( localStorage.length > 0 ) {
+        localStorage.clear()
+        setCart([])
+        setCartActvity(cartActivity + 1)
+      }
+    }
+  }
+
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem('cart')))
   },[cartActivity])
@@ -233,7 +244,6 @@ const MainProvider = ({ children }) => {
   const cartMenuOn = () => {
     setMobileMenu(false)
     setCartMenu(true)
-    console.log(cartMenu)
     disableScroll()
   }
 
@@ -244,12 +254,13 @@ const MainProvider = ({ children }) => {
   }
 
 
+
   return <MainContext.Provider value=
     {
       { 
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
-        cartMenuOn, cartMenuOff, cartMenu, cart
+        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart
       }
     }>
     {children}

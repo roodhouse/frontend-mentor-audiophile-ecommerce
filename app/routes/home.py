@@ -111,6 +111,7 @@ def get__all_products():
                 "id": product.id,
                 "slug": product.slug,
                 "name": product.name,
+                "sku": product.sku,
                 "new": product.new,
                 "price": product.price,
                 "description": product.description,
