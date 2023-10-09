@@ -13,6 +13,7 @@ const MainProvider = ({ children }) => {
   const [ mobileMenu, setMobileMenu ] = useState(false)
   const [ categoryPage, setCategoryPage ] = useState('')
   const [ productPage, setProductPage ] = useState('')
+  const [ checkoutPage, setCheckoutPage ] = useState('')
   const [ cartMenu, setCartMenu ] = useState(false)
   const [ cart, setCart ] = useState([])
   const [ history, setHistory ] = useState([])
@@ -110,6 +111,7 @@ const MainProvider = ({ children }) => {
     setCartMenu(false)
     setProductPage('')
     setCategoryPage('')
+    setCheckoutPage('')
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -122,6 +124,7 @@ const MainProvider = ({ children }) => {
     setMobileMenu(false)
     setCartMenu(false)
     setProductPage('')
+    setCheckoutPage('')
     setCategoryPage(categoryName)
     window.scrollTo(0,0)
     enableScroll()
@@ -136,10 +139,25 @@ const MainProvider = ({ children }) => {
     setMobileMenu(false)
     setCartMenu(false)
     setCategoryPage('')
+    setCheckoutPage('')
     setProductPage(productName)
     window.scrollTo(0,0)
     enableScroll()
   }
+
+  // checkout 
+  const checkout = () => {
+    navigate(currentState())
+    setHome('')
+    setMobileMenu(false)
+    setCartMenu(false)
+    setProductPage('')
+    setCategoryPage('')
+    setCheckoutPage('checkout')
+    window.scrollTo(0,0)
+    enableScroll()
+  }
+
 
   // save a navigation history so 'go back' works
   const navigate = (pageName)=> {
@@ -276,13 +294,12 @@ const MainProvider = ({ children }) => {
   }
 
 
-
   return <MainContext.Provider value=
     {
       { 
-        singleCategory, singleProduct, categories, products, home, categoryPage, productPage, mobileMenu, addToCart, 
+        singleCategory, singleProduct, categories, products, home, categoryPage, productPage, checkoutPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
-        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total
+        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkoutPage, checkout
       }
     }>
     {children}

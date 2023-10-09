@@ -16,6 +16,7 @@ module.exports = {
       charcoal: '#4c4c4c',
       white: '#ffffff',
       offWhite: '#F1F1F1',
+      borderWhite: '#CFCFCF',
       almostWhite: '#FAFAFA',
       transparent: 'transparent',
       deepOrange: '#D87D4A',
@@ -31,5 +32,7 @@ module.exports = {
     },
   },
   
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
