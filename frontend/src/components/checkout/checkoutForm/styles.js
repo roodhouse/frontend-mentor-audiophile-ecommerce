@@ -24,3 +24,9 @@ export class select {
         this.styles = 'w-[280px] text-black font-bold text-sm leading-normal tracking-[-0.25px] mb-6 rounded-lg border border-borderWhite bg-white pl-4 py-[18px] placeholder:opacity-[0.4] cursor-pointer caret-deepOrange focus:border-deepOrange focus:outline-none focus:ring-0'
     }
 }
+
+export class radio {
+    constructor() {
+        this.styles = 'w-5 h-5 mr-4 border border-borderWhite flex justify-center items-center'
+    }
+}
