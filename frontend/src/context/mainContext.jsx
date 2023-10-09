@@ -15,6 +15,7 @@ const MainProvider = ({ children }) => {
   const [ productPage, setProductPage ] = useState('')
   const [ checkoutPage, setCheckoutPage ] = useState('')
   const [ cartMenu, setCartMenu ] = useState(false)
+  const [ thankYou, setThankYou ] = useState(false)
   const [ cart, setCart ] = useState([])
   const [ history, setHistory ] = useState([])
   const [ quantity, setQuantity ] = useState(1)
@@ -109,6 +110,7 @@ const MainProvider = ({ children }) => {
     setQuantity(1)
     setMobileMenu(false)
     setCartMenu(false)
+    setThankYou(false)
     setProductPage('')
     setCategoryPage('')
     setCheckoutPage('')
@@ -123,6 +125,7 @@ const MainProvider = ({ children }) => {
     setQuantity(1)
     setMobileMenu(false)
     setCartMenu(false)
+    setThankYou(false)
     setProductPage('')
     setCheckoutPage('')
     setCategoryPage(categoryName)
@@ -138,6 +141,7 @@ const MainProvider = ({ children }) => {
     setQuantity(1)
     setMobileMenu(false)
     setCartMenu(false)
+    setThankYou(false)
     setCategoryPage('')
     setCheckoutPage('')
     setProductPage(productName)
@@ -151,6 +155,7 @@ const MainProvider = ({ children }) => {
     setHome('')
     setMobileMenu(false)
     setCartMenu(false)
+    setThankYou(false)
     setProductPage('')
     setCategoryPage('')
     setCheckoutPage('checkout')
@@ -174,16 +179,19 @@ const MainProvider = ({ children }) => {
         setCategoryPage('')
         setProductPage('')
         setMobileMenu(false)
+        setThankYou(false)
       } else if ( previousPage === 'headphones' || previousPage === 'speakers' || previousPage === 'earphones' ) {
         setCategoryPage(previousPage)
         setHome('')
         setProductPage('')
         setMobileMenu(false)
+        setThankYou(false)
       } else if ( previousPage === 'YX1 Wireless Earphones' || previousPage === 'XX59 Headphones' || previousPage === 'XX99 Mark I Headphones' || previousPage === 'XX99 Mark II Headphones' || previousPage === 'ZX7 Speaker' || previousPage === 'ZX9 Speaker' ) {
         setProductPage(previousPage)
         setHome('')
         setCategoryPage('')
         setMobileMenu(false)
+        setThankYou(false)
       }
       setHistory(newHistory)
     }
@@ -193,6 +201,7 @@ const MainProvider = ({ children }) => {
   const mobileMenuOn = () => {
     setMobileMenu(true)
     setCartMenu(false)
+    setThankYou(false)
     disableScroll()
   }
 
@@ -200,6 +209,12 @@ const MainProvider = ({ children }) => {
   const mobileMenuOff = () => {
     setMobileMenu(false)
     enableScroll()
+  }
+
+  const thankYouMenu = () => {
+    setThankYou(true)
+    setMobileMenu(false)
+    setCartMenu(false)
   }
 
   // **** Cart fucntionality **** // 
@@ -284,6 +299,7 @@ const MainProvider = ({ children }) => {
   const cartMenuOn = () => {
     setMobileMenu(false)
     setCartMenu(true)
+    setThankYou(false)
     disableScroll()
   }
 
@@ -299,7 +315,7 @@ const MainProvider = ({ children }) => {
       { 
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, checkoutPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
-        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkoutPage, checkout
+        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkoutPage, checkout, thankYou, thankYouMenu
       }
     }>
     {children}

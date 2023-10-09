@@ -6,10 +6,11 @@ import Logo from './header/Logo'
 import CartIcon from './header/CartIcon'
 import MobileMenu from './header/MobileMenu'
 import Cart from './Cart'
+import ThankYou from './header/ThankYou'
 
 function Header() {
 
-  const { home, mobileMenu, cartMenu } = useMain()
+  const { home, mobileMenu, cartMenu, thankYouMenu, thankYou } = useMain()
 
   return (
     <>
@@ -34,6 +35,9 @@ function Header() {
           </div>
           <div id="cartMenuWrapper" style={cartMenu ? {display:'block'} : {display: 'none'}}>
               <Cart />
+          </div>
+          <div id="ThankYouWrapper" style={thankYou ? {display:'block'} : {display: 'none'}}>
+              <ThankYou />
           </div>
       </div>
     </>
