@@ -18,13 +18,13 @@ function Header() {
             <div id="hamburgerWrapper" className='xl:hidden'>
               <HamburgerIcon />
             </div>
-            <div id="logoWrapper" className='md:ml-[-67%] xl:ml-0'>
+            <div id="logoWrapper" className='md:ml-[-67%] xl:ml-0 cursor-pointer'>
               <Logo />
             </div>
             <div id='desktopMenuWrapper' className='hidden xl:block'>
               <DesktopMenu />
             </div>
-            <div id="cartIconWrapper">
+            <div id="cartIconWrapper" className='cursor-pointer'>
               <CartIcon />
             </div>
           </div>

@@ -95,8 +95,8 @@ function CheckoutPaymentDetails() {
                   </div>
                   </>
                 ) : (
-                    <div id="cashPayDetailsContainer" className='flex flex-col items-center'>
-                      <div id="cashPayLogoContainer" className='mb-8'>
+                    <div id="cashPayDetailsContainer" className='flex flex-col items-center xl:flex-row'>
+                      <div id="cashPayLogoContainer" className='mb-8 xl:mr-8'>
                         <div id="cashPayLogo" className='w-12 h-12 bg-[url("./assets/shared/desktop/cashLogo.svg")]'/>
                       </div>
                       <div id="cashInstructionContainer" className='text-black text-[15px] font-medium leading-[25px] opacity-50 mb-6'>
