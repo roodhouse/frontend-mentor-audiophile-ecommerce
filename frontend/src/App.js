@@ -32,7 +32,7 @@ function App() {
             <div id='productWrapper' style={productPage ? {display: 'flex'} : {display: 'none'}} className='justify-center pt-[76px] md:pt-[90px] xl:pt-[96px] px-6 md:px-10 xl:px-[165px] mb-[120px] xl:mb-[160px]'>
               <Products />
             </div>
-            <div id='checkoutWrapper' style={checkoutPage ? {display: 'flex'} : {display: 'none'}} className='justify-start pt-[76px] md:pt-[90px] xl:pt-[96px] px-6 md:px-10 xl:px-[165px] xl:mb-[160px] bg-offWhite'>
+            <div id='checkoutWrapper' style={checkoutPage ? {display: 'flex'} : {display: 'none'}} className='justify-center pt-[76px] md:pt-[90px] xl:pt-[96px] px-6 md:px-10 xl:px-[165px] xl:mb-[160px] bg-offWhite'>
               <Checkout />
             </div>
             <div id='footerWrapper' className='bg-almostBlack w-full xl:flex xl:justify-center'>

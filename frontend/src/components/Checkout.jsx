@@ -12,10 +12,10 @@ function Checkout() {
                 <CheckoutHeading />
             </div>
             <form>
-                <div id="checkoutFormWrapper" className='pt-6 px-6 pb-2 mb-8 bg-white rounded-lg w-[327px]'>
+                <div id="checkoutFormWrapper" className='pt-6 px-6 pb-2 mb-8 bg-white rounded-lg w-[327px] md:w-[689px]'>
                     <CheckoutForm />
                 </div>
-                <div id="checkoutSummaryWrapper" className='pt-6 px-6 mb-[97px] bg-white rounded-lg w-[327px]'>
+                <div id="checkoutSummaryWrapper" className='pt-6 px-6 mb-[97px] bg-white rounded-lg w-[327px] md:w-[689px]'>
                     <CheckoutSummary />
                 </div>
             </form>
