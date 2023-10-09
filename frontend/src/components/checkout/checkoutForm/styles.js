@@ -17,3 +17,10 @@ export class input {
         this.styles = 'w-[280px] text-black font-bold text-sm leading-normal tracking-[-0.25px] mb-6 rounded-lg border border-borderWhite bg-white pl-6 py-[18px] placeholder:opacity-[0.4] cursor-pointer caret-deepOrange focus:border-deepOrange focus:outline-none focus:ring-0'
     }
 }
+
+export class select {
+    constructor(text) {
+        this.text = text
+        this.styles = 'w-[280px] text-black font-bold text-sm leading-normal tracking-[-0.25px] mb-6 rounded-lg border border-borderWhite bg-white pl-4 py-[18px] placeholder:opacity-[0.4] cursor-pointer caret-deepOrange focus:border-deepOrange focus:outline-none focus:ring-0'
+    }
+}
