@@ -16,28 +16,30 @@ function CheckoutBillingDetails() {
         <div id="checkoutBillingSectionTitleContainer" className={`${billingDetails.styles}`}>
           <p>{billingDetails.text}</p>
         </div>
-        <div id="checkoutNameSectionContainer">
-          <div id="checkoutNameLabelContainer" className={`${name.styles}`}>
-            <label htmlFor="name">{name.text}</label>
+        <div id="allDetailsContainer" className='flex flex-wrap justify-between'>
+          <div id="checkoutNameSectionContainer">
+            <div id="checkoutNameLabelContainer" className={`${name.styles}`}>
+              <label htmlFor="name">{name.text}</label>
+            </div>
+            <div id="checkoutNameInputContainer" >
+              <input type="text" name='name' placeholder='Alexei Ward' className={`${nameInput.styles}`} />
+            </div>
           </div>
-          <div id="checkoutNameInputContainer" >
-            <input type="text" name='name' placeholder='Alexei Ward' className={`${nameInput.styles}`} />
+          <div id="checkoutEmailSectionContainer">
+            <div id="checkoutEmailLabelContainer" className={`${email.styles}`}>
+              <label htmlFor="email">{email.text}</label>
+            </div>
+            <div id="checkouEmailInputContainer" >
+              <input type="text" name='email' placeholder='alexei@mail.com' className={`${emailInput.styles}`} />
+            </div>
           </div>
-        </div>
-        <div id="checkoutEmailSectionContainer">
-          <div id="checkoutEmailLabelContainer" className={`${email.styles}`}>
-            <label htmlFor="email">{email.text}</label>
-          </div>
-          <div id="checkouEmailInputContainer" >
-            <input type="text" name='email' placeholder='alexei@mail.com' className={`${emailInput.styles}`} />
-          </div>
-        </div>
-        <div id="checkoutPhoneSectionContainer">
-          <div id="checkoutPhoneLabelContainer" className={`${phone.styles}`}>
-            <label htmlFor="phone">{phone.text}</label>
-          </div>
-          <div id="checkoutPhoneInputContainer" >
-            <input type="text" name='phone' placeholder='+1 202-555-0136' className={`${phoneInput.styles}`} />
+          <div id="checkoutPhoneSectionContainer">
+            <div id="checkoutPhoneLabelContainer" className={`${phone.styles}`}>
+              <label htmlFor="phone">{phone.text}</label>
+            </div>
+            <div id="checkoutPhoneInputContainer" >
+              <input type="text" name='phone' placeholder='+1 202-555-0136' className={`${phoneInput.styles}`} />
+            </div>
           </div>
         </div>
       </div>

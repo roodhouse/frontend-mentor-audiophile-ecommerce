@@ -8,13 +8,13 @@ function CheckoutForm() {
   return (
     <>
         <div id="checkoutFormContainer">
-            <div id="checkoutFormTitleWrapper" className='mb-8'>
+            <div id="checkoutFormTitleWrapper" className='mb-8 md:mb-[41px]'>
                 <CheckoutFormTitle />
             </div>
-            <div id="checkoutFormBillingWrapper" className='mb-2'>
+            <div id="checkoutFormBillingWrapper" className='mb-2 md:mb-[29px]'>
                 <CheckoutBillingDetails />
             </div>
-            <div id="checkoutFormShippingWrapper" className='mb-2'>
+            <div id="checkoutFormShippingWrapper" className='mb-2 md:mb-[37px]'>
                 <CheckoutShippingDetails />
             </div>
             <div id="checkoutFormPaymentWrapper">

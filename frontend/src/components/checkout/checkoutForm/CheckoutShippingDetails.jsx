@@ -18,36 +18,38 @@ function CheckoutShippingDetails() {
         <div id="checkoutShippingSectionTitleContainer" className={`${shippingDetails.styles}`}>
           <p>{shippingDetails.text}</p>
         </div>
-        <div id="checkoutAddressSectionContainer">
-          <div id="checkoutAddressLabelContainer" className={`${address.styles}`}>
-            <label htmlFor="address">{address.text}</label>
+        <div id="allShippingDetails" className='flex flex-wrap justify-between'>
+          <div id="checkoutAddressSectionContainer">
+            <div id="checkoutAddressLabelContainer" className={`${address.styles}`}>
+              <label htmlFor="address">{address.text}</label>
+            </div>
+            <div id="checkoutAddressInputContainer" >
+              <input type="text" name='address' placeholder='1137 Williams Avenue' className={`${addressInput.styles} md:w-[634px]`} />
+            </div>
           </div>
-          <div id="checkoutAddressInputContainer" >
-            <input type="text" name='address' placeholder='1137 Williams Avenue' className={`${addressInput.styles}`} />
+          <div id="checkoutZipSectionContainer">
+            <div id="checkoutZipLabelContainer" className={`${zip.styles}`}>
+              <label htmlFor="zip">{zip.text}</label>
+            </div>
+            <div id="checkoutZipInputContainer" >
+              <input type="text" name='zip' placeholder='10001' className={`${zipInput.styles}`} />
+            </div>
           </div>
-        </div>
-        <div id="checkoutZipSectionContainer">
-          <div id="checkoutZipLabelContainer" className={`${zip.styles}`}>
-            <label htmlFor="zip">{zip.text}</label>
+          <div id="checkoutCitySectionContainer">
+            <div id="checkoutCityLabelContainer" className={`${city.styles}`}>
+              <label htmlFor="city">{city.text}</label>
+            </div>
+            <div id="checkoutCityInputContainer" >
+              <input type="text" name='city' placeholder='New York' className={`${cityInput.styles}`} />
+            </div>
           </div>
-          <div id="checkoutZipInputContainer" >
-            <input type="text" name='zip' placeholder='10001' className={`${zipInput.styles}`} />
-          </div>
-        </div>
-        <div id="checkoutCitySectionContainer">
-          <div id="checkoutCityLabelContainer" className={`${city.styles}`}>
-            <label htmlFor="city">{city.text}</label>
-          </div>
-          <div id="checkoutCityInputContainer" >
-            <input type="text" name='city' placeholder='New York' className={`${cityInput.styles}`} />
-          </div>
-        </div>
-        <div id="checkoutCountrySectionContainer">
-          <div id="checkoutCountryLabelContainer" className={`${country.styles}`}>
-            <label htmlFor="country">{country.text}</label>
-          </div>
-          <div id="checkoutCountryInputContainer" >
-            <input type="text" name='country' placeholder='United States' className={`${countryInput.styles}`} />
+          <div id="checkoutCountrySectionContainer">
+            <div id="checkoutCountryLabelContainer" className={`${country.styles}`}>
+              <label htmlFor="country">{country.text}</label>
+            </div>
+            <div id="checkoutCountryInputContainer" >
+              <input type="text" name='country' placeholder='United States' className={`${countryInput.styles}`} />
+            </div>
           </div>
         </div>
       </div>
