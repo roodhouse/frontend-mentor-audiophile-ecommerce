@@ -54,7 +54,7 @@ function CheckoutPaymentDetails() {
         </div>
         <div id="allPaymentMethodDetails">
           <div id="allPaymentMethod">
-            <div id="checkoutMethodSectionContainer" className='flex justify-between'>
+            <div id="checkoutMethodSectionContainer" className='flex flex-col md:flex-row justify-between'>
               <div id="checkoutMethodLabelContainer" className={`${method.styles}`}>
                 <label htmlFor="method">{method.text}</label>
               </div>
@@ -73,7 +73,7 @@ function CheckoutPaymentDetails() {
                 </div>
           </div>
             </div>
-            <div id="paymentDetailsContainer" className='mt-2 flex justify-between'>
+            <div id="paymentDetailsContainer" className='mt-2 flex flex-col md:flex-row justify-between'>
               {
                 payMethod !== 'payDotCash' ? (
                   <>
