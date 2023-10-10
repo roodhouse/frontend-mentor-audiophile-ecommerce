@@ -15,6 +15,8 @@ function App() {
   // checkout page
     // populate checkout page with cart items
   // vaildate checkout form
+  // design thank you module 
+  // clear form on submit
 
 
   return (

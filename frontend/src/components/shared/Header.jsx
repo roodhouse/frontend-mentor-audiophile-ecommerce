@@ -36,7 +36,7 @@ function Header() {
           <div id="cartMenuWrapper" style={cartMenu ? {display:'block'} : {display: 'none'}}>
               <Cart />
           </div>
-          <div id="ThankYouWrapper" style={thankYou ? {display:'block'} : {display: 'none'}}>
+          <div id="ThankYouWrapper" style={thankYou ? {display:'block'} : {display: 'none'}} className='bg-white'>
               <ThankYou />
           </div>
       </div>

@@ -24,6 +24,15 @@ function Checkout() {
 
     const onSubmit = async (data) => {
         console.log(data)
+        resetField('name')
+        resetField('email')
+        resetField('phone')
+        resetField('address')
+        resetField('zip')
+        resetField('country')
+        resetField('paymentMethod')
+        resetField('eMoneyNumber')
+        resetField('eMoneyPin')
         thankYouMenu()
     }
 

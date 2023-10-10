@@ -212,9 +212,11 @@ const MainProvider = ({ children }) => {
   }
 
   const thankYouMenu = () => {
+    window.scrollTo(0,0)
     setThankYou(true)
     setMobileMenu(false)
     setCartMenu(false)
+    disableScroll()
   }
 
   // **** Cart fucntionality **** // 
