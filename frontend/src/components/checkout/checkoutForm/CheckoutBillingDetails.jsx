@@ -9,7 +9,7 @@ const nameInput = new input()
 const emailInput = new input()
 const phoneInput = new input()
 
-function CheckoutBillingDetails() {
+function CheckoutBillingDetails({ register }) {
   return (
     <>
       <div id="checkoutBillingDetailsContainer">
@@ -22,7 +22,14 @@ function CheckoutBillingDetails() {
               <label htmlFor="name">{name.text}</label>
             </div>
             <div id="checkoutNameInputContainer" >
-              <input type="text" name='name' placeholder='Alexei Ward' className={`${nameInput.styles}`} />
+              <input 
+                type="text" 
+                name='name' 
+                placeholder='Alexei Ward' 
+                className={`${nameInput.styles}`}
+                {...register('name')}
+                  
+              />
             </div>
           </div>
           <div id="checkoutEmailSectionContainer">
@@ -30,7 +37,13 @@ function CheckoutBillingDetails() {
               <label htmlFor="email">{email.text}</label>
             </div>
             <div id="checkouEmailInputContainer" >
-              <input type="text" name='email' placeholder='alexei@mail.com' className={`${emailInput.styles}`} />
+              <input 
+                type="text" 
+                name='email' 
+                placeholder='alexei@mail.com' 
+                className={`${emailInput.styles}`} 
+                {...register('email')}
+              />
             </div>
           </div>
           <div id="checkoutPhoneSectionContainer">
@@ -38,7 +51,13 @@ function CheckoutBillingDetails() {
               <label htmlFor="phone">{phone.text}</label>
             </div>
             <div id="checkoutPhoneInputContainer" >
-              <input type="text" name='phone' placeholder='+1 202-555-0136' className={`${phoneInput.styles}`} />
+              <input 
+                type="text" 
+                name='phone' 
+                placeholder='+1 202-555-0136' 
+                className={`${phoneInput.styles}`} 
+                {...register('phone')}
+              />
             </div>
           </div>
         </div>

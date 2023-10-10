@@ -27,6 +27,6 @@ export class select {
 
 export class radio {
     constructor() {
-        this.styles = 'w-5 h-5 mr-4 border border-borderWhite flex justify-center items-center'
+        this.styles = 'w-5 h-5 mr-4 rounded-[50%] border border-borderWhite flex justify-center items-center'
     }
 }

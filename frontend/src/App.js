@@ -14,6 +14,7 @@ function App() {
 
   // checkout page
     // populate checkout page with cart items
+  // vaildate checkout form
 
 
   return (

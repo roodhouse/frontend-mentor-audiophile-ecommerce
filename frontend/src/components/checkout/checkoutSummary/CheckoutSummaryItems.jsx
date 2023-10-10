@@ -22,8 +22,7 @@ function CheckoutSummaryItems() {
             cartProducts.push(products.filter((merch) => merch.name === item.name ))
         })
     }
-    console.log(cartItems)
-    console.log(cartProducts)
+    
   return (
     <>
 

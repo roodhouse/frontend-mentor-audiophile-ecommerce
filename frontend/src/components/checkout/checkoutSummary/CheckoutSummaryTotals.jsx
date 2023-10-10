@@ -5,7 +5,7 @@ function CheckoutSummaryTotals() {
 
     const { total } = useMain()
 
-    console.log(total)
+    
 
     const grandTotal = () => {
        return total + 50 + 1079
