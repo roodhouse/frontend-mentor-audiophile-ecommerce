@@ -73,19 +73,7 @@ function ReviewItems() {
                   />
                 </div>
               </div>
-              <div id="thankYouLineContainer">
-                <div
-                  id="thankYouLine"
-                  className="w-[215px] h-[1px] bg-black opacity-[0.08] mb-3"
-                />
-              </div>
-              <div
-                id="moreItemsContainer"
-                onClick={handleClick}
-                className="text-black text-xs leading-normal tracking-[0.214px] font-bold opacity-50 flex justify-center"
-              >
-                <p>and {cartProducts.length - 1} other item(s)</p>
-              </div>
+              
               {cartProducts.slice(1).map((item) => (
                 <div
                   id={`product_${item[0].sku}_SummaryContainer`}
@@ -119,7 +107,23 @@ function ReviewItems() {
                     />
                   </div>
                 </div>
+                
               ))}
+
+              <div id="thankYouLineContainer">
+                <div
+                  id="thankYouLine"
+                  className="w-[215px] h-[1px] bg-black opacity-[0.08] mb-3"
+                />
+              </div>
+              <div
+                id="moreItemsContainer"
+                onClick={handleClick}
+                className="text-black text-xs leading-normal tracking-[0.214px] font-bold opacity-50 flex justify-center"
+              >
+                <p>{!moreItems ?  `and ${cartProducts.length - 1} other item(s)` : 'view less'}</p>
+              </div>
+
             </>
           ) : (
             cartProducts.map((item) => (
