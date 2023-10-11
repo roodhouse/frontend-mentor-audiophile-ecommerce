@@ -39,7 +39,7 @@ function ReviewItems() {
               <div
                 id={`product_${cartProducts[0][0].sku}_SummaryContainer`}
                 key={cartProducts[0][0].id}
-                className="pb-3 flex justify-between items-center"
+                className="pb-3 flex justify-between items-center md:items-start"
               >
                 <div
                   id={`product_${cartProducts[0][0].sku}_SummaryImageAndDetailsContainer`}
@@ -78,7 +78,7 @@ function ReviewItems() {
                 <div
                   id={`product_${item[0].sku}_SummaryContainer`}
                   key={item[0].id}
-                  className={`pb-3 ${moreItems ? 'flex' : 'hidden' } justify-between items-center`}
+                  className={`pb-3 ${moreItems ? 'flex' : 'hidden' } justify-between items-center md:items-start`}
                 >
                   <div
                     id={`product_${item[0].sku}_SummaryImageAndDetailsContainer`}
@@ -130,7 +130,7 @@ function ReviewItems() {
               <div
                 id={`product_${item[0].sku}_SummaryContainer`}
                 key={item[0].id}
-                className="flex justify-between items-center"
+                className="flex justify-between items-center md:items-start"
               >
                 <div
                   id={`product_${item[0].sku}_SummaryImageAndDetailsContainer`}

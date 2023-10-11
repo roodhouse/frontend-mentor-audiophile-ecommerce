@@ -4,7 +4,7 @@ import ThankItems from './thankYou/ThankItems'
 function ThankYou() {
   return (
     <>
-        <div id='thanksMenuContainer' className='w-full absolute top-0 left-0 md:left-[-50px] xl:left-[-165px] mt-[114px] z-30 flex justify-center md:justify-end'>
+        <div id='thanksMenuContainer' className='w-full absolute top-0 left-0 mt-[114px] z-30 flex justify-center'>
             <div id="thankItmesWrapper">
               <ThankItems />
             </div>
