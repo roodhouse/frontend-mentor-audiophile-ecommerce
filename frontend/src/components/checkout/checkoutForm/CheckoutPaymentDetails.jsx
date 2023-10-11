@@ -7,22 +7,19 @@ const method = new label('Payment Method')
 const emoneyNum = new label('e-Money Number')
 const emoneyPin = new label('e-Money PIN')
 const emoneyRadio = new radio()
-const methodInput = new input()
 const emoneyNumber = new input()
 const emoneyPinNum = new input()
 const emoneyNumInput = new select('e-Money')
 const emoneyPinInput = new select('Cash of Delivery')
 
-// might need to create my own radio buttons.
 
-function CheckoutPaymentDetails({ register }) {
+function CheckoutPaymentDetails({ register, errors }) {
 
   const [ payMethod, setPayMethod ] = useState('')
 
   const handleClick = (e) => {
     const selection = e.target
     
-
     if (selection.id === 'payDot') {
       setPayMethod('payDot')
       let payDotCash = document.getElementById('payDotCash')
@@ -63,14 +60,17 @@ function CheckoutPaymentDetails({ register }) {
             >
               <div
                 id="checkoutMethodLabelContainer"
-                className={`${method.styles}`}
+                className={`${method.styles} ${errors.paymentMethod ? 'text-warning' : ''} flex justify-between md:flex-col md:justify-start`}
               >
                 <label htmlFor="method">{method.text}</label>
+                { errors.paymentMethod ? (
+                  <div>{errors.paymentMethod.message}</div>
+                ) : ''}
               </div>
               <div id="methodContainer">
                 <div
                   id="checkoutMethodEmoneyContainer"
-                  className={`${emoneyNumInput.styles} flex items-center`}
+                  className={`${emoneyNumInput.styles} ${errors.paymentMethod ? 'border-warning hover:border-warning focus:border-warning' : ''} flex items-center`}
                 >
                   <label
                     htmlFor="eMoneyRadio"
@@ -88,14 +88,16 @@ function CheckoutPaymentDetails({ register }) {
                     name="paymentMethod"
                     className="hidden"
                     value="emoney"
-                    {...register("paymentMethod")}
+                    {...register("paymentMethod", {
+                      required: 'Please make a selection'
+                    })}
                   />
                   <label htmlFor="eMoneyRadio">{emoneyNumInput.text}</label>
                 </div>
 
                 <div
                   id="checkoutMethodCashContainer"
-                  className={`${emoneyNumInput.styles} flex items-center`}
+                  className={`${emoneyNumInput.styles} ${errors.paymentMethod ? 'border-warning hover:border-warning focus:border-warning' : ''} flex items-center`}
                 >
                   <label
                     htmlFor="cashRadio"
@@ -113,7 +115,9 @@ function CheckoutPaymentDetails({ register }) {
                     name="paymentMethod"
                     className="hidden"
                     value="cash"
-                    {...register("paymentMethod")}
+                    {...register("paymentMethod", {
+                      required: 'Please make a selection'
+                    })}
                   />
                   <label htmlFor="cashRadio">{emoneyPinInput.text}</label>
                 </div>
@@ -128,34 +132,44 @@ function CheckoutPaymentDetails({ register }) {
                   <div id="eMoneyNumberContainer" className="">
                     <div
                       id="eMoneyLabelNumberContainer"
-                      className={`${emoneyNum.styles}`}
+                      className={`${emoneyNum.styles} ${errors.eMoneyNumber ? 'text-warning' : ''} flex justify-between`}
                     >
                       <label htmlFor="eMoneyNumber">{emoneyNum.text}</label>
+                      { errors.eMoneyNumber ? (
+                  <div>{errors.eMoneyNumber.message}</div>
+                ) : ''}
                     </div>
                     <div id="eMoneyNumberInputContainer">
                       <input
                         type="text"
                         name="eMoneyNumber"
                         placeholder="238521993"
-                        className={`${emoneyNumber.styles}`}
-                        {...register("eMoneyNumber")}
+                        className={`${emoneyNumber.styles} ${errors.eMoneyNumber ? 'border-warning hover:border-warning focus:border-warning' : ''}`}
+                        {...register("eMoneyNumber", {
+                          required: 'This field is required'
+                        })}
                       />
                     </div>
                   </div>
                   <div id="eMoneyPinContainer">
                     <div
                       id="eMoneyLabelPinContainer"
-                      className={`${emoneyPin.styles}`}
+                      className={`${emoneyPin.styles} ${errors.eMoneyPin ? 'text-warning' : ''} flex justify-between`}
                     >
-                      <label htmlFor="eMoneyNumber">{emoneyPin.text}</label>
+                      <label htmlFor="eMoneyPin">{emoneyPin.text}</label>
+                      { errors.eMoneyPin ? (
+                  <div>{errors.eMoneyPin.message}</div>
+                ) : ''}
                     </div>
                     <div id="eMoneyPinInputContainer">
                       <input
                         type="text"
                         name="eMoneyPin"
                         placeholder="6891"
-                        className={`${emoneyPinNum.styles}`}
-                        {...register("eMoneyPin")}
+                        className={`${emoneyPinNum.styles} ${errors.eMoneyPin ? 'border-warning hover:border-warning focus:border-warning' : ''}`}
+                        {...register("eMoneyPin", {
+                          required: 'This field is required'
+                        })}
                       />
                     </div>
                   </div>
