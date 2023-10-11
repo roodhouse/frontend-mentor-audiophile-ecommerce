@@ -17,7 +17,7 @@ function ThankItems() {
         <div id="thankSubHeadWrapper" className='mb-6'>
             <ThankSubHead />
         </div>
-        <div id="thankReviewWrapper" className='mb-6'>
+        <div id="thankReviewWrapper">
             <ThankReview />
         </div>
     </div>

@@ -21,6 +21,7 @@ const MainProvider = ({ children }) => {
   const [ quantity, setQuantity ] = useState(1)
   const [ cartActivity, setCartActvity ] = useState(0)
   const [ total, setTotal ] = useState(0)
+  const [ grandTotal, setGrandTotal ] = useState(0)
 
   // Fetch requests
   useEffect(() => {
@@ -163,6 +164,10 @@ const MainProvider = ({ children }) => {
     enableScroll()
   }
 
+  const theGrandTotal = (amount) => {
+    setGrandTotal(amount)
+  }
+
 
   // save a navigation history so 'go back' works
   const navigate = (pageName)=> {
@@ -217,6 +222,16 @@ const MainProvider = ({ children }) => {
     setMobileMenu(false)
     setCartMenu(false)
     disableScroll()
+  }
+
+  const backHome = () => {
+    setThankYou(false)
+    setCheckoutPage('')
+    setHome('home')
+    enableScroll()
+    clearCart()
+    setCart([])
+    window.scrollTo(0,0)
   }
 
   // **** Cart fucntionality **** // 
@@ -317,7 +332,7 @@ const MainProvider = ({ children }) => {
       { 
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, checkoutPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
-        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkoutPage, checkout, thankYou, thankYouMenu
+        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkout, thankYou, thankYouMenu, theGrandTotal, grandTotal, backHome
       }
     }>
     {children}

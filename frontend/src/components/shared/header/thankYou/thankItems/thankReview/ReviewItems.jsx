@@ -4,8 +4,6 @@ import SummaryImage from "../../../../../checkout/checkoutSummary/checkoutSummar
 import SummaryDetails from "../../../../../checkout/checkoutSummary/checkoutSummaryItems/SummaryDetails";
 import SummaryCount from "../../../../../checkout/checkoutSummary/checkoutSummaryItems/SummaryCount";
 
-/// need to adjust the layout so that all the items are above the line and the text changes on the click..
-
 function ReviewItems() {
   const { cart, products } = useMain();
   const [ moreItems, setMoreItems ] = useState(false)
@@ -24,6 +22,8 @@ function ReviewItems() {
       cartProducts.push(products.filter((merch) => merch.name === item.name));
     });
   }
+
+  
 
   const handleClick = () => {
     moreItems ? setMoreItems(false) : setMoreItems(true)
@@ -130,7 +130,7 @@ function ReviewItems() {
               <div
                 id={`product_${item[0].sku}_SummaryContainer`}
                 key={item[0].id}
-                className="pb-6 last:pb-8 flex justify-between items-center"
+                className="flex justify-between items-center"
               >
                 <div
                   id={`product_${item[0].sku}_SummaryImageAndDetailsContainer`}

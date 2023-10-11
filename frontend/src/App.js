@@ -1,5 +1,4 @@
 import './App.css';
-import { useEffect } from 'react';
 import { useMain } from './context/mainContext';
 import Home from './components/Home';
 import Category from './components/Category';
@@ -10,13 +9,10 @@ import Footer from './components/shared/Footer'
 
 function App() {
 
-  const { categories, products, singleProduct, singleCategory, mobileMenu, home, categoryPage, productPage, history, total, checkout, checkoutPage } = useMain()
+  const { home, categoryPage, productPage, checkoutPage } = useMain()
 
   // checkout page
-    // populate checkout page with cart items
   // vaildate checkout form
-  // design thank you module 
-  // clear form on submit
 
 
   return (
