@@ -11,10 +11,6 @@ function App() {
 
   const { home, categoryPage, productPage, checkoutPage } = useMain()
 
-  // checkout page
-  // vaildate checkout form
-
-
   return (
     <div id='app' className="App font-display">
       <div id='mainWrapper'>

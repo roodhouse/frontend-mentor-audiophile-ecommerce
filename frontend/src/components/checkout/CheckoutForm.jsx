@@ -15,10 +15,10 @@ function CheckoutForm({ register, errors }) {
                 <CheckoutBillingDetails register={register} errors={errors} />
             </div>
             <div id="checkoutFormShippingWrapper" className='mb-2 md:mb-[37px]'>
-                <CheckoutShippingDetails register={register} />
+                <CheckoutShippingDetails register={register} errors={errors} />
             </div>
             <div id="checkoutFormPaymentWrapper">
-                <CheckoutPaymentDetails register={register} />
+                <CheckoutPaymentDetails register={register} errors={errors} />
             </div>
         </div>
     </>

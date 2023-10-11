@@ -45,12 +45,12 @@ function CheckoutBillingDetails({ register, errors }) {
                 <div>{errors.email.message}</div>
               ) : ''}
             </div>
-            <div id="checkouEmailInputContainer" >
+            <div id="checkoutEmailInputContainer" >
               <input 
                 type="text" 
                 name='email' 
                 placeholder='alexei@mail.com' 
-                className={`${emailInput.styles} ${errors.name ? 'border-warning hover:border-warning focus:border-warning' : ''}`} 
+                className={`${emailInput.styles} ${errors.email ? 'border-warning hover:border-warning focus:border-warning' : ''}`} 
                 {...register('email', {
                   required: 'This field is required',
                   pattern: {
