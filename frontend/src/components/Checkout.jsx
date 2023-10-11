@@ -48,7 +48,7 @@ function Checkout() {
             </div>
             <form noValidate onSubmit={handleSubmit(onSubmit, onError)} className='xl:flex'>
                 <div id="checkoutFormWrapper" className='pt-6 px-6 pb-2 mb-8 bg-white rounded-lg w-[327px] md:w-[689px] xl:w-[730px]'>
-                    <CheckoutForm register={register} />
+                    <CheckoutForm register={register} errors={errors} />
                 </div>
                 <div id="checkoutSummaryWrapper" className='pt-6 px-6 mb-[97px] bg-white rounded-lg w-[327px] md:w-[689px] xl:w-[350px] xl:ml-[30px]'>
                     <CheckoutSummary />

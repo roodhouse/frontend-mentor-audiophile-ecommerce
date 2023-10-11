@@ -21,6 +21,7 @@ module.exports = {
       transparent: 'transparent',
       deepOrange: '#D87D4A',
       lightOrange: '#FBAF85',
+      warning: '#CD2C2C'
     },
     screens: {
       'sm': '640px',
