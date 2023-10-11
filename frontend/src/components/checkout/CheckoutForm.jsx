@@ -4,7 +4,7 @@ import CheckoutBillingDetails from './checkoutForm/CheckoutBillingDetails'
 import CheckoutShippingDetails from './checkoutForm/CheckoutShippingDetails'
 import CheckoutPaymentDetails from './checkoutForm/CheckoutPaymentDetails'
 
-function CheckoutForm() {
+function CheckoutForm({ register }) {
   return (
     <>
         <div id="checkoutFormContainer">
@@ -12,13 +12,13 @@ function CheckoutForm() {
                 <CheckoutFormTitle />
             </div>
             <div id="checkoutFormBillingWrapper" className='mb-2 md:mb-[29px]'>
-                <CheckoutBillingDetails />
+                <CheckoutBillingDetails register={register} />
             </div>
             <div id="checkoutFormShippingWrapper" className='mb-2 md:mb-[37px]'>
-                <CheckoutShippingDetails />
+                <CheckoutShippingDetails register={register} />
             </div>
             <div id="checkoutFormPaymentWrapper">
-                <CheckoutPaymentDetails />
+                <CheckoutPaymentDetails register={register} />
             </div>
         </div>
     </>

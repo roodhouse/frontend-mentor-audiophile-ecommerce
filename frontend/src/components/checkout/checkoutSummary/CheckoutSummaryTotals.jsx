@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useMain } from '../../../context/mainContext'
 
 function CheckoutSummaryTotals() {
 
-    const { total } = useMain()
+    const { total, theGrandTotal } = useMain()
 
-    console.log(total)
+    const [ finalCost, setFinalCost ] = useState(0)
 
-    const grandTotal = () => {
-       return total + 50 + 1079
-    }
-
+    
+        useEffect(() => {
+             setFinalCost(total + 50 + 1079)
+            theGrandTotal(finalCost)
+           
+        },[total])
+    
   return (
     <>
         <div id="checkoutSummaryTotalsContainer">
@@ -43,7 +46,7 @@ function CheckoutSummaryTotals() {
                     <p>GRAND TOTAL</p>
                 </div>
                 <div id="totalGrandAMTcontainer" className='text-deepOrange text-[18px] font-bold leading-normal uppercase'>
-                    <p>${grandTotal().toLocaleString()}</p>
+                    <p>${finalCost.toLocaleString()}</p>
                 </div>
             </div>
         </div>

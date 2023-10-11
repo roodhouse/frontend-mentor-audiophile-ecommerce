@@ -11,7 +11,7 @@ const zipInput = new input()
 const cityInput = new input()
 const countryInput = new input()
 
-function CheckoutShippingDetails() {
+function CheckoutShippingDetails({ register }) {
   return (
     <>
       <div id="checkoutShippingDetailsContainer">
@@ -24,7 +24,13 @@ function CheckoutShippingDetails() {
               <label htmlFor="address">{address.text}</label>
             </div>
             <div id="checkoutAddressInputContainer" >
-              <input type="text" name='address' placeholder='1137 Williams Avenue' className={`${addressInput.styles} md:w-[634px]`} />
+              <input 
+                type="text" 
+                name='address' 
+                placeholder='1137 Williams Avenue' 
+                className={`${addressInput.styles} md:w-[634px]`}
+                {...register('address')}
+               />
             </div>
           </div>
           <div id="checkoutZipSectionContainer">
@@ -32,7 +38,13 @@ function CheckoutShippingDetails() {
               <label htmlFor="zip">{zip.text}</label>
             </div>
             <div id="checkoutZipInputContainer" >
-              <input type="text" name='zip' placeholder='10001' className={`${zipInput.styles}`} />
+              <input 
+                type="text" 
+                name='zip' 
+                placeholder='10001' 
+                className={`${zipInput.styles}`} 
+                {...register('zip')}
+              />
             </div>
           </div>
           <div id="checkoutCitySectionContainer">
@@ -40,7 +52,13 @@ function CheckoutShippingDetails() {
               <label htmlFor="city">{city.text}</label>
             </div>
             <div id="checkoutCityInputContainer" >
-              <input type="text" name='city' placeholder='New York' className={`${cityInput.styles}`} />
+              <input 
+                type="text" 
+                name='city' 
+                placeholder='New York' 
+                className={`${cityInput.styles}`}
+                {...register('city')}
+               />
             </div>
           </div>
           <div id="checkoutCountrySectionContainer">
@@ -48,7 +66,13 @@ function CheckoutShippingDetails() {
               <label htmlFor="country">{country.text}</label>
             </div>
             <div id="checkoutCountryInputContainer" >
-              <input type="text" name='country' placeholder='United States' className={`${countryInput.styles}`} />
+              <input 
+                type="text" 
+                name='country' 
+                placeholder='United States' 
+                className={`${countryInput.styles}`}
+                {...register('country')}
+               />
             </div>
           </div>
         </div>
