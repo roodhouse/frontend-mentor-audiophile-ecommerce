@@ -14,6 +14,7 @@ const MainProvider = ({ children }) => {
   const [ categoryPage, setCategoryPage ] = useState('')
   const [ productPage, setProductPage ] = useState('')
   const [ checkoutPage, setCheckoutPage ] = useState('')
+  const [ dashboardPage, setDashboardPage ] = useState('')
   const [ cartMenu, setCartMenu ] = useState(false)
   const [ thankYou, setThankYou ] = useState(false)
   const [ cart, setCart ] = useState([])
@@ -22,6 +23,7 @@ const MainProvider = ({ children }) => {
   const [ cartActivity, setCartActvity ] = useState(0)
   const [ total, setTotal ] = useState(0)
   const [ grandTotal, setGrandTotal ] = useState(0)
+  const [ orders, setOrders ] = useState([])
 
   // Fetch requests
   useEffect(() => {
@@ -70,6 +72,16 @@ const MainProvider = ({ children }) => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+
+      fetch("http://127.0.0.1:5000/api/orders/")
+      .then((response) => response.json())
+      .then((data) => {
+        setOrders(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+      
   }, []);
 
   // Functions
@@ -115,6 +127,7 @@ const MainProvider = ({ children }) => {
     setProductPage('')
     setCategoryPage('')
     setCheckoutPage('')
+    setDashboardPage('')
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -129,6 +142,7 @@ const MainProvider = ({ children }) => {
     setThankYou(false)
     setProductPage('')
     setCheckoutPage('')
+    setDashboardPage('')
     setCategoryPage(categoryName)
     window.scrollTo(0,0)
     enableScroll()
@@ -145,6 +159,7 @@ const MainProvider = ({ children }) => {
     setThankYou(false)
     setCategoryPage('')
     setCheckoutPage('')
+    setDashboardPage('')
     setProductPage(productName)
     window.scrollTo(0,0)
     enableScroll()
@@ -159,7 +174,23 @@ const MainProvider = ({ children }) => {
     setThankYou(false)
     setProductPage('')
     setCategoryPage('')
+    setDashboardPage('')
     setCheckoutPage('checkout')
+    window.scrollTo(0,0)
+    enableScroll()
+  }
+
+  // dashboard
+  const dashboard = () => {
+    setHome('')
+    setMobileMenu(false)
+    setCartMenu(false)
+    setThankYou(false)
+    setProductPage('')
+    setCategoryPage('')
+    setDashboardPage('')
+    setCheckoutPage('')
+    setDashboardPage('dash')
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -332,7 +363,8 @@ const MainProvider = ({ children }) => {
       { 
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, checkoutPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
-        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkout, thankYou, thankYouMenu, theGrandTotal, grandTotal, backHome
+        cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkout, thankYou, thankYouMenu, 
+        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage
       }
     }>
     {children}

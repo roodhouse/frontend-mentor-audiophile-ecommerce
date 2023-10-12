@@ -13,6 +13,6 @@ class Orders(Base):
     country = Column(String(250), nullable=False)
     cash = Column(Boolean)
     eMoney = Column(Boolean)
-    status = Column(String(250), server_default=text('Processing'))
+    status = Column(String(250), server_default=text("'Processing'"))
     total = Column(Integer, nullable=False)
     items = Column(String(250), nullable=False)

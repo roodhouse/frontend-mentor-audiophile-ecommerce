@@ -2,6 +2,7 @@ import json
 from flask import Blueprint, send_from_directory, current_app, jsonify, request, session
 from app.models import Category, Product, Orders
 from app.db import get_db
+import sys
 
 bp = Blueprint("home", __name__, url_prefix="/")
 
@@ -248,7 +249,7 @@ def get_all_orders():
                 "order_city": order.city,
                 "order_country": order.country,
                 "order_cash": order.cash,
-                "order_emoney": order.emoney,
+                "order_emoney": order.eMoney,
                 "order_status": order.status ,
                 "order_total": order.total,
                 "order_items": order.items               
@@ -258,6 +259,38 @@ def get_all_orders():
         return jsonify(orders_list)
     else:
         return jsonify({"error": "Orders not found"}), 404
+
+# add new order 
+@bp.route('/api/orders', methods=['POST'])
+def create():
+    data = request.get_json()
+    db = get_db()
+
+    try:
+        #add new order
+        new_order = Orders(
+            name = data['name'],
+            email = data['email'],
+            phone = data['phone'],
+            address = data['address'],
+            zip = data['zip'],
+            city = data['city'],
+            country = data['country'],
+            cash = data['cash'],
+            emoney = data['eMoney'],
+            state = data['status'],
+            total = data['total'],
+            items = data['items']
+        )
+        db.add(new_order)
+        db.commit()
+    except:
+        print(sys.exc_info()[0])
+
+        db.rollback()
+        return jsonify(message = 'Order failed'), 500
+    
+    return jsonify(id = new_order.id)
 
 # single order route
 @bp.route("/api/orders/<int:id>", methods=["GET"])
@@ -277,7 +310,7 @@ def get_order(id):
                 "order_city": order.city,
                 "order_country": order.country,
                 "order_cash": order.cash,
-                "order_emoney": order.emoney,
+                "order_emoney": order.eMoney,
                 "order_status": order.status,
                 "order_total": order.total,
                 "order_items": order.items  
