@@ -7,6 +7,10 @@ import Checkout from './components/Checkout';
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
+// create a new table that is updated when an order comes through
+// seed with dummy data
+// create a dashboard that reads the order table
+
 function App() {
 
   const { home, categoryPage, productPage, checkoutPage } = useMain()

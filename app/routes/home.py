@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, send_from_directory, current_app, jsonify, request, session
-from app.models import Category, Product
+from app.models import Category, Product, Orders
 from app.db import get_db
 
 bp = Blueprint("home", __name__, url_prefix="/")
@@ -227,3 +227,61 @@ def get_product(id):
         return jsonify(product_info)
     else:
         return jsonify({"error": "Category not found"}), 404
+    
+
+# all orders route
+@bp.route("/api/orders/", methods=["GET"])
+def get_all_orders():
+    db = get_db()
+
+    orders = db.query(Orders).all()
+
+    if orders:
+        orders_list = [
+            {
+                "order_id": order.id,
+                "order_name": order.name,
+                "order_email": order.email,
+                "order_phone": order.phone,
+                "order_address": order.address,
+                "order_zip": order.zip,
+                "order_city": order.city,
+                "order_country": order.country,
+                "order_cash": order.cash,
+                "order_emoney": order.emoney,
+                "order_status": order.status ,
+                "order_total": order.total,
+                "order_items": order.items               
+            }
+            for order in orders
+        ]
+        return jsonify(orders_list)
+    else:
+        return jsonify({"error": "Orders not found"}), 404
+
+# single order route
+@bp.route("/api/orders/<int:id>", methods=["GET"])
+def get_order(id):
+    db = get_db()
+
+    order = db.query(Orders).filter_by(id=id).one_or_none()
+
+    if order:
+        order_info = {
+                "order_id": order.id,
+                "order_name": order.name,
+                "order_email": order.email,
+                "order_phone": order.phone,
+                "order_address": order.address,
+                "order_zip": order.zip,
+                "order_city": order.city,
+                "order_country": order.country,
+                "order_cash": order.cash,
+                "order_emoney": order.emoney,
+                "order_status": order.status,
+                "order_total": order.total,
+                "order_items": order.items  
+        }
+        return jsonify(order_info)
+    else:
+        return jsonify({"error": "Order not found"}), 404
