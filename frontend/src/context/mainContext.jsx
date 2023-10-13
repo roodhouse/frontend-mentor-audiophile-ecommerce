@@ -82,7 +82,7 @@ const MainProvider = ({ children }) => {
         console.error("Error fetching data:", error);
       });
       
-  }, []);
+  }, [cart]);
 
   // Functions
 

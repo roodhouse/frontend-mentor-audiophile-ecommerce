@@ -3,6 +3,7 @@ from flask import Blueprint, send_from_directory, current_app, jsonify, request,
 from app.models import Category, Product, Orders
 from app.db import get_db
 import sys
+import logging
 
 bp = Blueprint("home", __name__, url_prefix="/")
 
@@ -277,18 +278,22 @@ def create():
             city = data['city'],
             country = data['country'],
             cash = data['cash'],
-            emoney = data['eMoney'],
-            state = data['status'],
+            eMoney = data['eMoney'],
+            status = data['status'],
             total = data['total'],
             items = data['items']
         )
         db.add(new_order)
         db.commit()
-    except:
-        print(sys.exc_info()[0])
-
+    except KeyError as e:
+        # print(sys.exc_info()[0])
+        logging.error(f'KeyError: {e}')
         db.rollback()
-        return jsonify(message = 'Order failed'), 500
+        return jsonify(message='Invalid Data'), 400
+        print('test')
+
+        
+        # return jsonify(message = 'Order failed'), 500
     
     return jsonify(id = new_order.id)
 

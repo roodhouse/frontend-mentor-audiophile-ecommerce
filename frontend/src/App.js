@@ -8,9 +8,8 @@ import DashBoard from './components/DashBoard';
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
-// create a new table that is updated when an order comes through
-// seed with dummy data
-// create a dashboard that reads the order table
+// allow for click of name in table and edit button to take to single order page
+
 
 function App() {
 
