@@ -16,7 +16,7 @@ function Checkout() {
         address: '',
         zip: '',
         city: '',
-        country: '',
+        state: '',
         paymentMethod: '',
         eMoneyNumber: '',
         eMoneyPin: ''
@@ -31,31 +31,35 @@ function Checkout() {
 
         allItemNames = allItemNames.join(', ')
 
+        const currentDate = new Date()
+        const formattedDate = currentDate.toISOString().split('T')[0]
+
         const name = data.name
         const email = data.email
         const phone = data.phone
         const address = data.address
         const zip = data.zip
         const city = data.city
-        const country = data.country
-        // const paymentMethod = data.paymentMethod
+        const state = data.state
+        const date = formattedDate
         const cash = true
         const eMoney = false
         const status = 'Processing'
         const total = grandTotal
         const items = allItemNames
         
-        if ( name && email && phone && address && zip && country  && city && total && items) {
+        if ( name && email && phone && address && zip && state  && city && total && items) {
             const response = await fetch('http://127.0.0.1:5000/api/orders', {
                 method: 'post',
                 body: JSON.stringify({
+                    date,
                     name,
                     email,
                     phone,
                     address,
                     zip,
                     city,
-                    country,
+                    state,
                     cash,
                     eMoney,
                     status,
@@ -71,7 +75,7 @@ function Checkout() {
                 resetField('phone')
                 resetField('address')
                 resetField('zip')
-                resetField('country')
+                resetField('state')
                 resetField('paymentMethod')
                 resetField('eMoneyNumber')
                 resetField('eMoneyPin')

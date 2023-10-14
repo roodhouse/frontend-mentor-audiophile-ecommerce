@@ -363,13 +363,14 @@ db.commit()
 #insert orders
 db.add_all([
     Orders(
+        date="2023/01/08",
         name='John Rugh', 
         email='rughjm@gmail.com',
         phone='512 563-3817',
         address='105 Palo Duro Ct',
         city='Leander',
         zip='78641',
-        country='USA',
+        state='TX',
         cash=False,
         eMoney=True,
         status='Processing',
@@ -377,13 +378,14 @@ db.add_all([
         items='YX1 Wireless Earphones'
         ),
     Orders(
+        date='2022/12/04',
         name='Laura Rugh', 
         email='lauraerugh@gmail.com',
         phone='512 529-9382',
         address='8402 Flagstone Dr',
         city='Austin',
         zip='78757',
-        country='USA',
+        state='TX',
         cash=True,
         eMoney=False,
         status='Processing',
@@ -391,13 +393,14 @@ db.add_all([
         items='XX99 Mark II Headphones'
         ),
     Orders(
+        date='2023/08/23',
         name='Betty Rugh', 
         email='rughbe@gmail.com',
         phone='713 320-1854',
         address='14518 Dracaena Ct',
         city='Houston',
         zip='77070',
-        country='USA',
+        state='TX',
         cash=False,
         eMoney=True,
         status='Processing',

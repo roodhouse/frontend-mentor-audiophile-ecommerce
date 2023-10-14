@@ -15,6 +15,7 @@ const MainProvider = ({ children }) => {
   const [ productPage, setProductPage ] = useState('')
   const [ checkoutPage, setCheckoutPage ] = useState('')
   const [ dashboardPage, setDashboardPage ] = useState('')
+  const [ orderPage, setOrderPage ] = useState('')
   const [ cartMenu, setCartMenu ] = useState(false)
   const [ thankYou, setThankYou ] = useState(false)
   const [ cart, setCart ] = useState([])
@@ -128,6 +129,7 @@ const MainProvider = ({ children }) => {
     setCategoryPage('')
     setCheckoutPage('')
     setDashboardPage('')
+    setOrderPage('')
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -144,6 +146,7 @@ const MainProvider = ({ children }) => {
     setCheckoutPage('')
     setDashboardPage('')
     setCategoryPage(categoryName)
+    setOrderPage('')
     window.scrollTo(0,0)
     enableScroll()
     
@@ -160,7 +163,25 @@ const MainProvider = ({ children }) => {
     setCategoryPage('')
     setCheckoutPage('')
     setDashboardPage('')
+    setOrderPage('')
     setProductPage(productName)
+    window.scrollTo(0,0)
+    enableScroll()
+  }
+
+  // Order state
+  const orderClick = (orderNumber) => {
+    navigate(currentState())
+    setHome('')
+    setQuantity(1)
+    setMobileMenu(false)
+    setCartMenu(false)
+    setThankYou(false)
+    setCategoryPage('')
+    setCheckoutPage('')
+    setDashboardPage('')
+    setProductPage('')
+    setOrderPage(orderNumber)
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -175,6 +196,7 @@ const MainProvider = ({ children }) => {
     setProductPage('')
     setCategoryPage('')
     setDashboardPage('')
+    setOrderPage('')
     setCheckoutPage('checkout')
     window.scrollTo(0,0)
     enableScroll()
@@ -191,6 +213,7 @@ const MainProvider = ({ children }) => {
     setDashboardPage('')
     setCheckoutPage('')
     setDashboardPage('dash')
+    setOrderPage('')
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -364,7 +387,7 @@ const MainProvider = ({ children }) => {
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, checkoutPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
         cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkout, thankYou, thankYouMenu, 
-        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage
+        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick
       }
     }>
     {children}

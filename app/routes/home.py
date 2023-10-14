@@ -242,13 +242,14 @@ def get_all_orders():
         orders_list = [
             {
                 "order_id": order.id,
+                "order_date": order.date,
                 "order_name": order.name,
                 "order_email": order.email,
                 "order_phone": order.phone,
                 "order_address": order.address,
                 "order_zip": order.zip,
                 "order_city": order.city,
-                "order_country": order.country,
+                "order_state": order.state,
                 "order_cash": order.cash,
                 "order_emoney": order.eMoney,
                 "order_status": order.status ,
@@ -270,13 +271,14 @@ def create():
     try:
         #add new order
         new_order = Orders(
+            date = data['date'],
             name = data['name'],
             email = data['email'],
             phone = data['phone'],
             address = data['address'],
             zip = data['zip'],
             city = data['city'],
-            country = data['country'],
+            state = data['state'],
             cash = data['cash'],
             eMoney = data['eMoney'],
             status = data['status'],
@@ -307,13 +309,14 @@ def get_order(id):
     if order:
         order_info = {
                 "order_id": order.id,
+                "order_date": order.date,
                 "order_name": order.name,
                 "order_email": order.email,
                 "order_phone": order.phone,
                 "order_address": order.address,
                 "order_zip": order.zip,
                 "order_city": order.city,
-                "order_country": order.country,
+                "order_state": order.state,
                 "order_cash": order.cash,
                 "order_emoney": order.eMoney,
                 "order_status": order.status,

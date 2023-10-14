@@ -5,11 +5,11 @@ const shippingDetails = new title('Shipping Info')
 const address = new label('Your Address')
 const zip = new label('Zip Code')
 const city = new label('City')
-const country = new label('Country')
+const state = new label('State')
 const addressInput = new input()
 const zipInput = new input()
 const cityInput = new input()
-const countryInput = new input()
+const stateInput = new input()
 
 function CheckoutShippingDetails({ register, errors }) {
   return (
@@ -81,20 +81,20 @@ function CheckoutShippingDetails({ register, errors }) {
                />
             </div>
           </div>
-          <div id="checkoutCountrySectionContainer">
-            <div id="checkoutCountryLabelContainer" className={`${country.styles} ${errors.country ? 'text-warning' : ''} flex justify-between`}>
-              <label htmlFor="country">{country.text}</label>
-              {errors.country ? (
-                <div>{errors.country.message}</div>
+          <div id="checkoutStateSectionContainer">
+            <div id="checkoutStateLabelContainer" className={`${state.styles} ${errors.state ? 'text-warning' : ''} flex justify-between`}>
+              <label htmlFor="state">{state.text}</label>
+              {errors.state ? (
+                <div>{errors.state.message}</div>
               ) : ''}
             </div>
-            <div id="checkoutCountryInputContainer" >
+            <div id="checkoutStateInputContainer" >
               <input 
                 type="text" 
-                name='country' 
-                placeholder='United States' 
-                className={`${countryInput.styles} ${errors.country ? 'border-warning hover:border-warning focus:border-warning' : ''}`}
-                {...register('country', {
+                name='state' 
+                placeholder='TX' 
+                className={`${stateInput.styles} ${errors.state ? 'border-warning hover:border-warning focus:border-warning' : ''}`}
+                {...register('state', {
                   required: 'This field is required'
                 })}
                />
