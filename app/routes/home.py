@@ -1,9 +1,13 @@
+from os import getenv
+from dotenv import load_dotenv
 import json
 from flask import Blueprint, send_from_directory, current_app, jsonify, request, session
 from app.models import Category, Product, Orders
 from app.db import get_db
-import sys
 import logging
+import smtplib
+
+load_dotenv()
 
 bp = Blueprint("home", __name__, url_prefix="/")
 
@@ -288,16 +292,35 @@ def create():
         db.add(new_order)
         db.commit()
     except KeyError as e:
-        # print(sys.exc_info()[0])
         logging.error(f'KeyError: {e}')
         db.rollback()
         return jsonify(message='Invalid Data'), 400
-        print('test')
-
-        
-        # return jsonify(message = 'Order failed'), 500
     
+    ## send email to customer
+    email = getenv('EMAIL')
+    password = getenv('PASSWORD')
+
+    final_items = ''
+    all_items = data["items"]
+    all_items_list = all_items.split(", ")
+    for item in all_items_list:
+        final_items += f'{item}\n'
+
+    formatted_total = f'{data["total"]:,.2f}'
+    final_total = f'${str(formatted_total)}'
+
+    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+        connection.starttls()
+        connection.login(user=email, password=password)
+        email_content = f'Subject: Thank you for your order!\n\nHi {data["name"]},\n\nWe appreciate you ordering from us, we know you have other choices. Here is a summary of your order:\n\n{final_items}\nTotal: {final_total}\n\nYour order will be shipped soon to:\n\n{data["address"]}\n{data["city"]},{data["state"]} {data["zip"]}\n\nIf there is a problem with your order please respond to this email.\n\nSincerely,\n\nAudiophile Management'
+        connection.sendmail(
+            from_addr=email,
+            to_addrs=data['email'],
+            msg=email_content
+        )
     return jsonify(id = new_order.id)
+
+    
 
 # single order route
 @bp.route("/api/orders/<int:id>", methods=["GET"])
