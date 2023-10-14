@@ -1,4 +1,4 @@
-from app.models import Product, Category
+from app.models import Product, Category, Orders
 from app.db import Session, Base, engine
 
 #Drop and rebuild tables
@@ -356,6 +356,57 @@ db.add_all([
         category_image_tablet='/assets/product-zx9-speaker/tablet/image-category-page-preview.jpg',
         category_image_desktop='/assets/product-zx9-speaker/desktop/image-category-page-preview.jpg'
     )
+])
+
+db.commit()
+
+#insert orders
+db.add_all([
+    Orders(
+        date="2023/01/08",
+        name='John Rugh', 
+        email='rughjm@gmail.com',
+        phone='512 563-3817',
+        address='105 Palo Duro Ct',
+        city='Leander',
+        zip='78641',
+        state='TX',
+        cash=False,
+        eMoney=True,
+        status='Processing',
+        total=599,
+        items='YX1 Wireless Earphones'
+        ),
+    Orders(
+        date='2022/12/04',
+        name='Laura Rugh', 
+        email='lauraerugh@gmail.com',
+        phone='512 529-9382',
+        address='8402 Flagstone Dr',
+        city='Austin',
+        zip='78757',
+        state='TX',
+        cash=True,
+        eMoney=False,
+        status='Processing',
+        total=2999,
+        items='XX99 Mark II Headphones'
+        ),
+    Orders(
+        date='2023/08/23',
+        name='Betty Rugh', 
+        email='rughbe@gmail.com',
+        phone='713 320-1854',
+        address='14518 Dracaena Ct',
+        city='Houston',
+        zip='77070',
+        state='TX',
+        cash=False,
+        eMoney=True,
+        status='Processing',
+        total=4500,
+        items='ZX9 Speaker'
+        )
 ])
 
 db.commit()

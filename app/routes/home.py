@@ -1,7 +1,9 @@
 import json
 from flask import Blueprint, send_from_directory, current_app, jsonify, request, session
-from app.models import Category, Product
+from app.models import Category, Product, Orders
 from app.db import get_db
+import sys
+import logging
 
 bp = Blueprint("home", __name__, url_prefix="/")
 
@@ -227,3 +229,100 @@ def get_product(id):
         return jsonify(product_info)
     else:
         return jsonify({"error": "Category not found"}), 404
+    
+
+# all orders route
+@bp.route("/api/orders/", methods=["GET"])
+def get_all_orders():
+    db = get_db()
+
+    orders = db.query(Orders).all()
+
+    if orders:
+        orders_list = [
+            {
+                "order_id": order.id,
+                "order_date": order.date,
+                "order_name": order.name,
+                "order_email": order.email,
+                "order_phone": order.phone,
+                "order_address": order.address,
+                "order_zip": order.zip,
+                "order_city": order.city,
+                "order_state": order.state,
+                "order_cash": order.cash,
+                "order_emoney": order.eMoney,
+                "order_status": order.status ,
+                "order_total": order.total,
+                "order_items": order.items               
+            }
+            for order in orders
+        ]
+        return jsonify(orders_list)
+    else:
+        return jsonify({"error": "Orders not found"}), 404
+
+# add new order 
+@bp.route('/api/orders', methods=['POST'])
+def create():
+    data = request.get_json()
+    db = get_db()
+
+    try:
+        #add new order
+        new_order = Orders(
+            date = data['date'],
+            name = data['name'],
+            email = data['email'],
+            phone = data['phone'],
+            address = data['address'],
+            zip = data['zip'],
+            city = data['city'],
+            state = data['state'],
+            cash = data['cash'],
+            eMoney = data['eMoney'],
+            status = data['status'],
+            total = data['total'],
+            items = data['items']
+        )
+        db.add(new_order)
+        db.commit()
+    except KeyError as e:
+        # print(sys.exc_info()[0])
+        logging.error(f'KeyError: {e}')
+        db.rollback()
+        return jsonify(message='Invalid Data'), 400
+        print('test')
+
+        
+        # return jsonify(message = 'Order failed'), 500
+    
+    return jsonify(id = new_order.id)
+
+# single order route
+@bp.route("/api/orders/<int:id>", methods=["GET"])
+def get_order(id):
+    db = get_db()
+
+    order = db.query(Orders).filter_by(id=id).one_or_none()
+
+    if order:
+        order_info = {
+                "order_id": order.id,
+                "order_date": order.date,
+                "order_name": order.name,
+                "order_email": order.email,
+                "order_phone": order.phone,
+                "order_address": order.address,
+                "order_zip": order.zip,
+                "order_city": order.city,
+                "order_state": order.state,
+                "order_cash": order.cash,
+                "order_emoney": order.eMoney,
+                "order_status": order.status,
+                "order_total": order.total,
+                "order_items": order.items  
+        }
+        return jsonify(order_info)
+    else:
+        return jsonify({"error": "Order not found"}), 404

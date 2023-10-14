@@ -4,12 +4,17 @@ import Home from './components/Home';
 import Category from './components/Category';
 import Products from './components/Products';
 import Checkout from './components/Checkout';
+import DashBoard from './components/DashBoard';
+import Orders from './components/Orders';
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
+// allow for click of name in table and edit button to take to single order page
+// add date, add state
+
 function App() {
 
-  const { home, categoryPage, productPage, checkoutPage } = useMain()
+  const { home, categoryPage, productPage, checkoutPage, dashboardPage, orderPage } = useMain()
 
   return (
     <div id='app' className="App font-display">
@@ -29,6 +34,12 @@ function App() {
             </div>
             <div id='checkoutWrapper' style={checkoutPage ? {display: 'flex'} : {display: 'none'}} className='justify-center pt-[76px] md:pt-[90px] xl:pt-[96px] px-6 md:px-10 xl:px-[165px] xl:mb-[160px] bg-offWhite'>
               <Checkout />
+            </div>
+            <div id='dashboardWrapper' style={dashboardPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
+              <DashBoard />
+            </div>
+            <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
+              <Orders />
             </div>
             <div id='footerWrapper' className='bg-almostBlack w-full xl:flex xl:justify-center'>
               <Footer />
