@@ -173,7 +173,6 @@ const MainProvider = ({ children }) => {
   const orderClick = (orderNumber) => {
     navigate(currentState())
     setHome('')
-    setQuantity(1)
     setMobileMenu(false)
     setCartMenu(false)
     setThankYou(false)

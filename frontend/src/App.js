@@ -38,7 +38,7 @@ function App() {
             <div id='dashboardWrapper' style={dashboardPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
               <DashBoard />
             </div>
-            <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
+            <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-16 xl:mb-[160px]'>
               <Orders />
             </div>
             <div id='footerWrapper' className='bg-almostBlack w-full xl:flex xl:justify-center'>
