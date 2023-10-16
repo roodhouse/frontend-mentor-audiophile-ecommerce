@@ -145,8 +145,8 @@ const MainProvider = ({ children }) => {
     setProductPage('')
     setCheckoutPage('')
     setDashboardPage('')
-    setCategoryPage(categoryName)
     setOrderPage('')
+    setCategoryPage(categoryName)
     window.scrollTo(0,0)
     enableScroll()
     
@@ -211,8 +211,8 @@ const MainProvider = ({ children }) => {
     setCategoryPage('')
     setDashboardPage('')
     setCheckoutPage('')
-    setDashboardPage('dash')
     setOrderPage('')
+    setDashboardPage('dash')
     window.scrollTo(0,0)
     enableScroll()
   }

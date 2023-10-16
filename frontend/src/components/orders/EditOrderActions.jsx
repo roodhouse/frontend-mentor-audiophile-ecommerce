@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { label } from '../checkout/checkoutForm/styles'
 import { HiMenu, HiMenuAlt3 } from 'react-icons/hi'
 import CompleteOrder from './orderActions/CompleteOrder'
@@ -6,10 +6,13 @@ import DeleteOrder from './orderActions/DeleteOrder'
 import EditOrder from './orderActions/EditOrder'
 import EmailOrder from './orderActions/EmailOrder'
 import ViewOrder from './orderActions/ViewOrder'
+import { useMain } from '../../context/mainContext'
 
 const orderActions = new label('Order Actions')
 
 function EditOrderActions({ currentOrder }) {
+
+    const { categoryPage } = useMain()
 
     const [ openMenu, setOpenMenu ] = useState(false)
     const [ viewOrder, setViewOrder ] = useState(false)
@@ -17,6 +20,17 @@ function EditOrderActions({ currentOrder }) {
     const [ completeOrder, setCompleteOrder ] = useState(false)
     const [ emailOrder, setEmailOrder ] = useState(false)
     const [ deleteOrder, setDeleteOrder ] = useState(false)
+
+    useEffect(() => {
+        if (categoryPage) {
+            setOpenMenu(false)
+            setViewOrder(false)
+            setEditOrder(false)
+            setCompleteOrder(false)
+            setEmailOrder(false)
+            setDeleteOrder(false)
+        }
+    },[categoryPage])
 
     const handleClick = () => {
         openMenu ? setOpenMenu(false) : setOpenMenu(true)
@@ -45,6 +59,19 @@ function EditOrderActions({ currentOrder }) {
                 viewOrder ? setViewOrder(false) : setViewOrder(true)
                 setOpenMenu(false)
         }
+    }
+
+    const closeMenuItem = (e) => {
+        console.log('close')
+        let closeSelected = e.currentTarget.parentElement.getAttribute('data-menu')
+        switch (closeSelected) {
+            case 'view':
+                setViewOrder(false)
+                break
+            default:
+                console.log('go')
+        }
+        
     }
 
   return (
@@ -76,7 +103,7 @@ function EditOrderActions({ currentOrder }) {
             <div id="orderActionOptionsContainer" >
                 {viewOrder ? (
                     <div id="viewOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
-                        <ViewOrder currentOrder={currentOrder} />
+                        <ViewOrder currentOrder={currentOrder} view={viewOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {editOrder ? (
