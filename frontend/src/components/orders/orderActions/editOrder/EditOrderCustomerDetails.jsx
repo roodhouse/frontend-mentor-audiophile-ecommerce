@@ -25,7 +25,7 @@ function EditOrderCustomerDetails({ currentOrder }) {
   return (
     <>
         {orderPage ? (
-            <form>
+            <form noValidate>
                 <div id="editOrderHeadingWrapper">
                     <EditOrderHeading currentOrder={currentOrder} />
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import EditOrderCustomerDetails from './editOrder/EditOrderCustomerDetails'
+import EditOrderCustomerDetails from './editOrder/EditOrderCustomerDetails.jsx'
 import EditOrderItemDetails from './editOrder/EditOrderItemDetails'
 import ViewOrderTotal from './viewOrder/ViewOrderTotal'
 import CloseButton from './viewOrder/CloseButton'
