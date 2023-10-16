@@ -17,7 +17,7 @@ function EditOrderGeneralDetails({ currentOrder, date }) {
             </div>
             <div id="editDateContainer" className={`${dateOrdered.styles} !mb-4`}>
                 <p className='flex justify-between items-center w-full'>{dateOrdered.text} 
-                  <span className='font-medium'>
+                  <span className='font-medium w-[165px]'>
                     <input name='editOrderDate' className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' value={date} />
                   </span>
                 </p>
