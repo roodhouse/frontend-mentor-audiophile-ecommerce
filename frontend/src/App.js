@@ -9,9 +9,6 @@ import Orders from './components/Orders';
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
-// allow for click of name in table and edit button to take to single order page
-// add date, add state
-
 function App() {
 
   const { home, categoryPage, productPage, checkoutPage, dashboardPage, orderPage } = useMain()

@@ -68,6 +68,9 @@ function EditOrderActions({ currentOrder }) {
             case 'view':
                 setViewOrder(false)
                 break
+            case 'edit':
+                setEditOrder(false)
+                break
             default:
                 console.log('go')
         }
@@ -108,7 +111,7 @@ function EditOrderActions({ currentOrder }) {
                 ) : ''}
                 {editOrder ? (
                     <div id="editOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
-                        <EditOrder />
+                        <EditOrder currentOrder={currentOrder} edit={editOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {completeOrder ? (
