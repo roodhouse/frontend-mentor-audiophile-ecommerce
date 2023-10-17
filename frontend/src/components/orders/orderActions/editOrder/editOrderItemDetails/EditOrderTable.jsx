@@ -9,7 +9,7 @@ import { useMain } from '../../../../../context/mainContext'
 
 function EditOrderTable({ currentOrder }) {
 
-    const { products, orderPage } = useMain()
+    const { products, orderPage, orderUpdated } = useMain()
     const [ orderedProducts, setOrderedProducts ] = useState([])
 
     useEffect(() => {
@@ -40,7 +40,7 @@ function EditOrderTable({ currentOrder }) {
             setOrderedProducts(finalResult)
             
         }
-    },[orderPage, products, currentOrder.order_items])
+    },[orderPage, products])
 
     function handleQtyChange(event, index) {
         const newQty = parseInt(event.target.value, 10)
@@ -121,9 +121,15 @@ function EditOrderTable({ currentOrder }) {
 
             if (response.ok) {
                 console.log('updated')
+                orderUpdated()
             } else {
                 alert(response.statusText)
             }
+        } else if (!items) {
+            // should have delete request here for when the items run out
+            console.log('no items left')
+            // make delete request
+            // redirect back to the orders dashboard if delete is successful
         } else {
             console.log('error')
         }

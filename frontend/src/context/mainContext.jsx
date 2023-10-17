@@ -25,6 +25,7 @@ const MainProvider = ({ children }) => {
   const [ total, setTotal ] = useState(0)
   const [ grandTotal, setGrandTotal ] = useState(0)
   const [ orders, setOrders ] = useState([])
+  const [ orderUpdate, setOrderUpdate ] = useState(false)
 
   // Fetch requests
   useEffect(() => {
@@ -82,8 +83,10 @@ const MainProvider = ({ children }) => {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+
+      setOrderUpdate(false)
       
-  }, [cart]);
+  }, [cart, orderUpdate]);
 
   // Functions
 
@@ -287,6 +290,9 @@ const MainProvider = ({ children }) => {
     window.scrollTo(0,0)
   }
 
+  const orderUpdated = () => {
+    setOrderUpdate(true)
+  }
   // **** Cart fucntionality **** // 
 
   // add item items to cart // 
@@ -386,7 +392,7 @@ const MainProvider = ({ children }) => {
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, checkoutPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
         cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkout, thankYou, thankYouMenu, 
-        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick
+        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick, orderUpdated
       }
     }>
     {children}

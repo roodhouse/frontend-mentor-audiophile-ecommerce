@@ -385,24 +385,3 @@ def update_order(id):
             return jsonify(message='Invalid Data'), 400
     else:
         return jsonify({"error": "Order not found"}), 404
-    
-
-
-# @bp.route('/posts/<id>', methods=['PUT'])
-# @login_required
-# def update(id):
-#     data = request.get_json()
-#     db = get_db()
-
-#     try:
-#         # retrieve post and update title property
-#         post = db.query(Post).filter(Post.id == id).one()
-#         post.title = data['title']
-#         db.commit()
-#     except:
-#         print(sys.exc_info()[0])
-
-#         db.rollback()
-#         return jsonify(message = 'Post not found'), 404
-    
-#     return '', 204
