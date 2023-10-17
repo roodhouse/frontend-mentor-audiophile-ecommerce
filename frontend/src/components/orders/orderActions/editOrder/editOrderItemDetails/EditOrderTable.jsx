@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useMain } from '../../../../../context/mainContext'
 
-// check out chat gpt response about changing input...
+// remove item button
+// fix other input fields
+// update total in edit view
+// submit button
+// update db table and view order fields based on new data
 
 function EditOrderTable({ currentOrder }) {
 
@@ -36,7 +40,95 @@ function EditOrderTable({ currentOrder }) {
             setOrderedProducts(finalResult)
             
         }
-    },[orderPage])
+    },[orderPage, products, currentOrder.order_items])
+
+    function handleQtyChange(event, index) {
+        const newQty = parseInt(event.target.value, 10)
+        const updatedOrderedProducts = [...orderedProducts]
+        if(!isNaN(newQty)) {
+            updatedOrderedProducts[index].qty = newQty
+        } else {
+            updatedOrderedProducts[index].qty = ''
+        }
+        setOrderedProducts(updatedOrderedProducts)
+    }
+
+    const handleRemove = async (e) => {
+        // update order items
+        const removedName = e.currentTarget.getAttribute('data-item')
+        let removedQty = e.currentTarget.parentElement.parentElement.previousSibling.lastChild.value
+        const removedItem = removedName + '(' + removedQty +')'
+        console.log(removedItem)
+        console.log(currentOrder)
+        const updatedOrder = {...currentOrder}
+        updatedOrder.order_items = updatedOrder.order_items.replace(removedItem, '')
+        if (updatedOrder.order_items.startsWith(', ')) {
+            updatedOrder.order_items = updatedOrder.order_items.slice(2)
+        } else if (updatedOrder.order_items.endsWith(', ')) {
+            updatedOrder.order_items = updatedOrder.order_items.slice(0, -2)
+        }
+
+        // update order total
+        let removedProductCost = orderedProducts.filter((item) => item.name === removedName)
+        removedProductCost = removedProductCost[0].price
+        removedQty = parseInt(removedQty)
+        let currentTotal = currentOrder.order_total
+        let newTotal = currentTotal - (removedProductCost * removedQty)
+        updatedOrder.order_total = newTotal
+
+        // correct date
+        const updateDate = new Date(updatedOrder.order_date)
+        const updateDateFormatted = updateDate.toISOString().split('T')[0]
+        console.log(updateDateFormatted)
+        console.log(updatedOrder.order_items)
+       
+        const name = updatedOrder.order_name
+        const email = updatedOrder.order_email
+        const phone = updatedOrder.order_phone
+        const address = updatedOrder.order_address
+        const zip = updatedOrder.order_zip
+        const city = updatedOrder.order_city
+        const state = updatedOrder.order_state
+        const date = updateDateFormatted
+        const cash = updatedOrder.order_cash
+        const eMoney = updatedOrder.order_emoney
+        const status = updatedOrder.order_status
+        const total = updatedOrder.order_total
+        const items = updatedOrder.order_items
+
+        console.log(name, email, phone, address, zip, city, state, date, cash, eMoney, status, total, items)
+        
+        if ( name && email && phone && address && zip && state  && city && total && items) {
+            const response = await fetch(`http://127.0.0.1:5000/api/orders/${updatedOrder.order_id}`, {
+                method: 'put',
+                body: JSON.stringify({
+                    date,
+                    name,
+                    email,
+                    phone,
+                    address,
+                    zip,
+                    city,
+                    state,
+                    cash,
+                    eMoney,
+                    status,
+                    total,
+                    items
+                }),
+                headers: {'Content-Type': 'application/json'}
+            })
+
+            if (response.ok) {
+                console.log('updated')
+            } else {
+                alert(response.statusText)
+            }
+        } else {
+            console.log('error')
+        }
+
+    }
 
   return (
     <>
@@ -68,9 +160,19 @@ function EditOrderTable({ currentOrder }) {
                                 <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Cost</span>${order.price.toLocaleString()}</td>
                                 <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs'>
                                     <span className='inline-block w-1/3 md:hidden font-bold text-xs'>Qty</span>
-                                    <input name="editOrderQty" value={order.qty} id="editOrderQty" className='w-[13%] h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' />
+                                    <input name="editOrderQty" value={order.qty} id="editOrderQty" onChange={(e) => handleQtyChange(e, index)} className='w-[13%] h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' />
                                 </td>
-                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Total</span>${(order.price * order.qty).toLocaleString()}</td>
+                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs '>
+                                    <span className=''>
+                                        <span className=''>
+                                            <span className='inline-block w-1/3 md:hidden font-bold text-xs'>Total</span>
+                                            <span className='inline-block w-1/3 md:hidden font-bold text-xs'>${(order.price * order.qty).toLocaleString()}</span>
+                                        </span>
+                                        <span className='inline-block w-1/3 md:hidden font-bold text-xs text-right' onClick={handleRemove} data-item={order.name}>
+                                            <button>Remove Item</button>
+                                        </span>
+                                    </span>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

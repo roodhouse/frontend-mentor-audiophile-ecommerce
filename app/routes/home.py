@@ -309,15 +309,15 @@ def create():
     formatted_total = f'{data["total"]:,.2f}'
     final_total = f'${str(formatted_total)}'
 
-    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
-        connection.starttls()
-        connection.login(user=email, password=password)
-        email_content = f'Subject: Thank you for your order!\n\nHi {data["name"]},\n\nWe appreciate you ordering from us, we know you have other choices. Here is a summary of your order:\n\n{final_items}\nTotal: {final_total}\n\nYour order will be shipped soon to:\n\n{data["address"]}\n{data["city"]},{data["state"]} {data["zip"]}\n\nIf there is a problem with your order please respond to this email.\n\nSincerely,\n\nAudiophile Management'
-        connection.sendmail(
-            from_addr=email,
-            to_addrs=data['email'],
-            msg=email_content
-        )
+    # with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+    #     connection.starttls()
+    #     connection.login(user=email, password=password)
+    #     email_content = f'Subject: Thank you for your order!\n\nHi {data["name"]},\n\nWe appreciate you ordering from us, we know you have other choices. Here is a summary of your order:\n\n{final_items}\nTotal: {final_total}\n\nYour order will be shipped soon to:\n\n{data["address"]}\n{data["city"]},{data["state"]} {data["zip"]}\n\nIf there is a problem with your order please respond to this email.\n\nSincerely,\n\nAudiophile Management'
+    #     connection.sendmail(
+    #         from_addr=email,
+    #         to_addrs=data['email'],
+    #         msg=email_content
+    #     )
     return jsonify(id = new_order.id)
 
     
@@ -349,3 +349,60 @@ def get_order(id):
         return jsonify(order_info)
     else:
         return jsonify({"error": "Order not found"}), 404
+    
+# update single order route
+@bp.route("/api/orders/<int:id>", methods=["PUT"])
+def update_order(id):
+    data = request.get_json()
+    db = get_db()
+
+    order = db.query(Orders).filter_by(id=id).one_or_none()
+
+    if order:
+        try:
+        #update order
+            order.date = data['date']
+            order.name = data['name']
+            order.email = data['email']
+            order.phone = data['phone']
+            order.address = data['address']
+            order.zip = data['zip']
+            order.city = data['city']
+            order.state = data['state']
+            order.cash = data['cash']
+            order.eMoney = data['eMoney']
+            order.status = data['status']
+            order.total = data['total']
+            order.items = data['items']
+
+            print('test')
+            db.commit()
+            return jsonify({"message": "Order updated successfully"})
+        
+        except KeyError as e:
+            logging.error(f'KeyError: {e}')
+            db.rollback()
+            return jsonify(message='Invalid Data'), 400
+    else:
+        return jsonify({"error": "Order not found"}), 404
+    
+
+
+# @bp.route('/posts/<id>', methods=['PUT'])
+# @login_required
+# def update(id):
+#     data = request.get_json()
+#     db = get_db()
+
+#     try:
+#         # retrieve post and update title property
+#         post = db.query(Post).filter(Post.id == id).one()
+#         post.title = data['title']
+#         db.commit()
+#     except:
+#         print(sys.exc_info()[0])
+
+#         db.rollback()
+#         return jsonify(message = 'Post not found'), 404
+    
+#     return '', 204
