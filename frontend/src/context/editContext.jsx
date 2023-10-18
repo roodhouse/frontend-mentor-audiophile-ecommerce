@@ -3,6 +3,8 @@ import { useMain } from "./mainContext";
 
 // fix other input fields
     // create state for each field, then pull from those fields when sending put requests, then only have to call on the single put request per need
+
+    // need to fix the status field ... 
 // update total in edit view
 // submit button
 // update db table and view order fields based on new data
@@ -20,7 +22,7 @@ const EditProvider = ({ children }) => {
     const [ currentOrderDate, setCurrentOrderDate ] = useState('')
     const [ currentOrderStatus, setCurrentOrderStatus ] = useState('')
     const [ currentOrderName, setCurrentOrderName ] = useState('')
-    const [ currentOrderAddress, setCurrentOrderAdress ] = useState('')
+    const [ currentOrderAddress, setCurrentOrderAddress ] = useState('')
     const [ currentOrderCity, setCurrentOrderCity ] = useState('')
     const [ currentOrderState, setCurrentOrderState ] = useState('')
     const [ currentOrderZip, setCurrentOrderZip ] = useState('')
@@ -37,12 +39,32 @@ const EditProvider = ({ children }) => {
         const theCurrentOrder = orders ? orders.filter((item) => item.order_id === parseInt(orderPage)) : []
         console.log(theCurrentOrder[0])
         setCurrentOrder(theCurrentOrder[0])
-        // const theCurrentOrderName = 
         setCurrentOrderName(currentOrder ? currentOrder.order_name : '')
-        // console.log(theCurrentOrder[0].order_name)
+        setCurrentOrderId(currentOrder ? currentOrder.order_id : '')
+        setCurrentOrderStatus(currentOrder ? currentOrder.order_status : '')
+        setCurrentOrderAddress(currentOrder ? currentOrder.order_address : '')
+        setCurrentOrderCity(currentOrder ? currentOrder.order_city : '')
+        setCurrentOrderState(currentOrder ? currentOrder.order_state : '')
+        setCurrentOrderZip(currentOrder ? currentOrder.order_zip : '')
+        setCurrentOrderEmail(currentOrder ? currentOrder.order_email : '')
+        setCurrentOrderPhone(currentOrder ? currentOrder.order_phone : '')
+        setCurrentOrderItems(currentOrder ? currentOrder.order_items : '')
+        setCurrentOrderEmoney(currentOrder ? currentOrder.order_emoney : '')
+        setCurrentOrderCash(currentOrder ? currentOrder.order_cash : '')
+        setCurrentOrderTotal(currentOrder ? currentOrder.order_total : '')
+
+        if (orderPage && currentOrder) {
+                const orderDate = new Date(currentOrder.order_date)
+                setCurrentOrderDate(orderDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                }))
+            } else {
+                setCurrentOrderDate('')
+            }
         
-        // setCurrentOrderName(theCurrentOrder[0].order_name)
-    },[orderPage, orders])
+    },[orderPage, orders, currentOrder])
 
     useEffect(() => {
         if(orderPage && currentOrder) {
@@ -88,11 +110,52 @@ const EditProvider = ({ children }) => {
 
     // change status
     const statusChange = (e) => {
-        // console.log(e)
-        const updatedOrder = currentOrder
-        currentOrder.order_status = e.target.value
-        console.log(currentOrder)
-        console.log(currentOrderName)
+        setCurrentOrderStatus(e.target.value)
+    }
+
+    // change date
+    const dateChange = (e) => {
+        setCurrentOrderDate(e.target.value)
+    }
+
+    // change customer name
+    const customerNameChange = (e) => {
+        setCurrentOrderName(e.target.value)
+    }
+
+    // change street address
+    const stAddressChange = (e) => {
+        setCurrentOrderAddress(e.target.value)
+    }
+
+    // change city 
+    const cityChange = (e) => {
+        setCurrentOrderCity(e.target.value)
+    }
+
+    // change state
+    const stateChange = (e) => {
+        setCurrentOrderState(e.target.value)
+    }
+
+    // change zip
+    const zipChange = (e) => {
+        setCurrentOrderZip(e.target.value)
+    }
+
+    // change email
+    const emailChange = (e) => {
+        setCurrentOrderEmail(e.target.value)
+    }
+
+     // change phone
+     const phoneChange = (e) => {
+        setCurrentOrderPhone(e.target.value)
+    }
+
+    // change id
+    const idChange = (e) => {
+        console.log('no id change')
     }
 
     // delete order
@@ -196,7 +259,8 @@ const EditProvider = ({ children }) => {
     return <EditContext.Provider value=
     {
         {
-            orderedProducts, currentOrder, handleQtyChange, handleRemove, statusChange
+            orderedProducts, currentOrder, currentOrderDate, currentOrderName, currentOrderAddress, currentOrderCity, currentOrderState, currentOrderZip, currentOrderEmail, currentOrderPhone, currentOrderId,
+            handleQtyChange, handleRemove, statusChange, dateChange, customerNameChange, stAddressChange, cityChange, stateChange, zipChange, emailChange, phoneChange, idChange
         }
     }>
         {children}

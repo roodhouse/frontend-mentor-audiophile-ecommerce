@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import EditOrderHeading from './editOrderCustomerDetails/EditOrderHeading'
 import EditOrderDate from './editOrderCustomerDetails/EditOrderDate'
 import EditOrderGeneralDetails from './editOrderCustomerDetails/EditOrderGeneralDetails'
@@ -9,20 +9,8 @@ import { useEdit } from '../../../../context/editContext'
 
 function EditOrderCustomerDetails() {
 
-    const [ formattedDate, setFormattedDate ] = useState('')
     const { orderPage } = useMain()
     const { currentOrder } = useEdit()
-
-    useEffect(() => {
-        if (orderPage) {
-            const orderDate = new Date(currentOrder.order_date)
-            setFormattedDate(orderDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            }))
-        }
-    }, [orderPage])
 
   return (
     <>
@@ -32,10 +20,10 @@ function EditOrderCustomerDetails() {
                     <EditOrderHeading />
                 </div>
                 <div id="editOrderDateWrapper">
-                    <EditOrderDate date={formattedDate} payType={currentOrder.order_cash ? 'cash' : 'eMoney'} />
+                    <EditOrderDate payType={currentOrder.order_cash ? 'cash' : 'eMoney'} />
                 </div>
                 <div id="editOrderGeneralDetailsWrapper" className='mb-4'>
-                    <EditOrderGeneralDetails date={formattedDate} />
+                    <EditOrderGeneralDetails />
                 </div>
                 <div id="editOrderBillingDetailsWrapper">
                     <EditOrderBillingDetails />

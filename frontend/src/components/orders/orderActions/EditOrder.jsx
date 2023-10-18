@@ -27,9 +27,3 @@ function EditOrder({ edit, closeMenu }) {
 }
 
 export default EditOrder
-
-// edit order number
-// general section as form with prefilled values from db
-// billing section as form with prefilled values from db
-// items table with refund button or qty change
-// have total section update
