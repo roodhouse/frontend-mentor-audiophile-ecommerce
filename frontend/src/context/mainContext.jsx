@@ -26,6 +26,7 @@ const MainProvider = ({ children }) => {
   const [ grandTotal, setGrandTotal ] = useState(0)
   const [ orders, setOrders ] = useState([])
   const [ orderUpdate, setOrderUpdate ] = useState(false)
+  const [ orderDelete, setOrderDelete ] = useState(false)
 
   // Fetch requests
   useEffect(() => {
@@ -86,7 +87,7 @@ const MainProvider = ({ children }) => {
 
       setOrderUpdate(false)
       
-  }, [cart, orderUpdate]);
+  }, [cart, orderUpdate, orderDelete]);
 
   // Functions
 
@@ -215,6 +216,7 @@ const MainProvider = ({ children }) => {
     setDashboardPage('')
     setCheckoutPage('')
     setOrderPage('')
+    setOrderDelete(false)
     setDashboardPage('dash')
     window.scrollTo(0,0)
     enableScroll()
@@ -292,6 +294,12 @@ const MainProvider = ({ children }) => {
 
   const orderUpdated = () => {
     setOrderUpdate(true)
+  }
+
+  const orderDeleted = () => {
+    setOrderPage('')
+    setOrderDelete(true)
+    setDashboardPage('dash')
   }
   // **** Cart fucntionality **** // 
 
@@ -392,7 +400,7 @@ const MainProvider = ({ children }) => {
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, checkoutPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
         cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkout, thankYou, thankYouMenu, 
-        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick, orderUpdated
+        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick, orderUpdated, orderDelete, orderDeleted
       }
     }>
     {children}

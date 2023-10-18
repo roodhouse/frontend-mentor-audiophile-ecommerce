@@ -385,3 +385,23 @@ def update_order(id):
             return jsonify(message='Invalid Data'), 400
     else:
         return jsonify({"error": "Order not found"}), 404
+    
+# delete single order
+@bp.route('/api/orders/<int:id>', methods=['DELETE'])
+def delete(id):
+    db = get_db()
+
+    order = db.query(Orders).get(id)
+    if order:
+        try:
+            # delete order from db
+            # db.delete(Orders).filter_by(id=id).one_or_none()
+            db.delete(order)
+            db.commit()
+            return jsonify({"message": "Order deleted"})
+        except Exception as e:
+            db.rollback()
+            return jsonify({'error': 'Failed to delete order', 'details': str(e)}), 500
+    
+    else:
+        return jsonify({'error': 'order not found' }), 404

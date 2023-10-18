@@ -9,7 +9,7 @@ import { useMain } from '../../../../../context/mainContext'
 
 function EditOrderTable({ currentOrder }) {
 
-    const { products, orderPage, orderUpdated } = useMain()
+    const { products, orderPage, orderUpdated, orderDeleted } = useMain()
     const [ orderedProducts, setOrderedProducts ] = useState([])
 
     useEffect(() => {
@@ -96,44 +96,49 @@ function EditOrderTable({ currentOrder }) {
         const total = updatedOrder.order_total
         const items = updatedOrder.order_items
 
-        console.log(name, email, phone, address, zip, city, state, date, cash, eMoney, status, total, items)
-        
-        if ( name && email && phone && address && zip && state  && city && total && items) {
+        if ( !updatedOrder.order_items) {
             const response = await fetch(`http://127.0.0.1:5000/api/orders/${updatedOrder.order_id}`, {
-                method: 'put',
-                body: JSON.stringify({
-                    date,
-                    name,
-                    email,
-                    phone,
-                    address,
-                    zip,
-                    city,
-                    state,
-                    cash,
-                    eMoney,
-                    status,
-                    total,
-                    items
-                }),
-                headers: {'Content-Type': 'application/json'}
+                method: 'DELETE',
             })
-
-            if (response.ok) {
-                console.log('updated')
-                orderUpdated()
+            if(response.ok) {
+                console.log('order deleted')
+                orderDeleted()
             } else {
                 alert(response.statusText)
+                console.log('Error deleting order')
             }
-        } else if (!items) {
-            // should have delete request here for when the items run out
-            console.log('no items left')
-            // make delete request
-            // redirect back to the orders dashboard if delete is successful
         } else {
-            console.log('error')
+                if ( name && email && phone && address && zip && state  && city && total && items) {
+                    const response = await fetch(`http://127.0.0.1:5000/api/orders/${updatedOrder.order_id}`, {
+                        method: 'put',
+                        body: JSON.stringify({
+                            date,
+                            name,
+                            email,
+                            phone,
+                            address,
+                            zip,
+                            city,
+                            state,
+                            cash,
+                            eMoney,
+                            status,
+                            total,
+                            items
+                        }),
+                        headers: {'Content-Type': 'application/json'}
+                    })
+        
+                    if (response.ok) {
+                        console.log('updated')
+                        orderUpdated()
+                    } else {
+                        alert(response.statusText)
+                    }
+                } else {
+                    console.log('error')
+                }
         }
-
     }
 
   return (

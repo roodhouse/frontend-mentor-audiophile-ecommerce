@@ -12,7 +12,7 @@ const orderActions = new label('Order Actions')
 
 function EditOrderActions({ currentOrder }) {
 
-    const { categoryPage } = useMain()
+    const { categoryPage, orderDelete } = useMain()
 
     const [ openMenu, setOpenMenu ] = useState(false)
     const [ viewOrder, setViewOrder ] = useState(false)
@@ -22,7 +22,7 @@ function EditOrderActions({ currentOrder }) {
     const [ deleteOrder, setDeleteOrder ] = useState(false)
 
     useEffect(() => {
-        if (categoryPage) {
+        if ( categoryPage || orderDelete ) {
             setOpenMenu(false)
             setViewOrder(false)
             setEditOrder(false)
@@ -30,7 +30,7 @@ function EditOrderActions({ currentOrder }) {
             setEmailOrder(false)
             setDeleteOrder(false)
         }
-    },[categoryPage])
+    },[categoryPage, orderDelete])
 
     const handleClick = () => {
         openMenu ? setOpenMenu(false) : setOpenMenu(true)
