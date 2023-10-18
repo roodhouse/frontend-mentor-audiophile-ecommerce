@@ -1,102 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useMain } from '../../../../../context/mainContext'
 import { useEdit } from '../../../../../context/editContext'
 
 function EditOrderTable() {
 
-    const { products, orderPage, orderUpdated, orderDeleted } = useMain()
-    const { orderedProducts, currentOrder, handleQtyChange } = useEdit()
+    const { orderPage } = useMain()
+    const { orderedProducts, handleQtyChange, handleRemove } = useEdit()
     
-    const handleRemove = async (e) => {
-        // update order items
-        const removedName = e.currentTarget.getAttribute('data-item')
-        let removedQty = e.currentTarget.parentElement.parentElement.previousSibling.lastChild.value
-        const removedItem = removedName + '(' + removedQty +')'
-        console.log(removedItem)
-        console.log(currentOrder)
-        const updatedOrder = {...currentOrder}
-        updatedOrder.order_items = updatedOrder.order_items.replace(removedItem, '')
-        if (updatedOrder.order_items.startsWith(', ')) {
-            updatedOrder.order_items = updatedOrder.order_items.slice(2)
-        } else if (updatedOrder.order_items.endsWith(', ')) {
-            updatedOrder.order_items = updatedOrder.order_items.slice(0, -2)
-        }
-
-        // update order total
-        let removedProductCost = orderedProducts.filter((item) => item.name === removedName)
-        removedProductCost = removedProductCost[0].price
-        removedQty = parseInt(removedQty)
-        let currentTotal = currentOrder.order_total
-        let newTotal = currentTotal - (removedProductCost * removedQty)
-        updatedOrder.order_total = newTotal
-
-        // correct date
-        const updateDate = new Date(updatedOrder.order_date)
-        const updateDateFormatted = updateDate.toISOString().split('T')[0]
-        console.log(updateDateFormatted)
-        console.log(updatedOrder.order_items)
-       
-        const name = updatedOrder.order_name
-        const email = updatedOrder.order_email
-        const phone = updatedOrder.order_phone
-        const address = updatedOrder.order_address
-        const zip = updatedOrder.order_zip
-        const city = updatedOrder.order_city
-        const state = updatedOrder.order_state
-        const date = updateDateFormatted
-        const cash = updatedOrder.order_cash
-        const eMoney = updatedOrder.order_emoney
-        const status = updatedOrder.order_status
-        const total = updatedOrder.order_total
-        const items = updatedOrder.order_items
-
-        if ( !updatedOrder.order_items) {
-            if (window.confirm('Deleting this item will delete the entire order. Are you sure you want to proceed?') === true) {
-                const response = await fetch(`http://127.0.0.1:5000/api/orders/${updatedOrder.order_id}`, {
-                    method: 'DELETE',
-                })
-                if(response.ok) {
-                    console.log('order deleted')
-                    orderDeleted()
-                } else {
-                    alert(response.statusText)
-                    console.log('Error deleting order')
-                }
-            }
-        } else {
-                if ( name && email && phone && address && zip && state  && city && total && items) {
-                    const response = await fetch(`http://127.0.0.1:5000/api/orders/${updatedOrder.order_id}`, {
-                        method: 'put',
-                        body: JSON.stringify({
-                            date,
-                            name,
-                            email,
-                            phone,
-                            address,
-                            zip,
-                            city,
-                            state,
-                            cash,
-                            eMoney,
-                            status,
-                            total,
-                            items
-                        }),
-                        headers: {'Content-Type': 'application/json'}
-                    })
-        
-                    if (response.ok) {
-                        console.log('updated')
-                        orderUpdated()
-                    } else {
-                        alert(response.statusText)
-                    }
-                } else {
-                    console.log('error')
-                }
-        }
-    }
-
   return (
     <>
         {orderPage ? (
