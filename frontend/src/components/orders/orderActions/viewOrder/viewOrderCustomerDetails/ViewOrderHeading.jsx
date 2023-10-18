@@ -1,7 +1,10 @@
 import React from 'react'
 import { title } from '../../../../checkout/checkoutForm/styles'
+import { useEdit } from '../../../../../context/editContext'
 
-function ViewOrderHeading({ currentOrder }) {
+function ViewOrderHeading() {
+  
+  const { currentOrder } = useEdit()
   
   const order = new title(`Order #${currentOrder.order_id}`)
   

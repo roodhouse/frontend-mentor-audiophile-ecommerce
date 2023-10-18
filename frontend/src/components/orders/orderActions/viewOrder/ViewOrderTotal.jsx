@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { title, label } from '../../../checkout/checkoutForm/styles'
 import { useMain } from '../../../../context/mainContext'
+import { useEdit } from '../../../../context/editContext'
 
 const total = new title('Total')
 const items = new label('Items Subtotal:')
@@ -8,11 +9,12 @@ const shipping = new label('Shipping:')
 const vat = new label('VAT:')
 const net = new label('NET PAYMENT:')
 
-function ViewOrderTotal({ currentOrder }) {
+function ViewOrderTotal() {
 
     const [ netTotal, setNetTotal ] = useState('')
 
     const { orderPage } = useMain()
+    const { currentOrder } = useEdit()
 
     useEffect(() => {
         if (orderPage) {

@@ -395,7 +395,6 @@ def delete(id):
     if order:
         try:
             # delete order from db
-            # db.delete(Orders).filter_by(id=id).one_or_none()
             db.delete(order)
             db.commit()
             return jsonify({"message": "Order deleted"})

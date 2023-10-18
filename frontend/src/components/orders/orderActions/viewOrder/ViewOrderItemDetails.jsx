@@ -4,7 +4,7 @@ import OrderTable from './viewOrderItemDetails/OrderTable'
 
 const items = new title('Items')
 
-function ViewOrderItemDetails({ currentOrder }) {
+function ViewOrderItemDetails() {
   return (
     <>
       <div id="viewOrderItemDetailsContainer">
@@ -13,7 +13,7 @@ function ViewOrderItemDetails({ currentOrder }) {
         </div>
       </div>
       <div id="viewOrderTableWrapper">
-        <OrderTable currentOrder={currentOrder} />
+        <OrderTable />
       </div>
     </>
   )

@@ -4,12 +4,14 @@ import EditOrderDate from './editOrderCustomerDetails/EditOrderDate'
 import EditOrderGeneralDetails from './editOrderCustomerDetails/EditOrderGeneralDetails'
 import EditOrderBillingDetails from './editOrderCustomerDetails/EditOrderBillingDetails'
 import { useMain } from '../../../../context/mainContext'
+import { useEdit } from '../../../../context/editContext'
 
 
-function EditOrderCustomerDetails({ currentOrder }) {
+function EditOrderCustomerDetails() {
 
     const [ formattedDate, setFormattedDate ] = useState('')
     const { orderPage } = useMain()
+    const { currentOrder } = useEdit()
 
     useEffect(() => {
         if (orderPage) {
@@ -27,16 +29,16 @@ function EditOrderCustomerDetails({ currentOrder }) {
         {orderPage ? (
             <form noValidate>
                 <div id="editOrderHeadingWrapper">
-                    <EditOrderHeading currentOrder={currentOrder} />
+                    <EditOrderHeading />
                 </div>
                 <div id="editOrderDateWrapper">
                     <EditOrderDate date={formattedDate} payType={currentOrder.order_cash ? 'cash' : 'eMoney'} />
                 </div>
                 <div id="editOrderGeneralDetailsWrapper" className='mb-4'>
-                    <EditOrderGeneralDetails currentOrder={currentOrder} date={formattedDate} />
+                    <EditOrderGeneralDetails date={formattedDate} />
                 </div>
                 <div id="editOrderBillingDetailsWrapper">
-                    <EditOrderBillingDetails currentOrder={currentOrder} />
+                    <EditOrderBillingDetails />
                 </div>
             </form>
         ) : ' '}

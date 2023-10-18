@@ -1,5 +1,6 @@
 import './App.css';
 import { useMain } from './context/mainContext';
+import { EditProvider } from './context/editContext';
 import Home from './components/Home';
 import Category from './components/Category';
 import Products from './components/Products';
@@ -35,9 +36,11 @@ function App() {
             <div id='dashboardWrapper' style={dashboardPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
               <DashBoard />
             </div>
-            <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-16 xl:mb-[160px]'>
-              <Orders />
-            </div>
+            <EditProvider>
+              <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-16 xl:mb-[160px]'>
+                <Orders />
+              </div>
+            </EditProvider>
             <div id='footerWrapper' className='bg-almostBlack w-full xl:flex xl:justify-center'>
               <Footer />
             </div>

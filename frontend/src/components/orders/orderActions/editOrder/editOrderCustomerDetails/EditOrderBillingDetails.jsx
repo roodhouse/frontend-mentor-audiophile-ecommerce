@@ -1,5 +1,6 @@
 import React from 'react'
 import { title, label } from '../../../../checkout/checkoutForm/styles'
+import { useEdit } from '../../../../../context/editContext'
 
 const billing = new title('Billing')
 const address = new label('Address:')
@@ -11,7 +12,10 @@ const zip = new label('Zip:')
 const email = new label('Email:')
 const phone = new label('Phone:')
 
-function EditOrderBillingDetails({ currentOrder }) {
+function EditOrderBillingDetails() {
+
+  const { currentOrder } = useEdit()
+
   return (
     <>
         <div id="editOrderBillingDetailsContainer">

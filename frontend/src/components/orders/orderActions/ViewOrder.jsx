@@ -4,18 +4,18 @@ import ViewOrderItemDetails from './viewOrder/ViewOrderItemDetails'
 import ViewOrderTotal from './viewOrder/ViewOrderTotal'
 import CloseButton from './viewOrder/CloseButton'
 
-function ViewOrder({ currentOrder, view, closeMenu }) {
+function ViewOrder({ view, closeMenu }) {
   return (
     <>
       <div id="viewOrderContainer">
         <div id="viewOrderCustomerDetailsWrapper" className='pb-6'>
-          <ViewOrderCustomerDetails currentOrder={currentOrder} />
+          <ViewOrderCustomerDetails />
         </div>
         <div id="viewOrderItemDetailsWrapper" className='pb-6'>
-          <ViewOrderItemDetails currentOrder={currentOrder} />
+          <ViewOrderItemDetails />
         </div>
         <div id="viewOrderTotalWrapper" className='pb-6'>
-          <ViewOrderTotal currentOrder={currentOrder} />
+          <ViewOrderTotal />
         </div>
         <div id="viewCloseButtonWrapper" data-menu="view" className='flex justify-center'>
           <CloseButton view={view} closeMenu={closeMenu} />

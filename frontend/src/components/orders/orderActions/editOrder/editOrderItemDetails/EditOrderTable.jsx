@@ -1,58 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useMain } from '../../../../../context/mainContext'
+import { useEdit } from '../../../../../context/editContext'
 
-// remove item button
-// fix other input fields
-// update total in edit view
-// submit button
-// update db table and view order fields based on new data
-
-function EditOrderTable({ currentOrder }) {
+function EditOrderTable() {
 
     const { products, orderPage, orderUpdated, orderDeleted } = useMain()
-    const [ orderedProducts, setOrderedProducts ] = useState([])
-
-    useEffect(() => {
-        if(orderPage) {
-            const items = currentOrder.order_items.split(', ')
-            console.log(items)
-            const result = []
-
-            items.forEach(item => {
-                const parts = item.split('(')
-                if (parts.length === 2) {
-                    const name = parts[0].trim()
-                    const qty = parseInt(parts[1].replace(')',''), 10)
-                    if (!isNaN(qty)) {
-                        result.push({ name, qty })
-                    }
-                }
-            })
-         
-            const finalResult = result.map(item => {
-                const product = products.find(product => product.name === item.name)
-                if (product) {
-                    return { ...product, qty: item.qty}
-                }
-                return item
-            })
-
-            setOrderedProducts(finalResult)
-            
-        }
-    },[orderPage, products])
-
-    function handleQtyChange(event, index) {
-        const newQty = parseInt(event.target.value, 10)
-        const updatedOrderedProducts = [...orderedProducts]
-        if(!isNaN(newQty)) {
-            updatedOrderedProducts[index].qty = newQty
-        } else {
-            updatedOrderedProducts[index].qty = ''
-        }
-        setOrderedProducts(updatedOrderedProducts)
-    }
-
+    const { orderedProducts, currentOrder, handleQtyChange } = useEdit()
+    
     const handleRemove = async (e) => {
         // update order items
         const removedName = e.currentTarget.getAttribute('data-item')
@@ -97,15 +51,17 @@ function EditOrderTable({ currentOrder }) {
         const items = updatedOrder.order_items
 
         if ( !updatedOrder.order_items) {
-            const response = await fetch(`http://127.0.0.1:5000/api/orders/${updatedOrder.order_id}`, {
-                method: 'DELETE',
-            })
-            if(response.ok) {
-                console.log('order deleted')
-                orderDeleted()
-            } else {
-                alert(response.statusText)
-                console.log('Error deleting order')
+            if (window.confirm('Deleting this item will delete the entire order. Are you sure you want to proceed?') === true) {
+                const response = await fetch(`http://127.0.0.1:5000/api/orders/${updatedOrder.order_id}`, {
+                    method: 'DELETE',
+                })
+                if(response.ok) {
+                    console.log('order deleted')
+                    orderDeleted()
+                } else {
+                    alert(response.statusText)
+                    console.log('Error deleting order')
+                }
             }
         } else {
                 if ( name && email && phone && address && zip && state  && city && total && items) {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { title, label } from '../../../../checkout/checkoutForm/styles'
+import { useEdit } from '../../../../../context/editContext'
 
 const general = new title('General')
 const dateOrdered = new label('Date Ordered:')
@@ -7,7 +8,9 @@ const status = new label('Status:')
 const customer = new label('Customer:')
 const invoice = new label('Order Number:')
 
-function ViewOrderGeneralDetails({ currentOrder, date }) {
+function ViewOrderGeneralDetails({ date }) {
+
+    const { currentOrder } = useEdit()
 
   return (
     <>

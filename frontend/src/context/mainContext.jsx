@@ -79,13 +79,18 @@ const MainProvider = ({ children }) => {
       fetch("http://127.0.0.1:5000/api/orders/")
       .then((response) => response.json())
       .then((data) => {
-        setOrders(data);
+        if (data.error) {
+          console.log('no orders found')
+        } else{
+          setOrders(data);
+        }
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
 
       setOrderUpdate(false)
+      setOrderDelete(false)
       
   }, [cart, orderUpdate, orderDelete]);
 

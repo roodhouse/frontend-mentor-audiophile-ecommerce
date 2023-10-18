@@ -10,7 +10,7 @@ import { useMain } from '../../context/mainContext'
 
 const orderActions = new label('Order Actions')
 
-function EditOrderActions({ currentOrder }) {
+function EditOrderActions() {
 
     const { categoryPage, orderDelete } = useMain()
 
@@ -106,12 +106,12 @@ function EditOrderActions({ currentOrder }) {
             <div id="orderActionOptionsContainer" >
                 {viewOrder ? (
                     <div id="viewOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
-                        <ViewOrder currentOrder={currentOrder} view={viewOrder} closeMenu={closeMenuItem} />
+                        <ViewOrder view={viewOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {editOrder ? (
                     <div id="editOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
-                        <EditOrder currentOrder={currentOrder} edit={editOrder} closeMenu={closeMenuItem} />
+                        <EditOrder edit={editOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {completeOrder ? (

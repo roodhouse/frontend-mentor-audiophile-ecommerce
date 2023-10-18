@@ -5,18 +5,18 @@ import ViewOrderTotal from './viewOrder/ViewOrderTotal'
 import CloseButton from './viewOrder/CloseButton'
 
 
-function EditOrder({ currentOrder, edit, closeMenu }) {
+function EditOrder({ edit, closeMenu }) {
   return (
     <>
       <div id="editOrderContainer">
         <div id="editOrderCustomerDetailsWrapper" className='pb-6'>
-            <EditOrderCustomerDetails currentOrder={currentOrder} />
+            <EditOrderCustomerDetails />
           </div>
           <div id="editOrderItemDetailsWrapper" className='pb-6'>
-            <EditOrderItemDetails currentOrder={currentOrder} />
+            <EditOrderItemDetails />
           </div>
           <div id="editOrderTotalWrapper" className='pb-6'>
-            <ViewOrderTotal currentOrder={currentOrder} />
+            <ViewOrderTotal />
           </div>
           <div id="editCloseButtonWrapper" data-menu="edit" className='flex justify-center'>
             <CloseButton view={edit} closeMenu={closeMenu} />

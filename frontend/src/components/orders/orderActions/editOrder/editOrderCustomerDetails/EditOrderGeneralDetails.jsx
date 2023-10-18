@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { title, label } from '../../../../checkout/checkoutForm/styles'
+import { useMain } from '../../../../../context/mainContext'
+import { useEdit } from '../../../../../context/editContext'
 
 const general = new title('General')
 const dateOrdered = new label('Date Ordered:')
@@ -7,8 +9,19 @@ const status = new label('Status:')
 const customer = new label('Customer:')
 const invoice = new label('Order Number:')
 
+function EditOrderGeneralDetails({ date }) {
 
-function EditOrderGeneralDetails({ currentOrder, date }) {
+  const { currentOrder } = useEdit()
+
+  // useEffect for creating orderedProducts state
+  // const { }
+
+  function handleStatusChange(event) {
+    console.log(event.target.value)
+    const newStatus = event.target.value
+  
+  }
+
   return (
     <>
         <div id="editOrderGeneralDetailsContainer">
@@ -25,7 +38,7 @@ function EditOrderGeneralDetails({ currentOrder, date }) {
             <div id="editStatusContainer" className={`${status.styles} !mb-4`}>
                 <p className='flex justify-between items-center w-full'>{status.text}
                   <span className='font-medium w-[165px]'>
-                    <select name="editOrderStatus" id="editOrderStatus" className='w-full h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange'>
+                    <select onChange={(e) => handleStatusChange(e)} name="editOrderStatus" id="editOrderStatus" className='w-full h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange'>
                       <option value="Pending" selected={currentOrder.order_status === 'Pending' ? true : false}>Pending</option>
                       <option value="Processing" selected={currentOrder.order_status === 'Processing' ? true : false}>Processing</option>
                       <option value="Hold" selected={currentOrder.order_status === 'On Hold' ? true : false}>On Hold</option>

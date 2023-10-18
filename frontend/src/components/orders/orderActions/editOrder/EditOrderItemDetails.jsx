@@ -4,7 +4,8 @@ import EditOrderTable from './editOrderItemDetails/EditOrderTable'
 
 const items = new title('Items')
 
-function EditOrderItemDetails({ currentOrder }) {
+function EditOrderItemDetails() {
+
   return (
     <>
       <div id="editOrderItemDetailsContainer">
@@ -13,7 +14,7 @@ function EditOrderItemDetails({ currentOrder }) {
         </div>
       </div>
       <div id="editOrderTableWrapper">
-        <EditOrderTable currentOrder={currentOrder} />
+        <EditOrderTable />
       </div>
     </>
   )

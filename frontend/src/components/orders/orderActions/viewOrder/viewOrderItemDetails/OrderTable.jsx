@@ -1,40 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useMain } from '../../../../../context/mainContext'
+import { useEdit } from '../../../../../context/editContext'
 
-function OrderTable({ currentOrder }) {
+function OrderTable() {
 
     const { products, orderPage } = useMain()
-    const [ orderedProducts, setOrderedProducts ] = useState([])
-
-    useEffect(() => {
-        if(orderPage) {
-            const items = currentOrder.order_items.split(', ')
-            console.log(items)
-            const result = []
-
-            items.forEach(item => {
-                const parts = item.split('(')
-                if (parts.length === 2) {
-                    const name = parts[0].trim()
-                    const qty = parseInt(parts[1].replace(')',''), 10)
-                    if (!isNaN(qty)) {
-                        result.push({ name, qty })
-                    }
-                }
-            })
-         
-            const finalResult = result.map(item => {
-                const product = products.find(product => product.name === item.name)
-                if (product) {
-                    return { ...product, qty: item.qty}
-                }
-                return item
-            })
-
-            setOrderedProducts(finalResult)
-            
-        }
-    },[orderPage])
+    const { currentOrder, orderedProducts } = useEdit()
 
   return (
     <>
