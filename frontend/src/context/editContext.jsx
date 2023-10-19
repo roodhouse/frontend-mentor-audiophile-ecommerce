@@ -3,8 +3,7 @@ import { useMain } from "./mainContext";
 
 // fix other input fields
     // create state for each field, then pull from those fields when sending put requests, then only have to call on the single put request per need
-
-    // need to fix the status field ... 
+        // break pull request out of remove button function then all it where needed
 // update total in edit view
 // submit button
 // update db table and view order fields based on new data

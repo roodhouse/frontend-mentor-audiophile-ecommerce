@@ -33,13 +33,13 @@ function EditOrderGeneralDetails() {
             <div id="editStatusContainer" className={`${status.styles} !mb-4`}>
                 <p className='flex justify-between items-center w-full'>{status.text}
                   <span className='font-medium w-[165px]'>
-                    {/* <select onChange={(e) => statusChange(e)} name="editOrderStatus" id="editOrderStatus" className='w-full h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange'>
-                      <option value="Pending" selected={currentOrder.order_status === 'Pending' ? true : false}>Pending</option>
-                      <option value="Processing" selected={currentOrder.order_status === 'Processing' ? true : false}>Processing</option>
-                      <option value="Hold" selected={currentOrder.order_status === 'On Hold' ? true : false}>On Hold</option>
-                      <option value="Completed" selected={currentOrder.order_status === 'Completed' ? true : false}>Completed</option>
-                      <option value="Refunded" selected={currentOrder.order_status === 'Refunded' ? true : false}>Refunded</option>
-                    </select> */}
+                    <select onChange={(e) => statusChange(e)} defaultValue={currentOrder.order_status} name="editOrderStatus" id="editOrderStatus" className='w-full h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange'>
+                      <option value="Pending">Pending</option>
+                      <option value="Processing">Processing</option>
+                      <option value="Hold">On Hold</option>
+                      <option value="Completed">Completed</option>
+                      <option value="Refunded">Refunded</option>
+                    </select>
                   </span>
                 </p>
             </div>
