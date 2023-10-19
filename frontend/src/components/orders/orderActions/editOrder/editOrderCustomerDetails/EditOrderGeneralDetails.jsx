@@ -10,7 +10,7 @@ const invoice = new label('Order Number:')
 
 function EditOrderGeneralDetails() {
 
-  const { currentOrder, statusChange, date, name, dateChange, customerNameChange, id, idChange } = useEdit()
+  const { currentOrder, statusChange, convertedDate, name, dateChange, customerNameChange, id, idChange } = useEdit()
 
   return (
     <>
@@ -24,7 +24,7 @@ function EditOrderGeneralDetails() {
                     <input 
                       name='editOrderDate' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
-                      value={date}
+                      value={convertedDate}
                       onChange={(e) => dateChange(e)}
                     />
                   </span>

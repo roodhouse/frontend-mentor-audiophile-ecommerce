@@ -15,7 +15,7 @@ function EditOrderCustomerDetails() {
   return (
     <>
         {orderPage ? (
-            <form noValidate>
+            <>
                 <div id="editOrderHeadingWrapper">
                     <EditOrderHeading />
                 </div>
@@ -28,7 +28,7 @@ function EditOrderCustomerDetails() {
                 <div id="editOrderBillingDetailsWrapper">
                     <EditOrderBillingDetails />
                 </div>
-            </form>
+            </>
         ) : ' '}
     </>
   )
