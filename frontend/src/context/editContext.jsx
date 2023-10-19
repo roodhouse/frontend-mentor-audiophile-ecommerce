@@ -4,6 +4,7 @@ import { useMain } from "./mainContext";
 // fix other input fields
     // create state for each field, then pull from those fields when sending put requests, then only have to call on the single put request per need
         // break pull request out of remove button function then all it where needed
+            // time to test...
 // update total in edit view
 // submit button
 // update db table and view order fields based on new data
@@ -17,20 +18,20 @@ const EditProvider = ({ children }) => {
     const { products, orderPage, orders, orderDeleted, orderUpdated } = useMain()
     const [ orderedProducts, setOrderedProducts ] = useState([])
     const [ currentOrder, setCurrentOrder ] = useState([])
-    const [ currentOrderId, setCurrentOrderId ] = useState('')
-    const [ currentOrderDate, setCurrentOrderDate ] = useState('')
-    const [ currentOrderStatus, setCurrentOrderStatus ] = useState('')
-    const [ currentOrderName, setCurrentOrderName ] = useState('')
-    const [ currentOrderAddress, setCurrentOrderAddress ] = useState('')
-    const [ currentOrderCity, setCurrentOrderCity ] = useState('')
-    const [ currentOrderState, setCurrentOrderState ] = useState('')
-    const [ currentOrderZip, setCurrentOrderZip ] = useState('')
-    const [ currentOrderEmail, setCurrentOrderEmail ] = useState('')
-    const [ currentOrderPhone, setCurrentOrderPhone ] = useState('')
-    const [ currentOrderItems, setCurrentOrderItems ] = useState('')
-    const [ currentOrderEmoney, setCurrentOrderEmoney ] = useState(true)
-    const [ currentOrderCash, setCurrentOrderCash ] = useState(false)
-    const [ currentOrderTotal, setCurrentOrderTotal ] = useState('')
+    const [ id, setId ] = useState('')
+    const [ date, setDate ] = useState('')
+    const [ status, setStatus ] = useState('')
+    const [ name, setName ] = useState('')
+    const [ address, setAddress ] = useState('')
+    const [ city, setCity ] = useState('')
+    const [ state, setState ] = useState('')
+    const [ zip, setZip ] = useState('')
+    const [ email, setEmail ] = useState('')
+    const [ phone, setPhone ] = useState('')
+    const [ items, setItems ] = useState('')
+    const [ eMoney, setEmoney ] = useState(true)
+    const [ cash, setCash ] = useState(false)
+    const [ total, setTotal ] = useState('')
     
 
 
@@ -38,29 +39,29 @@ const EditProvider = ({ children }) => {
         const theCurrentOrder = orders ? orders.filter((item) => item.order_id === parseInt(orderPage)) : []
         console.log(theCurrentOrder[0])
         setCurrentOrder(theCurrentOrder[0])
-        setCurrentOrderName(currentOrder ? currentOrder.order_name : '')
-        setCurrentOrderId(currentOrder ? currentOrder.order_id : '')
-        setCurrentOrderStatus(currentOrder ? currentOrder.order_status : '')
-        setCurrentOrderAddress(currentOrder ? currentOrder.order_address : '')
-        setCurrentOrderCity(currentOrder ? currentOrder.order_city : '')
-        setCurrentOrderState(currentOrder ? currentOrder.order_state : '')
-        setCurrentOrderZip(currentOrder ? currentOrder.order_zip : '')
-        setCurrentOrderEmail(currentOrder ? currentOrder.order_email : '')
-        setCurrentOrderPhone(currentOrder ? currentOrder.order_phone : '')
-        setCurrentOrderItems(currentOrder ? currentOrder.order_items : '')
-        setCurrentOrderEmoney(currentOrder ? currentOrder.order_emoney : '')
-        setCurrentOrderCash(currentOrder ? currentOrder.order_cash : '')
-        setCurrentOrderTotal(currentOrder ? currentOrder.order_total : '')
+        setName(currentOrder ? currentOrder.order_name : '')
+        setId(currentOrder ? currentOrder.order_id : '')
+        setStatus(currentOrder ? currentOrder.order_status : '')
+        setAddress(currentOrder ? currentOrder.order_address : '')
+        setCity(currentOrder ? currentOrder.order_city : '')
+        setState(currentOrder ? currentOrder.order_state : '')
+        setZip(currentOrder ? currentOrder.order_zip : '')
+        setEmail(currentOrder ? currentOrder.order_email : '')
+        setPhone(currentOrder ? currentOrder.order_phone : '')
+        setItems(currentOrder ? currentOrder.order_items : '')
+        setEmoney(currentOrder ? currentOrder.order_emoney : '')
+        setCash(currentOrder ? currentOrder.order_cash : '')
+        setTotal(currentOrder ? currentOrder.order_total : '')
 
         if (orderPage && currentOrder) {
                 const orderDate = new Date(currentOrder.order_date)
-                setCurrentOrderDate(orderDate.toLocaleDateString('en-US', {
+                setDate(orderDate.toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
                 }))
             } else {
-                setCurrentOrderDate('')
+                setDate('')
             }
         
     },[orderPage, orders, currentOrder])
@@ -109,47 +110,47 @@ const EditProvider = ({ children }) => {
 
     // change status
     const statusChange = (e) => {
-        setCurrentOrderStatus(e.target.value)
+        setStatus(e.target.value)
     }
 
     // change date
     const dateChange = (e) => {
-        setCurrentOrderDate(e.target.value)
+        setDate(e.target.value)
     }
 
     // change customer name
     const customerNameChange = (e) => {
-        setCurrentOrderName(e.target.value)
+        setName(e.target.value)
     }
 
     // change street address
     const stAddressChange = (e) => {
-        setCurrentOrderAddress(e.target.value)
+        setAddress(e.target.value)
     }
 
     // change city 
     const cityChange = (e) => {
-        setCurrentOrderCity(e.target.value)
+        setCity(e.target.value)
     }
 
     // change state
     const stateChange = (e) => {
-        setCurrentOrderState(e.target.value)
+        setState(e.target.value)
     }
 
     // change zip
     const zipChange = (e) => {
-        setCurrentOrderZip(e.target.value)
+        setZip(e.target.value)
     }
 
     // change email
     const emailChange = (e) => {
-        setCurrentOrderEmail(e.target.value)
+        setEmail(e.target.value)
     }
 
      // change phone
      const phoneChange = (e) => {
-        setCurrentOrderPhone(e.target.value)
+        setPhone(e.target.value)
     }
 
     // change id
@@ -157,8 +158,42 @@ const EditProvider = ({ children }) => {
         console.log('no id change')
     }
 
+    // update order
+    async function updateOrder() {
+        if ( name && email && phone && address && zip && state  && city && total && items) {
+            const response = await fetch(`http://127.0.0.1:5000/api/orders/${currentOrder.order_id}`, {
+                method: 'put',
+                body: JSON.stringify({
+                    date,
+                    name,
+                    email,
+                    phone,
+                    address,
+                    zip,
+                    city,
+                    state,
+                    cash,
+                    eMoney,
+                    status,
+                    total,
+                    items
+                }),
+                headers: {'Content-Type': 'application/json'}
+            })
+
+            if (response.ok) {
+                console.log('updated')
+                orderUpdated()
+            } else {
+                alert(response.statusText)
+            }
+        } else {
+            console.log('error')
+        }
+    }
+
     // delete order
-    async function deleteOrder () {
+    async function deleteOrder() {
         if (window.confirm('Deleting this item will delete the entire order. Are you sure you want to proceed?') === true) {
             const response = await fetch(`http://127.0.0.1:5000/api/orders/${currentOrder.order_id}`, {
                 method: 'DELETE',
@@ -221,36 +256,37 @@ const EditProvider = ({ children }) => {
             deleteOrder()
             orderDeleted()
         } else {
-                if ( name && email && phone && address && zip && state  && city && total && items) {
-                    const response = await fetch(`http://127.0.0.1:5000/api/orders/${updatedOrder.order_id}`, {
-                        method: 'put',
-                        body: JSON.stringify({
-                            date,
-                            name,
-                            email,
-                            phone,
-                            address,
-                            zip,
-                            city,
-                            state,
-                            cash,
-                            eMoney,
-                            status,
-                            total,
-                            items
-                        }),
-                        headers: {'Content-Type': 'application/json'}
-                    })
+                // if ( name && email && phone && address && zip && state  && city && total && items) {
+                //     const response = await fetch(`http://127.0.0.1:5000/api/orders/${updatedOrder.order_id}`, {
+                //         method: 'put',
+                //         body: JSON.stringify({
+                //             date,
+                //             name,
+                //             email,
+                //             phone,
+                //             address,
+                //             zip,
+                //             city,
+                //             state,
+                //             cash,
+                //             eMoney,
+                //             status,
+                //             total,
+                //             items
+                //         }),
+                //         headers: {'Content-Type': 'application/json'}
+                //     })
         
-                    if (response.ok) {
-                        console.log('updated')
-                        orderUpdated()
-                    } else {
-                        alert(response.statusText)
-                    }
-                } else {
-                    console.log('error')
-                }
+                //     if (response.ok) {
+                //         console.log('updated')
+                //         orderUpdated()
+                //     } else {
+                //         alert(response.statusText)
+                //     }
+                // } else {
+                //     console.log('error')
+                // }
+                updateOrder()
         }
     }
 
@@ -258,7 +294,7 @@ const EditProvider = ({ children }) => {
     return <EditContext.Provider value=
     {
         {
-            orderedProducts, currentOrder, currentOrderDate, currentOrderName, currentOrderAddress, currentOrderCity, currentOrderState, currentOrderZip, currentOrderEmail, currentOrderPhone, currentOrderId,
+            orderedProducts, currentOrder, date, name, address, city, state, zip, email, phone, id,
             handleQtyChange, handleRemove, statusChange, dateChange, customerNameChange, stAddressChange, cityChange, stateChange, zipChange, emailChange, phoneChange, idChange
         }
     }>

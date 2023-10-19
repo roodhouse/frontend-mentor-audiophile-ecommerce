@@ -10,7 +10,7 @@ const invoice = new label('Order Number:')
 
 function EditOrderGeneralDetails() {
 
-  const { currentOrder, statusChange, currentOrderDate, currentOrderName, dateChange, customerNameChange, currentOrderId, idChange } = useEdit()
+  const { currentOrder, statusChange, date, name, dateChange, customerNameChange, id, idChange } = useEdit()
 
   return (
     <>
@@ -24,7 +24,7 @@ function EditOrderGeneralDetails() {
                     <input 
                       name='editOrderDate' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
-                      value={currentOrderDate}
+                      value={date}
                       onChange={(e) => dateChange(e)}
                     />
                   </span>
@@ -50,7 +50,7 @@ function EditOrderGeneralDetails() {
                       type="text" 
                       name='editOrderName' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
-                      value={currentOrderName}
+                      value={name}
                       onChange={(e) => customerNameChange(e)}
                     />
                   </span>
@@ -62,7 +62,7 @@ function EditOrderGeneralDetails() {
                     <input 
                       type="text" 
                       name='editOrderId' 
-                      value={currentOrderId}
+                      value={id}
                       onChange={(e) => idChange(e)}
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' />
                   </span>

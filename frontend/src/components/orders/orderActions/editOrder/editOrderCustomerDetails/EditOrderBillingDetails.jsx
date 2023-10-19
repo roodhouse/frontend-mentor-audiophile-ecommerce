@@ -3,19 +3,18 @@ import { title, label } from '../../../../checkout/checkoutForm/styles'
 import { useEdit } from '../../../../../context/editContext'
 
 const billing = new title('Billing')
-const address = new label('Address:')
-const name = new label('Name:')
+const nameLabel = new label('Name:')
 const street = new label('Street:')
-const city = new label('City:')
-const state = new label('State:')
-const zip = new label('Zip:')
-const email = new label('Email:')
-const phone = new label('Phone:')
+const cityLabel = new label('City:')
+const stateLabel = new label('State:')
+const zipLabel = new label('Zip:')
+const emailLabel = new label('Email:')
+const phoneLabel = new label('Phone:')
 
 function EditOrderBillingDetails() {
 
-  const { currentOrder, currentOrderAddress, stAddressChange, customerNameChange, currentOrderName, currentOrderCity, 
-    cityChange, currentOrderState, stateChange, currentOrderZip, zipChange, currentOrderEmail, emailChange, currentOrderPhone, phoneChange } = useEdit()
+  const { address, stAddressChange, customerNameChange, name, city, 
+    cityChange, state, stateChange, zip, zipChange, email, emailChange, phone, phoneChange } = useEdit()
 
   return (
     <>
@@ -23,13 +22,13 @@ function EditOrderBillingDetails() {
             <div id="editHeadingContainer" className={`${billing.styles} !mb-4`}>
                 <p>{billing.text}</p>
             </div>
-            <div id="editAddressContainer" className={`${name.styles} !mb-4`}>
-                <p className='flex justify-between items-center w-full mb-4'>{name.text}
+            <div id="editAddressContainer" className={`${nameLabel.styles} !mb-4`}>
+                <p className='flex justify-between items-center w-full mb-4'>{nameLabel.text}
                   <span className='font-medium w-[165px]'>
                     <input 
                       name='editOrderAddressName' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
-                      value={currentOrderName}
+                      value={name}
                       onChange={(e) => customerNameChange(e)}
                     />
                   </span>
@@ -39,61 +38,61 @@ function EditOrderBillingDetails() {
                     <input
                       name='editOrderAddress' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
-                      value={currentOrderAddress}
+                      value={address}
                       onChange={(e) => stAddressChange(e)}
                      />
                   </span>
                 </p>
-                <p className='flex justify-between items-center w-full mb-4'>{city.text}
+                <p className='flex justify-between items-center w-full mb-4'>{cityLabel.text}
                   <span className='font-medium w-[165px]'>
                     <input 
                       name='editOrderAddressCity' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
-                      value={currentOrderCity}
+                      value={city}
                       onChange={(e) => cityChange(e)} 
                     />,
                   </span>
                 </p>
-                <p className='flex justify-between items-center w-full mb-4'>{state.text}
+                <p className='flex justify-between items-center w-full mb-4'>{stateLabel.text}
                   <span className='font-medium w-[165px]'>
                     <input 
                       name='editOrderAddressState' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
-                      value={currentOrderState}
+                      value={state}
                       onChange={(e) => stateChange(e)} 
                      /> 
                   </span>
                 </p>
-                <p className='flex justify-between items-center w-full'>{zip.text}
+                <p className='flex justify-between items-center w-full'>{zipLabel.text}
                   <span className='font-medium w-[165px]'>
                     <input 
                       name='editOrderAddressZip' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
-                      value={currentOrderZip}
+                      value={zip}
                       onChange={(e) => zipChange(e)} 
                     />
                   </span>
                 </p>
             </div>
-            <div id="editEmailContainer" className={`${email.styles} !mb-4`}>
-                <p className='flex justify-between items-center w-full'>{email.text} 
+            <div id="editEmailContainer" className={`${emailLabel.styles} !mb-4`}>
+                <p className='flex justify-between items-center w-full'>{emailLabel.text} 
                   <span className='font-medium w-[165px]'>
                     <input 
                       name='editOrderEmail' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
-                      value={currentOrderEmail} 
+                      value={email} 
                       onChange={(e) => emailChange(e)}
                     />
                   </span>
                 </p>
             </div>
-            <div id="editPhoneContainer" className={`${phone.styles} !mb-0`}>
-                <p className='flex justify-between items-center w-full'>{phone.text}
+            <div id="editPhoneContainer" className={`${phoneLabel.styles} !mb-0`}>
+                <p className='flex justify-between items-center w-full'>{phoneLabel.text}
                   <span className='font-medium w-[165px]'>
                     <input 
                       name='editOrderPhone' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
-                      value={currentOrderPhone}
+                      value={phone}
                       onChange={(e) => phoneChange(e)}
                     />
                   </span>
