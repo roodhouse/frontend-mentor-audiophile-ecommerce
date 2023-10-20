@@ -11,6 +11,8 @@ function OrdersTable() {
     
   return (
     <>
+        {
+            orders ? (
         <div id="ordersTableContainer">
             <table className='min-w-full border-collapse block md:table'>
                 <thead className='block md:table-header-group'>
@@ -44,6 +46,8 @@ function OrdersTable() {
                 </tbody>
             </table>
         </div>
+            ) : []
+        }
     </>
   )
 }

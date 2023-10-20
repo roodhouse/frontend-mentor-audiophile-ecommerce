@@ -23,10 +23,9 @@ function Checkout() {
     }})
 
     const onSubmit = async (data) => {
-        
         let allItemNames = []
         cart.forEach((item) => {
-            allItemNames.push(item.name)
+            allItemNames.push(`${item.name}(${item.quantity})`)
         })
 
         allItemNames = allItemNames.join(', ')

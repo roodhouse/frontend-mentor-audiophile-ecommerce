@@ -25,6 +25,8 @@ const MainProvider = ({ children }) => {
   const [ total, setTotal ] = useState(0)
   const [ grandTotal, setGrandTotal ] = useState(0)
   const [ orders, setOrders ] = useState([])
+  const [ orderUpdate, setOrderUpdate ] = useState(false)
+  const [ orderDelete, setOrderDelete ] = useState(false)
 
   // Fetch requests
   useEffect(() => {
@@ -77,13 +79,20 @@ const MainProvider = ({ children }) => {
       fetch("http://127.0.0.1:5000/api/orders/")
       .then((response) => response.json())
       .then((data) => {
-        setOrders(data);
+        if (data.error) {
+          console.log('no orders found')
+        } else {
+          setOrders(data);
+        }
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+
+      setOrderUpdate(false)
+      setOrderDelete(false)
       
-  }, [cart]);
+  }, [cart, orderUpdate, orderDelete]);
 
   // Functions
 
@@ -145,8 +154,8 @@ const MainProvider = ({ children }) => {
     setProductPage('')
     setCheckoutPage('')
     setDashboardPage('')
-    setCategoryPage(categoryName)
     setOrderPage('')
+    setCategoryPage(categoryName)
     window.scrollTo(0,0)
     enableScroll()
     
@@ -173,7 +182,6 @@ const MainProvider = ({ children }) => {
   const orderClick = (orderNumber) => {
     navigate(currentState())
     setHome('')
-    setQuantity(1)
     setMobileMenu(false)
     setCartMenu(false)
     setThankYou(false)
@@ -212,8 +220,9 @@ const MainProvider = ({ children }) => {
     setCategoryPage('')
     setDashboardPage('')
     setCheckoutPage('')
-    setDashboardPage('dash')
     setOrderPage('')
+    setOrderDelete(false)
+    setDashboardPage('dash')
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -288,6 +297,15 @@ const MainProvider = ({ children }) => {
     window.scrollTo(0,0)
   }
 
+  const orderUpdated = () => {
+    setOrderUpdate(true)
+  }
+
+  const orderDeleted = () => {
+    setOrderPage('')
+    setOrderDelete(true)
+    setDashboardPage('dash')
+  }
   // **** Cart fucntionality **** // 
 
   // add item items to cart // 
@@ -387,7 +405,7 @@ const MainProvider = ({ children }) => {
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, checkoutPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
         cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkout, thankYou, thankYouMenu, 
-        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick
+        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick, orderUpdated, orderDelete, orderDeleted
       }
     }>
     {children}

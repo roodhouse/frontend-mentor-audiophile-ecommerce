@@ -375,7 +375,7 @@ db.add_all([
         eMoney=True,
         status='Processing',
         total=599,
-        items='YX1 Wireless Earphones'
+        items='YX1 Wireless Earphones(1)'
         ),
     Orders(
         date='2022/12/04',
@@ -390,7 +390,7 @@ db.add_all([
         eMoney=False,
         status='Processing',
         total=2999,
-        items='XX99 Mark II Headphones'
+        items='XX99 Mark II Headphones(1)'
         ),
     Orders(
         date='2023/08/23',
@@ -405,7 +405,7 @@ db.add_all([
         eMoney=True,
         status='Processing',
         total=4500,
-        items='ZX9 Speaker'
+        items='ZX9 Speaker(1)'
         )
 ])
 
