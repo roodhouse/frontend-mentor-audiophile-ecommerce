@@ -1,4 +1,4 @@
-from app.models import Product, Category, Orders
+from app.models import Product, Category, Orders, Items
 from app.db import Session, Base, engine
 
 #Drop and rebuild tables
@@ -375,7 +375,9 @@ db.add_all([
         eMoney=True,
         status='Processing',
         total=599,
-        items='YX1 Wireless Earphones(1)'
+        items=[
+            Items(item_name='YX1 Wireless Earphones', item_qty=1, item_price=599)
+        ]
         ),
     Orders(
         date='2022/12/04',
@@ -390,7 +392,9 @@ db.add_all([
         eMoney=False,
         status='Processing',
         total=2999,
-        items='XX99 Mark II Headphones(1)'
+        items=[
+            Items(item_name='XX99 Mark II Headphones', item_qty=1, item_price=2999)
+        ]
         ),
     Orders(
         date='2023/08/23',
@@ -404,8 +408,11 @@ db.add_all([
         cash=False,
         eMoney=True,
         status='Processing',
-        total=4500,
-        items='ZX9 Speaker(1)'
+        total=7499,
+        items=[
+            Items(item_name='ZX9 Speaker', item_qty=1, item_price=4500),
+            Items(item_name='XX99 Mark II Headphones', item_qty=1, item_price=2999)
+        ]
         )
 ])
 

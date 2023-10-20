@@ -2,7 +2,7 @@ from os import getenv
 from dotenv import load_dotenv
 import json
 from flask import Blueprint, send_from_directory, current_app, jsonify, request, session
-from app.models import Category, Product, Orders
+from app.models import Category, Product, Orders, Items
 from app.db import get_db
 import logging
 import smtplib
@@ -256,9 +256,16 @@ def get_all_orders():
                 "order_state": order.state,
                 "order_cash": order.cash,
                 "order_emoney": order.eMoney,
-                "order_status": order.status ,
+                "order_status": order.status,
                 "order_total": order.total,
-                "order_items": order.items               
+                "order_items": [
+                    {
+                        "item_name": item.item_name,
+                        "item_qty": item.item_qty,
+                        "item_price": item.item_price
+                    }
+                    for item in order.items
+                ]
             }
             for order in orders
         ]
@@ -287,8 +294,18 @@ def create():
             eMoney = data['eMoney'],
             status = data['status'],
             total = data['total'],
-            items = data['items']
         )
+
+        # create items to associate with the order
+        items_data = data['items']
+        for item_data in items_data:
+            new_item = Item(
+                item_name = item_data['item_name'],
+                item_qty = item_data['item_qty'],
+                item_price = item_data['item_price'],
+            )
+            new_order.items.append(new_item)
+
         db.add(new_order)
         db.commit()
     except KeyError as e:
@@ -297,17 +314,17 @@ def create():
         return jsonify(message='Invalid Data'), 400
     
     ## send email to customer
-    email = getenv('EMAIL')
-    password = getenv('PASSWORD')
+    # email = getenv('EMAIL')
+    # password = getenv('PASSWORD')
 
-    final_items = ''
-    all_items = data["items"]
-    all_items_list = all_items.split(", ")
-    for item in all_items_list:
-        final_items += f'{item}\n'
+    # final_items = ''
+    # all_items = data["items"]
+    # all_items_list = all_items.split(", ")
+    # for item in all_items_list:
+    #     final_items += f'{item}\n'
 
-    formatted_total = f'{data["total"]:,.2f}'
-    final_total = f'${str(formatted_total)}'
+    # formatted_total = f'{data["total"]:,.2f}'
+    # final_total = f'${str(formatted_total)}'
 
     # with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
     #     connection.starttls()
@@ -344,7 +361,14 @@ def get_order(id):
                 "order_emoney": order.eMoney,
                 "order_status": order.status,
                 "order_total": order.total,
-                "order_items": order.items  
+                "order_items": [
+                    {
+                        "item_name": item.item_name,
+                        "item_qty": item.item_qty,
+                        "item_price": item.item_price
+                    }
+                    for item in order.items
+                ]
         }
         return jsonify(order_info)
     else:
@@ -373,9 +397,20 @@ def update_order(id):
             order.eMoney = data['eMoney']
             order.status = data['status']
             order.total = data['total']
-            order.items = data['items']
+            
+            # update associated items
+            if 'items' in data:
+                # clear existing items
+                order.items = []
+                items_data = data['items']
+                for item_data in items_data:
+                    new_item = Item(
+                        item_name = item_data('item_name'),
+                        item_qty = item_data('item_qty'),
+                        item_price = item_data['item_price'],
+                    )
+                    order.items.append(new_item)
 
-            print('test')
             db.commit()
             return jsonify({"message": "Order updated successfully"})
         
