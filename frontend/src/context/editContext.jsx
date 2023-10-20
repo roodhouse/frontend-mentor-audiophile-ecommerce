@@ -29,6 +29,7 @@ const EditProvider = ({ children }) => {
     const [ cash, setCash ] = useState(false)
     const [ total, setTotal ] = useState('')
     const [ convertedDate, setConvertedDate ] = useState('')
+    const [ confirmUpdate, setConfirmUpdate ] = useState(false)
     
 
 
@@ -203,12 +204,19 @@ const EditProvider = ({ children }) => {
                 setTimeout(() => {
                     orderUpdated()
                 },1000)
+                alert('Order updated!')
+                setConfirmUpdate(true)
             } else {
                 alert(response.statusText)
             }
         } else {
             console.log('error')
         }
+    }
+
+    const updatedOccured = () => {
+        window.scrollTo(0,0)
+        setConfirmUpdate(false)
     }
 
      // remove button click
@@ -260,9 +268,9 @@ const EditProvider = ({ children }) => {
     return <EditContext.Provider value=
     {
         {
-            orderedProducts, currentOrder, name, address, city, state, zip, email, phone, id, convertedDate,
+            orderedProducts, currentOrder, name, address, city, state, zip, email, phone, id, convertedDate, confirmUpdate,
             updateItemQuantity, handleRemove, statusChange, dateChange, customerNameChange, stAddressChange, cityChange, stateChange, zipChange, emailChange, phoneChange, idChange,
-            updateOrder
+            updateOrder, updatedOccured
         }
     }>
         {children}

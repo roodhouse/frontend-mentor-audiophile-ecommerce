@@ -7,12 +7,14 @@ import EditOrder from './orderActions/EditOrder'
 import EmailOrder from './orderActions/EmailOrder'
 import ViewOrder from './orderActions/ViewOrder'
 import { useMain } from '../../context/mainContext'
+import { useEdit } from '../../context/editContext'
 
 const orderActions = new label('Order Actions')
 
 function EditOrderActions() {
 
     const { categoryPage, orderDelete } = useMain()
+    const { updatedOccured, confirmUpdate } = useEdit()
 
     const [ openMenu, setOpenMenu ] = useState(false)
     const [ viewOrder, setViewOrder ] = useState(false)
@@ -31,6 +33,14 @@ function EditOrderActions() {
             setDeleteOrder(false)
         }
     },[categoryPage, orderDelete])
+
+    useEffect(() => {
+        if (confirmUpdate) {
+            setEditOrder(false)
+            setViewOrder(true)
+            updatedOccured()
+        }
+    }, [confirmUpdate])
 
     const handleClick = () => {
         openMenu ? setOpenMenu(false) : setOpenMenu(true)
@@ -75,6 +85,8 @@ function EditOrderActions() {
         }
         
     }
+
+
 
   return (
     <>
