@@ -1,5 +1,6 @@
 from app.db import Base
-from sqlalchemy import Column, Integer, String, Boolean, text, DATE
+from sqlalchemy import Column, Integer, String, Boolean, text, DATE, ForeignKey
+from sqlalchemy.orm import relationship
 
 class Orders(Base):
     __tablename__ = 'orders'
@@ -16,4 +17,5 @@ class Orders(Base):
     eMoney = Column(Boolean)
     status = Column(String(250), server_default=text("'Processing'"))
     total = Column(Integer, nullable=False)
-    items = Column(String(250), nullable=False)
+
+    items = relationship("Items", back_populates="orders", cascade="all, delete-orphan")

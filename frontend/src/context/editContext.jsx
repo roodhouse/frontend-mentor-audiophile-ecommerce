@@ -2,10 +2,7 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 import { useMain } from "./mainContext";
 
 // update total in edit view
-    // change type to number
-    // adjust css
-    // do not allow the number to drop below 0
-    // update database to take a unit price and total price
+    // seed file is done, now need to adjust front end...
     // continue calc in update qty with new prices updateItemQuantity
 // submit button
 // update db table and view order fields based on new data
