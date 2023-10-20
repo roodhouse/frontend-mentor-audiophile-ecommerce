@@ -1,15 +1,6 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
 import { useMain } from "./mainContext";
 
-// fix other input fields
-    // create state for each field, then pull from those fields when sending put requests, then only have to call on the single put request per need
-        // break pull request out of remove button function then all it where needed
-            // time to test... see chat gpt suggestion..
-
-            // get other push requests to work then come back to this... 
-            // add submit button then relook at useEffect below
-                // update so that when Item quantity is changed then the item is updated to Item Name (quantity)
-
 // update total in edit view
 // submit button
 // update db table and view order fields based on new data
@@ -106,26 +97,28 @@ const EditProvider = ({ children }) => {
         }
     },[orderPage, products, currentOrder])
 
-    // // run when items changes
-    // useEffect(() => {
-    //     if (items || name || date) {
-    //         updateOrder()
-    //     }
-    // }, [items, name, date])
+    function updateItemQuantity(itemToUpdate, newQuantity) {
+         const updatedProducts = orderedProducts.map((product) => {
+            if (product.name === itemToUpdate) {
+                return { ...product, qty: newQuantity }
+            }
+            return product
+         })
 
-    // change quantity
-    function handleQtyChange(event, index) {
-        const newQty = parseInt(event.target.value, 10)
-        const updatedOrderedProducts = [...orderedProducts]
-        if(!isNaN(newQty)) {
-            updatedOrderedProducts[index].qty = newQty
-        } else {
-            updatedOrderedProducts[index].qty = ''
-        }
-        console.log(updatedOrderedProducts)
-        let updatedItems = items.split(', ')
-        console.log(updatedItems)
-        setOrderedProducts(updatedOrderedProducts)
+         setOrderedProducts(updatedProducts)
+         
+        
+         console.log(updatedProducts[0].name)
+
+         let newItems = []
+
+         updatedProducts.forEach((item) => {
+            newItems.push(`${item.name}(${item.qty})`)
+         })
+
+         console.log(newItems)
+         let newStringOfItems = newItems.join(', ')
+         setItems(newStringOfItems)
     }
 
     // change status
@@ -268,7 +261,7 @@ const EditProvider = ({ children }) => {
     {
         {
             orderedProducts, currentOrder, name, address, city, state, zip, email, phone, id, convertedDate,
-            handleQtyChange, handleRemove, statusChange, dateChange, customerNameChange, stAddressChange, cityChange, stateChange, zipChange, emailChange, phoneChange, idChange,
+            updateItemQuantity, handleRemove, statusChange, dateChange, customerNameChange, stAddressChange, cityChange, stateChange, zipChange, emailChange, phoneChange, idChange,
             updateOrder
         }
     }>

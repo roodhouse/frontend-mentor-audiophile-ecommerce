@@ -81,9 +81,7 @@ const MainProvider = ({ children }) => {
       .then((data) => {
         if (data.error) {
           console.log('no orders found')
-        } else{
-          console.log(`from fetch data: `)
-          console.log(data)
+        } else {
           setOrders(data);
         }
       })

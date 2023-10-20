@@ -62,7 +62,6 @@ function EditOrderActions() {
     }
 
     const closeMenuItem = (e) => {
-        console.log('close')
         let closeSelected = e.currentTarget.parentElement.getAttribute('data-menu')
         switch (closeSelected) {
             case 'view':
