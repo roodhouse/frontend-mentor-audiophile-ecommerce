@@ -5,7 +5,8 @@ import { useMain } from "./mainContext";
     // change type to number
     // adjust css
     // do not allow the number to drop below 0
-    // continue calc in update qty with new prices
+    // update database to take a unit price and total price
+    // continue calc in update qty with new prices updateItemQuantity
 // submit button
 // update db table and view order fields based on new data
 
@@ -103,43 +104,47 @@ const EditProvider = ({ children }) => {
     },[orderPage, products, currentOrder])
 
     function updateItemQuantity(itemToUpdate, newQuantity) {
-         const updatedProducts = orderedProducts.map((product) => { 
-            // setTotal(updateTotal)
-            if (product.name === itemToUpdate) {
-                let quanInt = parseInt(newQuantity)
-                let updateTotal = (product.price / product.qty)
-                console.log(typeof updateTotal)
-                updateTotal = quanInt * updateTotal
-                console.log(updateTotal)
-                let testTotal = { ...product, qty: newQuantity, price: updateTotal }
-                console.log(testTotal)
-                return { ...product, qty: newQuantity, price: updateTotal }
-            }
-            console.log(`after: ${product}`)
-            return product
-         })
-
-         console.log(updatedProducts)
-
-         let newPrices = []
-
-         updatedProducts.forEach((product) => {
-            newPrices.push(product.total)
-         })
-
-         console.log(newPrices)
-
-         setOrderedProducts(updatedProducts)
-         
-         let newItems = []
-
-         updatedProducts.forEach((item) => {
-            newItems.push(`${item.name}(${item.qty})`)
-         })
-
-         console.log(newItems)
-         let newStringOfItems = newItems.join(', ')
-         setItems(newStringOfItems)
+        if (newQuantity <= 0 ) {
+            console.log('invalid qty')
+        } else {
+            const updatedProducts = orderedProducts.map((product) => { 
+               // setTotal(updateTotal)
+               if (product.name === itemToUpdate) {
+                   let quanInt = parseInt(newQuantity)
+                   let updateTotal = (product.price / product.qty)
+                   console.log(typeof updateTotal)
+                   updateTotal = quanInt * updateTotal
+                   console.log(updateTotal)
+                   let testTotal = { ...product, qty: newQuantity, price: updateTotal }
+                   console.log(testTotal)
+                   return { ...product, qty: newQuantity, price: updateTotal }
+               }
+               console.log(`after: ${product}`)
+               return product
+            })
+   
+            console.log(updatedProducts)
+   
+            let newPrices = [50, 1079]
+   
+            updatedProducts.forEach((product) => {
+               newPrices.push(product.price)
+            })
+   
+            console.log(newPrices)
+   
+            setOrderedProducts(updatedProducts)
+            
+            let newItems = []
+   
+            updatedProducts.forEach((item) => {
+               newItems.push(`${item.name}(${item.qty})`)
+            })
+   
+            console.log(newItems)
+            let newStringOfItems = newItems.join(', ')
+            setItems(newStringOfItems)
+        }
     }
 
     // change status

@@ -12,7 +12,7 @@ function EditOrder({ edit, closeMenu }) {
 
   const { updateOrder } = useEdit()
 
-  const { handleSubmit, formState: {errors} } = useForm()
+  const { register, handleSubmit, formState: {errors} } = useForm()
 
   const onSubmit = () => {
     updateOrder()
@@ -30,7 +30,7 @@ function EditOrder({ edit, closeMenu }) {
                 <EditOrderCustomerDetails />
               </div>
               <div id="editOrderItemDetailsWrapper" className='pb-6'>
-                <EditOrderItemDetails />
+                <EditOrderItemDetails register={register} />
               </div>
               <div id="editOrderTotalWrapper" className='pb-6'>
                 <ViewOrderTotal />

@@ -4,7 +4,7 @@ import EditOrderTable from './editOrderItemDetails/EditOrderTable'
 
 const items = new title('Items')
 
-function EditOrderItemDetails() {
+function EditOrderItemDetails({ register }) {
 
   return (
     <>
@@ -14,7 +14,7 @@ function EditOrderItemDetails() {
         </div>
       </div>
       <div id="editOrderTableWrapper">
-        <EditOrderTable />
+        <EditOrderTable register={register} />
       </div>
     </>
   )
