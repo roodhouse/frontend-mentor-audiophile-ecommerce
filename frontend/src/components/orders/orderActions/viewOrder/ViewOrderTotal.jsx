@@ -4,7 +4,7 @@ import { useMain } from '../../../../context/mainContext'
 import { useEdit } from '../../../../context/editContext'
 
 const total = new title('Total')
-const items = new label('Items Subtotal:')
+const itemsLabel = new label('Items Subtotal:')
 const shipping = new label('Shipping:')
 const vat = new label('VAT:')
 const net = new label('NET PAYMENT:')
@@ -15,6 +15,8 @@ function ViewOrderTotal() {
 
     const { orderPage } = useMain()
     const { currentOrder } = useEdit()
+
+    console.log(currentOrder)
 
     useEffect(() => {
         if (orderPage) {
@@ -29,8 +31,8 @@ function ViewOrderTotal() {
                 <div id="totalHeadingContainer" className={`${total.styles} mb-[2px]`}>
                     <p>{total.text}</p>
                 </div>
-                <div id="viewSubtotalItemsContainer" className={`${items.styles} !mb-[2px]`}>
-                    <p>{items.text} <span className='font-medium'>${currentOrder.order_total.toLocaleString()}</span></p>
+                <div id="viewSubtotalItemsContainer" className={`${itemsLabel.styles} !mb-[2px]`}>
+                    <p>{itemsLabel.text} <span className='font-medium'>${currentOrder.order_total.toLocaleString()}</span></p>
                 </div>
                 <div id="viewSubtotalShippingContainer" className={`${shipping.styles} !mb-[2px]`}>
                     <p>{shipping.text} <span className='font-medium'>$50</span></p>

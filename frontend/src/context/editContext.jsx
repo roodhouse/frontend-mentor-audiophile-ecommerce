@@ -2,6 +2,10 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 import { useMain } from "./mainContext";
 
 // update total in edit view
+    // change type to number
+    // adjust css
+    // do not allow the number to drop below 0
+    // continue calc in update qty with new prices
 // submit button
 // update db table and view order fields based on new data
 
@@ -99,18 +103,34 @@ const EditProvider = ({ children }) => {
     },[orderPage, products, currentOrder])
 
     function updateItemQuantity(itemToUpdate, newQuantity) {
-         const updatedProducts = orderedProducts.map((product) => {
+         const updatedProducts = orderedProducts.map((product) => { 
+            // setTotal(updateTotal)
             if (product.name === itemToUpdate) {
-                return { ...product, qty: newQuantity }
+                let quanInt = parseInt(newQuantity)
+                let updateTotal = (product.price / product.qty)
+                console.log(typeof updateTotal)
+                updateTotal = quanInt * updateTotal
+                console.log(updateTotal)
+                let testTotal = { ...product, qty: newQuantity, price: updateTotal }
+                console.log(testTotal)
+                return { ...product, qty: newQuantity, price: updateTotal }
             }
+            console.log(`after: ${product}`)
             return product
          })
 
+         console.log(updatedProducts)
+
+         let newPrices = []
+
+         updatedProducts.forEach((product) => {
+            newPrices.push(product.total)
+         })
+
+         console.log(newPrices)
+
          setOrderedProducts(updatedProducts)
          
-        
-         console.log(updatedProducts[0].name)
-
          let newItems = []
 
          updatedProducts.forEach((item) => {
@@ -178,6 +198,7 @@ const EditProvider = ({ children }) => {
     // update order
     async function updateOrder() {
         if ( name && email && phone && address && zip && state  && city && total && items) {
+            console.log(total)
             
             const response = await fetch(`http://127.0.0.1:5000/api/orders/${currentOrder.order_id}`, {
                 method: 'put',

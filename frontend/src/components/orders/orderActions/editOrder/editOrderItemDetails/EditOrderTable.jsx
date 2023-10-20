@@ -37,7 +37,7 @@ function EditOrderTable() {
                                 <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Cost</span>${order.price.toLocaleString()}</td>
                                 <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs'>
                                     <span className='inline-block w-1/3 md:hidden font-bold text-xs'>Qty</span>
-                                    <input name="editOrderQty" value={order.qty} id="editOrderQty" onChange={(e) => updateItemQuantity(order.name, e.target.value)} className='w-[13%] h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' />
+                                    <input name="editOrderQty" type='number' value={order.qty} id="editOrderQty" onChange={(e) => updateItemQuantity(order.name, e.target.value)} className='w-[13%] h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' />
                                 </td>
                                 <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs '>
                                     <span className=''>
