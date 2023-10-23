@@ -277,6 +277,7 @@ def get_all_orders():
 @bp.route('/api/orders', methods=['POST'])
 def create():
     data = request.get_json()
+    print(data)
     db = get_db()
 
     try:
@@ -299,7 +300,7 @@ def create():
         # create items to associate with the order
         items_data = data['items']
         for item_data in items_data:
-            new_item = Item(
+            new_item = Items(
                 item_name = item_data['item_name'],
                 item_qty = item_data['item_qty'],
                 item_price = item_data['item_price'],
@@ -404,9 +405,9 @@ def update_order(id):
                 order.items = []
                 items_data = data['items']
                 for item_data in items_data:
-                    new_item = Item(
-                        item_name = item_data('item_name'),
-                        item_qty = item_data('item_qty'),
+                    new_item = Items(
+                        item_name = item_data['item_name'],
+                        item_qty = item_data['item_qty'],
                         item_price = item_data['item_price'],
                     )
                     order.items.append(new_item)

@@ -4,6 +4,7 @@ import { useMain } from "./mainContext";
 // update total in edit view
     // seed file is done, now need to adjust front end...
     // continue calc in update qty with new prices updateItemQuantity
+    // order can add and update. but total does not change on update...
 // submit button
 // update db table and view order fields based on new data
 
@@ -73,25 +74,22 @@ const EditProvider = ({ children }) => {
 
     useEffect(() => {
         if(orderPage && currentOrder) {
-            const items = currentOrder.order_items.split(', ')
+            console.log(currentOrder)
+            const items = currentOrder.order_items
             const result = []
 
             items.forEach(item => {
-                const parts = item.split('(')
-                if (parts.length === 2) {
-                    const name = parts[0].trim()
-                    const qty = parseInt(parts[1].replace(')',''), 10)
-                    if (!isNaN(qty)) {
-                        result.push({ name, qty })
-                    }
-                }
+                result.push(item)
             })
+
+            console.log(result)
          
             const finalResult = result.map(item => {
-                const product = products.find(product => product.name === item.name)
+                const product = products.find(product => product.name === item.item_name)
                 if (product) {
-                    return { ...product, qty: item.qty}
+                    return { ...product, qty: item.item_qty, price: item.item_price }
                 }
+                console.log('bust')
                 return item
             })
 
@@ -107,14 +105,17 @@ const EditProvider = ({ children }) => {
             const updatedProducts = orderedProducts.map((product) => { 
                // setTotal(updateTotal)
                if (product.name === itemToUpdate) {
+                console.log(newQuantity)
+                console.log(product.price)
+                console.log(product.qty)
                    let quanInt = parseInt(newQuantity)
                    let updateTotal = (product.price / product.qty)
                    console.log(typeof updateTotal)
                    updateTotal = quanInt * updateTotal
                    console.log(updateTotal)
-                   let testTotal = { ...product, qty: newQuantity, price: updateTotal }
+                   let testTotal = { ...product, qty: newQuantity }
                    console.log(testTotal)
-                   return { ...product, qty: newQuantity, price: updateTotal }
+                   return { ...product, qty: newQuantity }
                }
                console.log(`after: ${product}`)
                return product
@@ -125,7 +126,7 @@ const EditProvider = ({ children }) => {
             let newPrices = [50, 1079]
    
             updatedProducts.forEach((product) => {
-               newPrices.push(product.price)
+               newPrices.push(product.price * product.qty)
             })
    
             console.log(newPrices)
@@ -135,12 +136,15 @@ const EditProvider = ({ children }) => {
             let newItems = []
    
             updatedProducts.forEach((item) => {
-               newItems.push(`${item.name}(${item.qty})`)
+               newItems.push({
+                "item_name": item.name,
+                "item_qty": parseInt(newQuantity),
+                "item_price": item.price
+               })
             })
    
             console.log(newItems)
-            let newStringOfItems = newItems.join(', ')
-            setItems(newStringOfItems)
+            setItems(newItems)
         }
     }
 

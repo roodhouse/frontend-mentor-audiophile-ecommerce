@@ -7,6 +7,8 @@ function CartSummary() {
 
   let prices = []
 
+  console.log(cart)
+  
   if (cart.length > 0) {  
     cart.forEach((item) => {
       let itemTotal = item.quantity * item.price
