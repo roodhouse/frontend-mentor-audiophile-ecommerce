@@ -22,23 +22,15 @@ function Checkout() {
         eMoneyPin: ''
     }})
 
-    console.log(grandTotal)
-
     const onSubmit = async (data) => {
         let allItemNames = []
-        console.log(cart)
         cart.forEach((item) => {
-            // allItemNames.push(`${item.name}(${item.quantity})`)
             allItemNames.push({
                 "item_name": item.name,
                 "item_qty": item.quantity,
                 "item_price": item.price
             })
         })
-
-        console.log(allItemNames)
-        
-        // allItemNames = allItemNames.join(', ')
 
         const currentDate = new Date()
         const formattedDate = currentDate.toISOString().split('T')[0]

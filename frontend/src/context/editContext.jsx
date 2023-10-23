@@ -5,6 +5,7 @@ import { useMain } from "./mainContext";
     // seed file is done, now need to adjust front end...
     // continue calc in update qty with new prices updateItemQuantity
     // order can add and update. but total does not change on update...
+    /// see below/..
 // submit button
 // update db table and view order fields based on new data
 
@@ -74,22 +75,17 @@ const EditProvider = ({ children }) => {
 
     useEffect(() => {
         if(orderPage && currentOrder) {
-            console.log(currentOrder)
             const items = currentOrder.order_items
             const result = []
 
             items.forEach(item => {
                 result.push(item)
             })
-
-            console.log(result)
-         
             const finalResult = result.map(item => {
                 const product = products.find(product => product.name === item.item_name)
                 if (product) {
                     return { ...product, qty: item.item_qty, price: item.item_price }
                 }
-                console.log('bust')
                 return item
             })
 
@@ -103,25 +99,15 @@ const EditProvider = ({ children }) => {
             console.log('invalid qty')
         } else {
             const updatedProducts = orderedProducts.map((product) => { 
-               // setTotal(updateTotal)
                if (product.name === itemToUpdate) {
-                console.log(newQuantity)
-                console.log(product.price)
-                console.log(product.qty)
                    let quanInt = parseInt(newQuantity)
                    let updateTotal = (product.price / product.qty)
-                   console.log(typeof updateTotal)
+                   // here!
                    updateTotal = quanInt * updateTotal
-                   console.log(updateTotal)
-                   let testTotal = { ...product, qty: newQuantity }
-                   console.log(testTotal)
                    return { ...product, qty: newQuantity }
                }
-               console.log(`after: ${product}`)
                return product
             })
-   
-            console.log(updatedProducts)
    
             let newPrices = [50, 1079]
    
@@ -129,12 +115,13 @@ const EditProvider = ({ children }) => {
                newPrices.push(product.price * product.qty)
             })
    
-            console.log(newPrices)
-   
             setOrderedProducts(updatedProducts)
             
+            let newTotal = newPrices.reduce((partialSum, a) => partialSum + a, 0)
+            currentOrder.order_total = newTotal
+            setTotal(currentOrder.order_total)
+
             let newItems = []
-   
             updatedProducts.forEach((item) => {
                newItems.push({
                 "item_name": item.name,
@@ -142,8 +129,6 @@ const EditProvider = ({ children }) => {
                 "item_price": item.price
                })
             })
-   
-            console.log(newItems)
             setItems(newItems)
         }
     }
@@ -203,9 +188,7 @@ const EditProvider = ({ children }) => {
 
     // update order
     async function updateOrder() {
-        if ( name && email && phone && address && zip && state  && city && total && items) {
-            console.log(total)
-            
+        if ( name && email && phone && address && zip && state  && city && total && items) {            
             const response = await fetch(`http://127.0.0.1:5000/api/orders/${currentOrder.order_id}`, {
                 method: 'put',
                 body: JSON.stringify({
@@ -237,7 +220,7 @@ const EditProvider = ({ children }) => {
                 alert(response.statusText)
             }
         } else {
-            console.log('error')
+            console.log(` error in update function error`)
         }
     }
 
@@ -246,33 +229,35 @@ const EditProvider = ({ children }) => {
         setConfirmUpdate(false)
     }
 
-     // remove button click
-     const handleRemove = (e) => {
-        // update order items
-        const removedName = e.currentTarget.getAttribute('data-item')
-        let removedQty = e.currentTarget.parentElement.parentElement.previousSibling.lastChild.value
-        const removedItem = removedName + '(' + removedQty +')'
-        const updatedOrder = {...currentOrder}
-        updatedOrder.order_items = updatedOrder.order_items.replace(removedItem, '')
-        if (updatedOrder.order_items.startsWith(', ')) {
-            updatedOrder.order_items = updatedOrder.order_items.slice(2)
-        } else if (updatedOrder.order_items.endsWith(', ')) {
-            updatedOrder.order_items = updatedOrder.order_items.slice(0, -2)
-        }
-
-        // update order total
-        let removedProductCost = orderedProducts.filter((item) => item.name === removedName)
-        removedProductCost = removedProductCost[0].price
-        removedQty = parseInt(removedQty)
-        let currentTotal = currentOrder.order_total
-        let newTotal = currentTotal - (removedProductCost * removedQty)
-        updatedOrder.order_total = newTotal
-
-        if ( !updatedOrder.order_items) {
-            deleteOrder()
-            orderDeleted()
+    // remove button click
+    // somewhere in here with the delete order
+    const handleRemove = (e) => {
+        const removedName = e.currentTarget.getAttribute('data-item');
+        const removedQty = parseInt(e.currentTarget.parentElement.parentElement.previousSibling.lastChild.value);
+    
+        let removedProductCost = currentOrder.order_items
+            .filter((item) => item.item_name === removedName)
+            .map((item) => item.price * removedQty)
+            .reduce((total, cost) => total + cost, 0);
+    
+        currentOrder.order_items = currentOrder.order_items.filter((item) => item.item_name !== removedName);
+        
+        const currentTotal = currentOrder.order_total;
+        const newTotal = currentTotal - removedProductCost;
+        currentOrder.order_total = newTotal;
+        setTotal(currentOrder.order_total)
+        console.log(currentOrder.order_items)
+    
+        if (currentOrder.order_items.length === 0) {
+            // Handle case when the order is empty
+            deleteOrder();
+            orderDeleted();
         } else {
-            setItems(updatedOrder.order_items)
+            setItems(currentOrder.order_items.map((item) => ({
+                "item_name": item.item_name,
+                "item_qty": item.item_qty,
+                "item_price": item.item_price
+            })));
         }
     }
 

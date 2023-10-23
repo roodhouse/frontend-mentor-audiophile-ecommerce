@@ -7,7 +7,6 @@ function CheckoutSummaryTotals() {
 
     const [ finalCost, setFinalCost ] = useState(0)
 
-        console.log(total)
         useEffect(() => {
              setFinalCost(total + 50 + 1079)
             // theGrandTotal(finalCost)

@@ -228,7 +228,6 @@ const MainProvider = ({ children }) => {
   }
 
   const theGrandTotal = (amount) => {
-    console.log(amount)
     setGrandTotal(amount)
   }
 

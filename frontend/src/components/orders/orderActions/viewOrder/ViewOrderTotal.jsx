@@ -16,13 +16,11 @@ function ViewOrderTotal() {
     const { orderPage } = useMain()
     const { currentOrder } = useEdit()
 
-    console.log(currentOrder)
-
     useEffect(() => {
         if (orderPage) {
             setNetTotal(currentOrder.order_total)
         }
-    }, [orderPage])
+    }, [orderPage, currentOrder.order_total])
     
   return (
     <>
