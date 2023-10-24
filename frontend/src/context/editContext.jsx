@@ -1,12 +1,6 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
 import { useMain } from "./mainContext";
 
-// update total in edit view
-   // remove item fix still needed
-
-// submit button
-// update db table and view order fields based on new data
-
 // create context
 const EditContext = createContext()
 
@@ -75,8 +69,6 @@ const EditProvider = ({ children }) => {
         if(orderPage && currentOrder) {
             const items = currentOrder.order_items
             const result = []
-            console.log(`items from useEffect:`)
-            console.log(items)
             items.forEach(item => {
                 result.push(item)
             })
@@ -99,7 +91,6 @@ const EditProvider = ({ children }) => {
         } else {
             const updatedProducts = orderedProducts.map((product) => { 
                if (product.name === itemToUpdate) {
-                console.log(product.name, itemToUpdate)
                    let quanInt = parseInt(newQuantity)
                    let updateTotal = (product.price / product.qty)
                    // here!
@@ -123,7 +114,6 @@ const EditProvider = ({ children }) => {
 
             let newItems = []
             updatedProducts.forEach((item) => {
-                console.log(item)
                newItems.push({
                 "item_name": item.name,
                 // "item_qty": parseInt(newQuantity),
@@ -132,7 +122,6 @@ const EditProvider = ({ children }) => {
                })
             })
             setItems(newItems)
-            console.log(newItems)
         }
     }
 
@@ -191,8 +180,8 @@ const EditProvider = ({ children }) => {
 
     // update order
     async function updateOrder() {
-        if ( name && email && phone && address && zip && state  && city && total && items) {
-            console.log(items)            
+        console.log(total)
+        if ( name && email && phone && address && zip && state && city && total && items) {        
             const response = await fetch(`http://127.0.0.1:5000/api/orders/${currentOrder.order_id}`, {
                 method: 'put',
                 body: JSON.stringify({
@@ -224,6 +213,33 @@ const EditProvider = ({ children }) => {
                 alert(response.statusText)
             }
         } else {
+            if (!name) {
+                console.log('name is missing')
+            }
+            if (!email) {
+                console.log('email is missing')
+            }
+            if (!phone) {
+                console.log('phone is missing')
+            }
+            if (!address) {
+                console.log('address is missing')
+            }
+            if (!zip) {
+                console.log('zip is missing')
+            }
+            if (!state) {
+                console.log('state is missing')
+            }
+            if (!city) {
+                console.log('city is missing')
+            }
+            if (!items) {
+                console.log('items is missing')
+            }
+            if (!total) {
+                console.log('total is missing')
+            }
             console.log(` error in update function error`)
         }
     }
@@ -234,23 +250,20 @@ const EditProvider = ({ children }) => {
     }
 
     // remove button click
-    // somewhere in here with the delete order
     const handleRemove = (e) => {
         const removedName = e.currentTarget.getAttribute('data-item');
         const removedQty = parseInt(e.currentTarget.parentElement.parentElement.previousSibling.lastChild.value);
-    
         let removedProductCost = currentOrder.order_items
             .filter((item) => item.item_name === removedName)
-            .map((item) => item.price * removedQty)
+            .map((item) => item.item_price * removedQty)
             .reduce((total, cost) => total + cost, 0);
-    
+
         currentOrder.order_items = currentOrder.order_items.filter((item) => item.item_name !== removedName);
         
         const currentTotal = currentOrder.order_total;
         const newTotal = currentTotal - removedProductCost;
         currentOrder.order_total = newTotal;
         setTotal(currentOrder.order_total)
-        console.log(currentOrder.order_items)
     
         if (currentOrder.order_items.length === 0) {
             // Handle case when the order is empty
@@ -263,7 +276,6 @@ const EditProvider = ({ children }) => {
                 "item_price": item.item_price
             })));
         }
-        // updateOrder()
     }
 
     // delete order

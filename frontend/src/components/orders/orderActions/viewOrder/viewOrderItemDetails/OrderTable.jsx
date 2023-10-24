@@ -6,9 +6,6 @@ function OrderTable() {
 
     const { products, orderPage } = useMain()
     const { currentOrder, orderedProducts } = useEdit()
-
-    console.log('order table page')
-    console.log(orderedProducts)
     
   return (
     <>

@@ -7,9 +7,6 @@ function EditOrderTable({ register }) {
     const { orderPage } = useMain()
     const { orderedProducts, updateItemQuantity, handleRemove } = useEdit()
 
-    console.log('edit order table:')
-    console.log(orderedProducts)
-
   return (
     <>
         {orderPage ? (
