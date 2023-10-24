@@ -25,10 +25,12 @@ function Checkout() {
     const onSubmit = async (data) => {
         let allItemNames = []
         cart.forEach((item) => {
-            allItemNames.push(`${item.name}(${item.quantity})`)
+            allItemNames.push({
+                "item_name": item.name,
+                "item_qty": item.quantity,
+                "item_price": item.price
+            })
         })
-
-        allItemNames = allItemNames.join(', ')
 
         const currentDate = new Date()
         const formattedDate = currentDate.toISOString().split('T')[0]

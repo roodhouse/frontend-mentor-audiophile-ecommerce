@@ -38,9 +38,9 @@ function EditOrderTable({ register }) {
                                 <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs'>
                                     <span className='inline-block w-1/3 md:hidden font-bold text-xs'>Qty</span>
                                     <input 
-                                        name="editOrderQty"
+                                        name={`${order.id}_editOrderQty`}
                                         type='number'
-                                        {...register('quantity', {
+                                        {...register(`${order.id}_quantity`, {
                                             pattern: {
                                                 value: /^[\d]*$/
                                             },
@@ -49,7 +49,7 @@ function EditOrderTable({ register }) {
                                             }
                                         })}
                                         value={order.qty} 
-                                        id="editOrderQty" 
+                                        id={`${order.id}_editOrderQty`}
                                         onChange={(e) => updateItemQuantity(order.name, e.target.value)} 
                                         className='w-[15%] h-[33px] pr-0 text-center text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
                                     />

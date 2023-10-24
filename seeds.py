@@ -374,7 +374,7 @@ db.add_all([
         cash=False,
         eMoney=True,
         status='Processing',
-        total=599,
+        total=599+50+1079,
         items=[
             Items(item_name='YX1 Wireless Earphones', item_qty=1, item_price=599)
         ]
@@ -391,7 +391,7 @@ db.add_all([
         cash=True,
         eMoney=False,
         status='Processing',
-        total=2999,
+        total=2999+50+1079,
         items=[
             Items(item_name='XX99 Mark II Headphones', item_qty=1, item_price=2999)
         ]
@@ -408,7 +408,7 @@ db.add_all([
         cash=False,
         eMoney=True,
         status='Processing',
-        total=7499,
+        total=7499+50+1079,
         items=[
             Items(item_name='ZX9 Speaker', item_qty=1, item_price=4500),
             Items(item_name='XX99 Mark II Headphones', item_qty=1, item_price=2999)

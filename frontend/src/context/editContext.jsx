@@ -1,12 +1,6 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
 import { useMain } from "./mainContext";
 
-// update total in edit view
-    // seed file is done, now need to adjust front end...
-    // continue calc in update qty with new prices updateItemQuantity
-// submit button
-// update db table and view order fields based on new data
-
 // create context
 const EditContext = createContext()
 
@@ -73,24 +67,15 @@ const EditProvider = ({ children }) => {
 
     useEffect(() => {
         if(orderPage && currentOrder) {
-            const items = currentOrder.order_items.split(', ')
+            const items = currentOrder.order_items
             const result = []
-
             items.forEach(item => {
-                const parts = item.split('(')
-                if (parts.length === 2) {
-                    const name = parts[0].trim()
-                    const qty = parseInt(parts[1].replace(')',''), 10)
-                    if (!isNaN(qty)) {
-                        result.push({ name, qty })
-                    }
-                }
+                result.push(item)
             })
-         
             const finalResult = result.map(item => {
-                const product = products.find(product => product.name === item.name)
+                const product = products.find(product => product.name === item.item_name)
                 if (product) {
-                    return { ...product, qty: item.qty}
+                    return { ...product, qty: item.item_qty, price: item.item_price }
                 }
                 return item
             })
@@ -105,42 +90,38 @@ const EditProvider = ({ children }) => {
             console.log('invalid qty')
         } else {
             const updatedProducts = orderedProducts.map((product) => { 
-               // setTotal(updateTotal)
                if (product.name === itemToUpdate) {
                    let quanInt = parseInt(newQuantity)
                    let updateTotal = (product.price / product.qty)
-                   console.log(typeof updateTotal)
+                   // here!
                    updateTotal = quanInt * updateTotal
-                   console.log(updateTotal)
-                   let testTotal = { ...product, qty: newQuantity, price: updateTotal }
-                   console.log(testTotal)
-                   return { ...product, qty: newQuantity, price: updateTotal }
+                   return { ...product, qty: newQuantity }
                }
-               console.log(`after: ${product}`)
                return product
             })
-   
-            console.log(updatedProducts)
    
             let newPrices = [50, 1079]
    
             updatedProducts.forEach((product) => {
-               newPrices.push(product.price)
+               newPrices.push(product.price * product.qty)
             })
-   
-            console.log(newPrices)
    
             setOrderedProducts(updatedProducts)
             
+            let newTotal = newPrices.reduce((partialSum, a) => partialSum + a, 0)
+            currentOrder.order_total = newTotal
+            setTotal(currentOrder.order_total)
+
             let newItems = []
-   
             updatedProducts.forEach((item) => {
-               newItems.push(`${item.name}(${item.qty})`)
+               newItems.push({
+                "item_name": item.name,
+                // "item_qty": parseInt(newQuantity),
+                "item_qty": parseInt(item.qty),
+                "item_price": item.price
+               })
             })
-   
-            console.log(newItems)
-            let newStringOfItems = newItems.join(', ')
-            setItems(newStringOfItems)
+            setItems(newItems)
         }
     }
 
@@ -199,9 +180,8 @@ const EditProvider = ({ children }) => {
 
     // update order
     async function updateOrder() {
-        if ( name && email && phone && address && zip && state  && city && total && items) {
-            console.log(total)
-            
+        console.log(total)
+        if ( name && email && phone && address && zip && state && city && total && items) {        
             const response = await fetch(`http://127.0.0.1:5000/api/orders/${currentOrder.order_id}`, {
                 method: 'put',
                 body: JSON.stringify({
@@ -233,7 +213,34 @@ const EditProvider = ({ children }) => {
                 alert(response.statusText)
             }
         } else {
-            console.log('error')
+            if (!name) {
+                console.log('name is missing')
+            }
+            if (!email) {
+                console.log('email is missing')
+            }
+            if (!phone) {
+                console.log('phone is missing')
+            }
+            if (!address) {
+                console.log('address is missing')
+            }
+            if (!zip) {
+                console.log('zip is missing')
+            }
+            if (!state) {
+                console.log('state is missing')
+            }
+            if (!city) {
+                console.log('city is missing')
+            }
+            if (!items) {
+                console.log('items is missing')
+            }
+            if (!total) {
+                console.log('total is missing')
+            }
+            console.log(` error in update function error`)
         }
     }
 
@@ -242,33 +249,32 @@ const EditProvider = ({ children }) => {
         setConfirmUpdate(false)
     }
 
-     // remove button click
-     const handleRemove = (e) => {
-        // update order items
-        const removedName = e.currentTarget.getAttribute('data-item')
-        let removedQty = e.currentTarget.parentElement.parentElement.previousSibling.lastChild.value
-        const removedItem = removedName + '(' + removedQty +')'
-        const updatedOrder = {...currentOrder}
-        updatedOrder.order_items = updatedOrder.order_items.replace(removedItem, '')
-        if (updatedOrder.order_items.startsWith(', ')) {
-            updatedOrder.order_items = updatedOrder.order_items.slice(2)
-        } else if (updatedOrder.order_items.endsWith(', ')) {
-            updatedOrder.order_items = updatedOrder.order_items.slice(0, -2)
-        }
+    // remove button click
+    const handleRemove = (e) => {
+        const removedName = e.currentTarget.getAttribute('data-item');
+        const removedQty = parseInt(e.currentTarget.parentElement.parentElement.previousSibling.lastChild.value);
+        let removedProductCost = currentOrder.order_items
+            .filter((item) => item.item_name === removedName)
+            .map((item) => item.item_price * removedQty)
+            .reduce((total, cost) => total + cost, 0);
 
-        // update order total
-        let removedProductCost = orderedProducts.filter((item) => item.name === removedName)
-        removedProductCost = removedProductCost[0].price
-        removedQty = parseInt(removedQty)
-        let currentTotal = currentOrder.order_total
-        let newTotal = currentTotal - (removedProductCost * removedQty)
-        updatedOrder.order_total = newTotal
-
-        if ( !updatedOrder.order_items) {
-            deleteOrder()
-            orderDeleted()
+        currentOrder.order_items = currentOrder.order_items.filter((item) => item.item_name !== removedName);
+        
+        const currentTotal = currentOrder.order_total;
+        const newTotal = currentTotal - removedProductCost;
+        currentOrder.order_total = newTotal;
+        setTotal(currentOrder.order_total)
+    
+        if (currentOrder.order_items.length === 0) {
+            // Handle case when the order is empty
+            deleteOrder();
+            orderDeleted();
         } else {
-            setItems(updatedOrder.order_items)
+            setItems(currentOrder.order_items.map((item) => ({
+                "item_name": item.item_name,
+                "item_qty": item.item_qty,
+                "item_price": item.item_price
+            })));
         }
     }
 

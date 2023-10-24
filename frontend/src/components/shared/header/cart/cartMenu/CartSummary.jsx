@@ -6,7 +6,7 @@ function CartSummary() {
   const { cart, totalCart } = useMain()
 
   let prices = []
-
+  
   if (cart.length > 0) {  
     cart.forEach((item) => {
       let itemTotal = item.quantity * item.price

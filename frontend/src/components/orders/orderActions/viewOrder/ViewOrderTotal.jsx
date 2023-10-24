@@ -16,13 +16,11 @@ function ViewOrderTotal() {
     const { orderPage } = useMain()
     const { currentOrder } = useEdit()
 
-    console.log(currentOrder)
-
     useEffect(() => {
         if (orderPage) {
-            setNetTotal(currentOrder.order_total + 50 + 1079)
+            setNetTotal(currentOrder.order_total)
         }
-    }, [orderPage])
+    }, [orderPage, currentOrder.order_total])
     
   return (
     <>
@@ -32,7 +30,7 @@ function ViewOrderTotal() {
                     <p>{total.text}</p>
                 </div>
                 <div id="viewSubtotalItemsContainer" className={`${itemsLabel.styles} !mb-[2px]`}>
-                    <p>{itemsLabel.text} <span className='font-medium'>${currentOrder.order_total.toLocaleString()}</span></p>
+                    <p>{itemsLabel.text} <span className='font-medium'>${(currentOrder.order_total-50-1079).toLocaleString()}</span></p>
                 </div>
                 <div id="viewSubtotalShippingContainer" className={`${shipping.styles} !mb-[2px]`}>
                     <p>{shipping.text} <span className='font-medium'>$50</span></p>
