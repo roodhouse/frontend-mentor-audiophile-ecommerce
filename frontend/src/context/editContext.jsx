@@ -2,10 +2,8 @@ import React, { useContext, createContext, useState, useEffect } from "react";
 import { useMain } from "./mainContext";
 
 // update total in edit view
-    // seed file is done, now need to adjust front end...
-    // continue calc in update qty with new prices updateItemQuantity
-    // order can add and update. but total does not change on update...
-    /// see below/..
+   // remove item fix still needed
+
 // submit button
 // update db table and view order fields based on new data
 
@@ -77,7 +75,8 @@ const EditProvider = ({ children }) => {
         if(orderPage && currentOrder) {
             const items = currentOrder.order_items
             const result = []
-
+            console.log(`items from useEffect:`)
+            console.log(items)
             items.forEach(item => {
                 result.push(item)
             })
@@ -100,6 +99,7 @@ const EditProvider = ({ children }) => {
         } else {
             const updatedProducts = orderedProducts.map((product) => { 
                if (product.name === itemToUpdate) {
+                console.log(product.name, itemToUpdate)
                    let quanInt = parseInt(newQuantity)
                    let updateTotal = (product.price / product.qty)
                    // here!
@@ -123,13 +123,16 @@ const EditProvider = ({ children }) => {
 
             let newItems = []
             updatedProducts.forEach((item) => {
+                console.log(item)
                newItems.push({
                 "item_name": item.name,
-                "item_qty": parseInt(newQuantity),
+                // "item_qty": parseInt(newQuantity),
+                "item_qty": parseInt(item.qty),
                 "item_price": item.price
                })
             })
             setItems(newItems)
+            console.log(newItems)
         }
     }
 
@@ -188,7 +191,8 @@ const EditProvider = ({ children }) => {
 
     // update order
     async function updateOrder() {
-        if ( name && email && phone && address && zip && state  && city && total && items) {            
+        if ( name && email && phone && address && zip && state  && city && total && items) {
+            console.log(items)            
             const response = await fetch(`http://127.0.0.1:5000/api/orders/${currentOrder.order_id}`, {
                 method: 'put',
                 body: JSON.stringify({
@@ -259,6 +263,7 @@ const EditProvider = ({ children }) => {
                 "item_price": item.item_price
             })));
         }
+        // updateOrder()
     }
 
     // delete order

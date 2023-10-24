@@ -6,8 +6,6 @@ function CartSummary() {
   const { cart, totalCart } = useMain()
 
   let prices = []
-
-  console.log(cart)
   
   if (cart.length > 0) {  
     cart.forEach((item) => {
