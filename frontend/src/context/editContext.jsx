@@ -130,6 +130,13 @@ const EditProvider = ({ children }) => {
         setStatus(e.target.value)
     }
 
+    // status menu button click
+    const statusMenuChange = () => {
+        setStatus('Completed')
+        // run update order here
+        
+    }
+
     // change date
     const dateChange = (e) => {
         const newDate = new Date(e.target.value)
