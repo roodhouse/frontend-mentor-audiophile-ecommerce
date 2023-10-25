@@ -1,9 +1,13 @@
 import React from 'react'
+import { useEdit } from '../../../context/editContext'
 
-function Confirm() {
+function Confirm({ closeMenu }) {
+
+    const { statusMenuChange } = useEdit()
   
   const handleClick = (e) => {
-    console.log(e)
+    statusMenuChange()
+    closeMenu(e)
   }
 
   return (

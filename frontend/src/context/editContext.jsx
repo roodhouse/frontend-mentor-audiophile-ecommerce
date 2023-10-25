@@ -27,14 +27,14 @@ const EditProvider = ({ children }) => {
     const [ convertedDate, setConvertedDate ] = useState('')
     const [ confirmUpdate, setConfirmUpdate ] = useState(false)
     
-
-
     useEffect(() => {
         const theCurrentOrder = orders ? orders.filter((item) => item.order_id === parseInt(orderPage)) : []
         setCurrentOrder(theCurrentOrder[0])
         setName(currentOrder ? currentOrder.order_name : '')
         setId(currentOrder ? currentOrder.order_id : '')
-        setStatus(currentOrder ? currentOrder.order_status : '')
+        // setStatus(currentOrder ? currentOrder.order_status : '')
+        setStatus(currentOrder && status === '' ? currentOrder.order_status : status)
+        // setStatus(currentOrder ? currentOrder.order_status : currentOrder && status !== 'Processing' ? status  : '')
         setAddress(currentOrder ? currentOrder.order_address : '')
         setCity(currentOrder ? currentOrder.order_city : '')
         setState(currentOrder ? currentOrder.order_state : '')
@@ -63,7 +63,7 @@ const EditProvider = ({ children }) => {
                 setDate('')
             }
         
-    },[orderPage, orders, currentOrder])
+    },[orderPage, orders, currentOrder, status])
 
     useEffect(() => {
         if(orderPage && currentOrder) {
@@ -133,9 +133,14 @@ const EditProvider = ({ children }) => {
     // status menu button click
     const statusMenuChange = () => {
         setStatus('Completed')
-        // run update order here
-        
     }
+
+    useEffect(() => {
+        if (status === 'Completed') {
+            updateOrder()
+            setStatus('')
+        }
+    },[status])
 
     // change date
     const dateChange = (e) => {
@@ -187,7 +192,6 @@ const EditProvider = ({ children }) => {
 
     // update order
     async function updateOrder() {
-        console.log(total)
         if ( name && email && phone && address && zip && state && city && total && items) {        
             const response = await fetch(`http://127.0.0.1:5000/api/orders/${currentOrder.order_id}`, {
                 method: 'put',
@@ -246,6 +250,9 @@ const EditProvider = ({ children }) => {
             }
             if (!total) {
                 console.log('total is missing')
+            }
+            if (!status) {
+                console.log('status is missing')
             }
             console.log(` error in update function error`)
         }
@@ -306,7 +313,7 @@ const EditProvider = ({ children }) => {
         {
             orderedProducts, currentOrder, name, address, city, state, zip, email, phone, id, convertedDate, confirmUpdate,
             updateItemQuantity, handleRemove, statusChange, dateChange, customerNameChange, stAddressChange, cityChange, stateChange, zipChange, emailChange, phoneChange, idChange,
-            updateOrder, updatedOccured
+            updateOrder, updatedOccured, statusMenuChange
         }
     }>
         {children}
