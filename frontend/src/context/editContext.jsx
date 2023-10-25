@@ -116,7 +116,6 @@ const EditProvider = ({ children }) => {
             updatedProducts.forEach((item) => {
                newItems.push({
                 "item_name": item.name,
-                // "item_qty": parseInt(newQuantity),
                 "item_qty": parseInt(item.qty),
                 "item_price": item.price
                })
@@ -313,7 +312,7 @@ const EditProvider = ({ children }) => {
         {
             orderedProducts, currentOrder, name, address, city, state, zip, email, phone, id, convertedDate, confirmUpdate,
             updateItemQuantity, handleRemove, statusChange, dateChange, customerNameChange, stAddressChange, cityChange, stateChange, zipChange, emailChange, phoneChange, idChange,
-            updateOrder, updatedOccured, statusMenuChange
+            updateOrder, updatedOccured, statusMenuChange, deleteOrder
         }
     }>
         {children}

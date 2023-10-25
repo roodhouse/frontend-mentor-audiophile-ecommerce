@@ -13,7 +13,7 @@ const orderActions = new label('Order Actions')
 
 function EditOrderActions() {
 
-    const { categoryPage, orderDelete } = useMain()
+    const { categoryPage, orderDelete, dashboard } = useMain()
     const { updatedOccured, confirmUpdate, currentOrder } = useEdit()
 
     const [ openMenu, setOpenMenu ] = useState(false)
@@ -23,7 +23,6 @@ function EditOrderActions() {
     const [ emailOrder, setEmailOrder ] = useState(false)
     const [ deleteOrder, setDeleteOrder ] = useState(false)
 
-    console.log(currentOrder)
     useEffect(() => {
         if ( categoryPage || orderDelete ) {
             setOpenMenu(false)
@@ -84,6 +83,10 @@ function EditOrderActions() {
             case 'complete':
                 setCompleteOrder(false)
                 break
+            case 'delete':
+                setDeleteOrder(false)
+                dashboard()
+                break
             default:
                 console.log('go')
         }
@@ -143,7 +146,7 @@ function EditOrderActions() {
                 ) : ''}
                 {deleteOrder ? (
                     <div id="deleteOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
-                        <DeleteOrder />
+                        <DeleteOrder delete={deleteOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
             </div>
