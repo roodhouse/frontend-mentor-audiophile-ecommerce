@@ -14,7 +14,7 @@ const orderActions = new label('Order Actions')
 function EditOrderActions() {
 
     const { categoryPage, orderDelete } = useMain()
-    const { updatedOccured, confirmUpdate } = useEdit()
+    const { updatedOccured, confirmUpdate, currentOrder } = useEdit()
 
     const [ openMenu, setOpenMenu ] = useState(false)
     const [ viewOrder, setViewOrder ] = useState(false)
@@ -23,6 +23,7 @@ function EditOrderActions() {
     const [ emailOrder, setEmailOrder ] = useState(false)
     const [ deleteOrder, setDeleteOrder ] = useState(false)
 
+    console.log(currentOrder)
     useEffect(() => {
         if ( categoryPage || orderDelete ) {
             setOpenMenu(false)
@@ -80,6 +81,9 @@ function EditOrderActions() {
             case 'edit':
                 setEditOrder(false)
                 break
+            case 'complete':
+                setCompleteOrder(false)
+                break
             default:
                 console.log('go')
         }
@@ -105,7 +109,9 @@ function EditOrderActions() {
                 <ul className={`${orderActions.styles} flex flex-col justify-center items-center text-[18px] mb-0`}>
                     <li data-menu='viewOrder' onClick={menuItemClick} className={`${viewOrder ? 'bg-charcoal text-deepOrange hover:bg-deepOrange hover:text-offWhite' : 'bg-deepOrange text-offWhite hover:bg-charcoal hover:text-deepOrange'} m-2 cursor-pointer w-full text-center py-5 rounded-lg`}>View Order</li>
                     <li data-menu='editOrder' onClick={menuItemClick} className={`${editOrder ? 'bg-charcoal text-deepOrange hover:bg-deepOrange hover:text-offWhite' : 'bg-deepOrange text-offWhite hover:bg-charcoal hover:text-deepOrange'} m-2 cursor-pointer w-full text-center py-5 rounded-lg`}>Edit Order</li>
-                    <li data-menu='completeOrder' onClick={menuItemClick} className={`${completeOrder ? 'bg-charcoal text-deepOrange hover:bg-deepOrange hover:text-offWhite' : 'bg-deepOrange text-offWhite hover:bg-charcoal hover:text-deepOrange'} m-2 cursor-pointer w-full text-center py-5 rounded-lg`}>Complete Order</li>
+                    { currentOrder.order_status !== 'Completed' ? (
+                        <li data-menu='completeOrder' onClick={menuItemClick} className={`${completeOrder ? 'bg-charcoal text-deepOrange hover:bg-deepOrange hover:text-offWhite' : 'bg-deepOrange text-offWhite hover:bg-charcoal hover:text-deepOrange'} m-2 cursor-pointer w-full text-center py-5 rounded-lg`}>Complete Order</li>
+                    ) : ''}
                     <li data-menu='emailOrder' onClick={menuItemClick} className={`${emailOrder ? 'bg-charcoal text-deepOrange hover:bg-deepOrange hover:text-offWhite' : 'bg-deepOrange text-offWhite hover:bg-charcoal hover:text-deepOrange'} m-2 cursor-pointer w-full text-center py-5 rounded-lg`}>Email Customer</li>
                     <li data-menu='deleteOrder' onClick={menuItemClick} className={`${deleteOrder ? 'bg-charcoal text-deepOrange hover:bg-deepOrange hover:text-offWhite' : 'bg-deepOrange text-offWhite hover:bg-charcoal hover:text-deepOrange'} m-2 cursor-pointer w-full text-center py-5 rounded-lg`}>Delete Order</li>
                 </ul>
@@ -127,7 +133,7 @@ function EditOrderActions() {
                 ) : ''}
                 {completeOrder ? (
                     <div id="completeOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
-                        <CompleteOrder />
+                        <CompleteOrder complete={completeOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {emailOrder ? (
