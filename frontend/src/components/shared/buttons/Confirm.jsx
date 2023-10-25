@@ -3,11 +3,17 @@ import { useEdit } from '../../../context/editContext'
 
 function Confirm({ closeMenu }) {
 
-    const { statusMenuChange } = useEdit()
+    const { statusMenuChange, deleteOrder } = useEdit()
   
   const handleClick = (e) => {
-    statusMenuChange()
-    closeMenu(e)
+    let action = e.currentTarget.parentElement.getAttribute('data-menu')
+    if (action === 'complete') {
+      statusMenuChange()
+      closeMenu(e)
+    } else {
+      deleteOrder()
+      closeMenu(e)
+    } 
   }
 
   return (

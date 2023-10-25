@@ -218,7 +218,6 @@ const MainProvider = ({ children }) => {
     setThankYou(false)
     setProductPage('')
     setCategoryPage('')
-    setDashboardPage('')
     setCheckoutPage('')
     setOrderPage('')
     setOrderDelete(false)
