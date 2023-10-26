@@ -141,7 +141,7 @@ function EditOrderActions() {
                 ) : ''}
                 {emailOrder ? (
                     <div id="emailOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
-                        <EmailOrder />
+                        <EmailOrder email={emailOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {deleteOrder ? (

@@ -6,6 +6,8 @@ from app.models import Category, Product, Orders, Items
 from app.db import get_db
 import logging
 import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 load_dotenv()
 
@@ -314,28 +316,28 @@ def create():
         db.rollback()
         return jsonify(message='Invalid Data'), 400
     
-    ## send email to customer
-    # email = getenv('EMAIL')
-    # password = getenv('PASSWORD')
+    # send email to customer
+    email = getenv('EMAIL')
+    password = getenv('PASSWORD')
 
-    # final_items = ''
-    # all_items = data["items"]
-    # all_items_list = all_items.split(", ")
-    # for item in all_items_list:
-    #     final_items += f'{item}\n'
+    final_items = ''
+    all_items = data["items"]
+    all_items_list = all_items.split(", ")
+    for item in all_items_list:
+        final_items += f'{item}\n'
 
-    # formatted_total = f'{data["total"]:,.2f}'
-    # final_total = f'${str(formatted_total)}'
+    formatted_total = f'{data["total"]:,.2f}'
+    final_total = f'${str(formatted_total)}'
 
-    # with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
-    #     connection.starttls()
-    #     connection.login(user=email, password=password)
-    #     email_content = f'Subject: Thank you for your order!\n\nHi {data["name"]},\n\nWe appreciate you ordering from us, we know you have other choices. Here is a summary of your order:\n\n{final_items}\nTotal: {final_total}\n\nYour order will be shipped soon to:\n\n{data["address"]}\n{data["city"]},{data["state"]} {data["zip"]}\n\nIf there is a problem with your order please respond to this email.\n\nSincerely,\n\nAudiophile Management'
-    #     connection.sendmail(
-    #         from_addr=email,
-    #         to_addrs=data['email'],
-    #         msg=email_content
-    #     )
+    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+        connection.starttls()
+        connection.login(user=email, password=password)
+        email_content = f'Subject: Thank you for your order!\n\nHi {data["name"]},\n\nWe appreciate you ordering from us, we know you have other choices. Here is a summary of your order:\n\n{final_items}\nTotal: {final_total}\n\nYour order will be shipped soon to:\n\n{data["address"]}\n{data["city"]},{data["state"]} {data["zip"]}\n\nIf there is a problem with your order please respond to this email.\n\nSincerely,\n\nAudiophile Management'
+        connection.sendmail(
+            from_addr=email,
+            to_addrs=data['email'],
+            msg=email_content
+        )
     return jsonify(id = new_order.id)
 
     
@@ -440,3 +442,32 @@ def delete(id):
     
     else:
         return jsonify({'error': 'order not found' }), 404
+
+def send_email(subject, body, to_email):
+    from_email = getenv('EMAIL')
+    password = getenv('PASSWORD')
+    smtp_server = getenv('SERVER')
+    port = getenv('PORT')
+    msg = MIMEMultipart()
+    msg['From'] = from_email
+    msg['To'] = to_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    with smtplib.SMTP(smtp_server, port) as server:
+        server.starttls()
+        server.login(from_email, password)
+        server.sendmail(from_email, to_email, msg.as_string())
+
+@bp.route('/send_email', methods=['POST'])
+def send_email_route():
+    data = request.get_json()
+    to_email = data.get('to_email')
+    subject = data.get('subject')
+    body = data.get('body')
+
+    try:
+        send_email(subject, body, to_email)
+        return jsonify({'message': 'Email sent'})
+    except Exception as e:
+        return jsonify({'error': 'Failed to send email', 'details': str(e)}), 500
