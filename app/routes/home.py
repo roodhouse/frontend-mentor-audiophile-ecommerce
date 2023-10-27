@@ -459,7 +459,7 @@ def send_email(subject, body, to_email):
         server.login(from_email, password)
         server.sendmail(from_email, to_email, msg.as_string())
 
-@bp.route('/send_email', methods=['POST'])
+@bp.route('/api/send_email', methods=['POST'])
 def send_email_route():
     data = request.get_json()
     to_email = data.get('to_email')

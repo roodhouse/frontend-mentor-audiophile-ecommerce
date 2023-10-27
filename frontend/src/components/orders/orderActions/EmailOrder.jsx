@@ -14,9 +14,9 @@ function EmailOrder({ email, closeMenu }) {
   const subject = new label(`Subject: `)
   const message = new label('Message:')
 
-  const { register, handleSubmit, formState: {errors} } = useForm()
+  const { register, resetField, handleSubmit, formState: {errors} } = useForm()
 
-  const onSubmit = (data) => {
+  const onSubmit  = async (data) => {
     
     const emailData = {
       to_email: currentOrder.order_email,
@@ -24,16 +24,26 @@ function EmailOrder({ email, closeMenu }) {
       body: data.message
     }
 
-    fetch('/send_email', {
+    await fetch('http://127.0.0.1:5000/api/send_email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(emailData)
     })
-    .then((response) => response.json())
+    .then((response) => {
+      if (response.ok) {
+        resetField('subject')
+        resetField('message')
+      } else {
+        alert(response.statusText)
+      }
+      return response.json()
+    })
     .then((data) => console.log(data))
     .catch((error) => console.error(error))
+    .then(() => alert('message sent!'))
+    closeMenu('email')
   }
 
   const onError = () => {
