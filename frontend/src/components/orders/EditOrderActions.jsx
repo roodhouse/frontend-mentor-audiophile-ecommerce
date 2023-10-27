@@ -72,23 +72,30 @@ function EditOrderActions() {
     }
 
     const closeMenuItem = (e) => {
-        let closeSelected = e.currentTarget.parentElement.getAttribute('data-menu')
-        switch (closeSelected) {
-            case 'view':
-                setViewOrder(false)
-                break
-            case 'edit':
-                setEditOrder(false)
-                break
-            case 'complete':
-                setCompleteOrder(false)
-                break
-            case 'delete':
-                setDeleteOrder(false)
-                dashboard()
-                break
-            default:
-                console.log('go')
+        if (e === 'email') {
+            setEmailOrder(false)
+        } else {
+            let closeSelected = e.currentTarget.parentElement.getAttribute('data-menu')
+            switch (closeSelected) {
+                case 'view':
+                    setViewOrder(false)
+                    break
+                case 'edit':
+                    setEditOrder(false)
+                    break
+                case 'complete':
+                    setCompleteOrder(false)
+                    break
+                case 'email':
+                    setEmailOrder(false)
+                    break
+                case 'delete':
+                    setDeleteOrder(false)
+                    dashboard()
+                    break
+                default:
+                    console.log('go')
+            }
         }
         
     }
@@ -141,7 +148,7 @@ function EditOrderActions() {
                 ) : ''}
                 {emailOrder ? (
                     <div id="emailOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
-                        <EmailOrder />
+                        <EmailOrder email={emailOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {deleteOrder ? (

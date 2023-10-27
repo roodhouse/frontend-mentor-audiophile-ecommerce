@@ -14,7 +14,7 @@ function EditOrderGeneralDetails() {
 
   return (
     <>
-        <div id="editOrderGeneralDetailsContainer">
+          <div id="editOrderGeneralDetailsContainer">
             <div id="editHeadingContainer" className={`${general.styles} !mb-[2px]`}>
                 <p>{general.text}</p>
             </div>
