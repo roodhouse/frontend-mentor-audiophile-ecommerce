@@ -83,6 +83,9 @@ function EditOrderActions() {
             case 'complete':
                 setCompleteOrder(false)
                 break
+            case 'email':
+                setEmailOrder(false)
+                break
             case 'delete':
                 setDeleteOrder(false)
                 dashboard()
