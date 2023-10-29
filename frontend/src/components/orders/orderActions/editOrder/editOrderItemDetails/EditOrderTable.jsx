@@ -12,12 +12,12 @@ function EditOrderTable({ register }) {
         {orderPage ? (
             <div id="orderTableContainer">
                 <table className='min-w-full border-collapse block md:table'>
-                    <thead className='block md:table-header-group'>
+                    <thead className='block md:table-header-group md:border-l md:border-r'>
                         <tr className='border border-deepOrange md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative'>
-                            <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell'>Item</th>
-                            <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell'>Cost</th>
-                            <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell'>Qty</th>
-                            <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell'>Total</th>
+                            <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell md:text-center'>Item</th>
+                            <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell md:text-center'>Cost</th>
+                            <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell md:text-center'>Qty</th>
+                            <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell md:text-center'>Total</th>
                         </tr>
                     </thead>
                     <tbody className='block md:table-row-group'>
@@ -34,8 +34,8 @@ function EditOrderTable({ register }) {
                                         </span>
                                     </span>
                                 </td>
-                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Cost</span>${order.price.toLocaleString()}</td>
-                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs'>
+                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs md:text-center'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Cost</span>${order.price.toLocaleString()}</td>
+                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs md:text-center'>
                                     <span className='inline-block w-1/3 md:hidden font-bold text-xs'>Qty</span>
                                     <input 
                                         name={`${order.id}_editOrderQty`}
@@ -51,16 +51,16 @@ function EditOrderTable({ register }) {
                                         value={order.qty} 
                                         id={`${order.id}_editOrderQty`}
                                         onChange={(e) => updateItemQuantity(order.name, e.target.value)} 
-                                        className='w-[15%] h-[33px] pr-0 text-center text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
+                                        className='w-[15%] md:w-[25%] h-[33px] pr-0 text-center text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
                                     />
                                 </td>
-                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs '>
-                                    <span className=''>
-                                        <span className=''>
-                                            <span className='inline-block w-1/3 md:hidden font-bold text-xs'>Total</span>
-                                            <span className='inline-block w-1/3 md:hidden font-bold text-xs'>${(order.price * order.qty).toLocaleString()}</span>
+                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs md:text-center '>
+                                    <span className='md:flex md:flex-col md:items-center'>
+                                        <span className='md:flex md:w-full'>
+                                            <span className='inline-block w-1/3 md:w-full font-bold text-xs'>Total</span>
+                                            <span className='inline-block w-1/3 md:w-full font-bold text-xs'>${(order.price * order.qty).toLocaleString()}</span>
                                         </span>
-                                        <span className='inline-block w-1/3 md:hidden font-bold text-xs text-right' onClick={handleRemove} data-item={order.name}>
+                                        <span className='inline-block w-1/3 md:w-full font-bold text-xs text-right' onClick={handleRemove} data-item={order.name}>
                                             <button>Remove Item</button>
                                         </span>
                                     </span>

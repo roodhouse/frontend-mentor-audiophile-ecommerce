@@ -16,10 +16,10 @@ function EditOrderCustomerDetails() {
     <>
         {orderPage ? (
             <>
-                <div id="editOrderHeadingWrapper">
+                <div id="editOrderHeadingWrapper" className='md:w-full'>
                     <EditOrderHeading />
                 </div>
-                <div id="editOrderDateWrapper">
+                <div id="editOrderDateWrapper" className='md:w-full'>
                     <EditOrderDate payType={currentOrder.order_cash ? 'cash' : 'eMoney'} />
                 </div>
                 <div id="editOrderGeneralDetailsWrapper" className='mb-4'>

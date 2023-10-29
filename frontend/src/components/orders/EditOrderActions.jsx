@@ -91,7 +91,6 @@ function EditOrderActions() {
                     break
                 case 'delete':
                     setDeleteOrder(false)
-                    dashboard()
                     break
                 default:
                     console.log('go')
@@ -104,7 +103,7 @@ function EditOrderActions() {
 
   return (
     <>
-        <div id="editOrderActionsContainer" className='w-[327px] bg-offWhite p-6 rounded-lg'>
+        <div id="editOrderActionsContainer" className='w-[327px] md:w-full bg-offWhite p-6 rounded-lg'>
             <div id="orderActionsHeader" className='flex justify-between items-center'>
                 <div id="orderActionText" className={`${orderActions.styles} mb-4 text-[28px] underline decoration-deepOrange`}>
                     <p>{orderActions.text}</p>
@@ -132,28 +131,28 @@ function EditOrderActions() {
         {viewOrder || editOrder || completeOrder || emailOrder || deleteOrder ? (
             <div id="orderActionOptionsContainer" >
                 {viewOrder ? (
-                    <div id="viewOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
+                    <div id="viewOrderWrapper" className='w-[327px] md:w-full bg-offWhite p-6 rounded-lg mt-6'>
                         <ViewOrder view={viewOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {editOrder ? (
-                    <div id="editOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
+                    <div id="editOrderWrapper" className='w-[327px] md:w-full bg-offWhite p-6 rounded-lg mt-6'>
                         <EditOrder edit={editOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {completeOrder ? (
-                    <div id="completeOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
+                    <div id="completeOrderWrapper" className='w-[327px] md:w-full bg-offWhite p-6 rounded-lg mt-6'>
                         <CompleteOrder complete={completeOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {emailOrder ? (
-                    <div id="emailOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
+                    <div id="emailOrderWrapper" className='w-[327px] md:w-full bg-offWhite p-6 rounded-lg mt-6'>
                         <EmailOrder email={emailOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
                 {deleteOrder ? (
-                    <div id="deleteOrderWrapper" className='w-[327px] bg-offWhite p-6 rounded-lg mt-6'>
-                        <DeleteOrder delete={deleteOrder} closeMenu={closeMenuItem} />
+                    <div id="deleteOrderWrapper" className='w-[327px] md:w-full bg-offWhite p-6 rounded-lg mt-6'>
+                        <DeleteOrder deleteItem={deleteOrder} closeMenu={closeMenuItem} />
                     </div>
                 ) : ''}
             </div>

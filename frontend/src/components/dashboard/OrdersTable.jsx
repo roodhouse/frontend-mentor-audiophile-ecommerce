@@ -15,14 +15,14 @@ function OrdersTable() {
             orders ? (
         <div id="ordersTableContainer">
             <table className='min-w-full border-collapse block md:table'>
-                <thead className='block md:table-header-group'>
+                <thead className='block md:table-header-group md:border-l md:border-r'>
                     <tr className='border border-deepOrange md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative'>
-                        <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell'>Order</th>
-                        <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell'>Date</th>
-                        <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell'>Name</th>
-                        <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell'>Total</th>
-                        <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell'>Status</th>
-                        <th className='bg-black p-2 text-white font-bold md:border-deepOrange text-left block md:table-cell'>Actions</th>
+                        <th className='bg-black p-2 md:text-center text-white font-bold md:border-deepOrange text-left block md:table-cell'>Order</th>
+                        <th className='bg-black p-2 md:text-center text-white font-bold md:border-deepOrange text-left block md:table-cell'>Date</th>
+                        <th className='bg-black p-2 md:text-center text-white font-bold md:border-deepOrange text-left block md:table-cell'>Name</th>
+                        <th className='bg-black p-2 md:text-center text-white font-bold md:border-deepOrange text-left block md:table-cell'>Total</th>
+                        <th className='bg-black p-2 md:text-center text-white font-bold md:border-deepOrange text-left block md:table-cell'>Status</th>
+                        <th className='bg-black p-2 md:text-center text-white font-bold md:border-deepOrange text-left block md:table-cell'>Actions</th>
                     </tr>
                 </thead>
                 <tbody className='block md:table-row-group'>

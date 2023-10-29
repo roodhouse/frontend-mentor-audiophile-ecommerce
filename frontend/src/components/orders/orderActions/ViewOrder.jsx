@@ -8,7 +8,7 @@ function ViewOrder({ view, closeMenu }) {
   return (
     <>
       <div id="viewOrderContainer">
-        <div id="viewOrderCustomerDetailsWrapper" className='pb-6'>
+        <div id="viewOrderCustomerDetailsWrapper" className='pb-6 md:flex flex-wrap justify-between'>
           <ViewOrderCustomerDetails />
         </div>
         <div id="viewOrderItemDetailsWrapper" className='pb-6'>

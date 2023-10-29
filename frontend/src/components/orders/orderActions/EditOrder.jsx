@@ -26,7 +26,7 @@ function EditOrder({ edit, closeMenu }) {
     <>
       <form noValidate onSubmit={handleSubmit(onSubmit, onError)}>
           <div id="editOrderContainer">
-            <div id="editOrderCustomerDetailsWrapper" className='pb-6'>
+            <div id="editOrderCustomerDetailsWrapper" className='pb-6 md:flex md:flex-wrap md:justify-between'>
                 <EditOrderCustomerDetails />
               </div>
               <div id="editOrderItemDetailsWrapper" className='pb-6'>
