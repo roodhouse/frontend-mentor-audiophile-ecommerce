@@ -33,10 +33,10 @@ function App() {
             <div id='checkoutWrapper' style={checkoutPage ? {display: 'flex'} : {display: 'none'}} className='justify-center pt-[76px] md:pt-[90px] xl:pt-[96px] px-6 md:px-10 xl:px-[165px] xl:mb-[160px] bg-offWhite'>
               <Checkout />
             </div>
-            <div id='dashboardWrapper' style={dashboardPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
-              <DashBoard />
-            </div>
             <EditProvider>
+              <div id='dashboardWrapper' style={dashboardPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
+                <DashBoard />
+              </div>
               <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-20 xl:mb-[160px]'>
                 <Orders />
               </div>
