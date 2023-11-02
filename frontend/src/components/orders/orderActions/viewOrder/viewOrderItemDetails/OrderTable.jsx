@@ -23,7 +23,7 @@ function OrderTable() {
                     <tbody className='block md:table-row-group'>
                         {orderedProducts.map((order, index) => (
                             <tr key={index} className={`${index % 2 === 0 ? 'bg-offWhite text-black' : 'bg-charcoal text-offWhite'} border border-deepOrange md:border-none block md:table-row`}>
-                                <td className='p-2 md:border md:border-deepOrange text-left flex items-center md:table-cell text-xs'>
+                                <td className='p-2 md:border md:border-t-0 md:border-deepOrange text-left flex items-center md:table-cell text-xs'>
                                     <span className='inline-block w-1/3 md:hidden font-bold text-xs'>Item</span>
                                     <span className='flex items-center justify-between w-full'>
                                         <span>
@@ -34,9 +34,9 @@ function OrderTable() {
                                         </span>
                                     </span>
                                 </td>
-                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs md:text-center'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Cost</span>${order.price.toLocaleString()}</td>
-                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs md:text-center'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Qty</span>{order.qty}</td>
-                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs md:text-center'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Total</span>${(order.price * order.qty).toLocaleString()}</td>
+                                <td className='p-2 md:border md:border-t-0 md:border-deepOrange text-left block md:table-cell text-xs md:text-center'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Cost</span>${order.price.toLocaleString()}</td>
+                                <td className='p-2 md:border md:border-t-0 md:border-deepOrange text-left block md:table-cell text-xs md:text-center'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Qty</span>{order.qty}</td>
+                                <td className='p-2 md:border md:border-t-0 md:border-deepOrange text-left block md:table-cell text-xs md:text-center'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Total</span>${(order.price * order.qty).toLocaleString()}</td>
                             </tr>
                         ))}
                     </tbody>

@@ -23,7 +23,7 @@ function EditOrderTable({ register }) {
                     <tbody className='block md:table-row-group'>
                         {orderedProducts.map((order, index) => (
                             <tr key={index} className={`${index % 2 === 0 ? 'bg-offWhite text-black' : 'bg-charcoal text-offWhite'} border border-deepOrange md:border-none block md:table-row`}>
-                                <td className='p-2 md:border md:border-deepOrange text-left flex items-center md:table-cell text-xs'>
+                                <td className='p-2 md:border md:border-t-0 md:border-deepOrange text-left flex items-center md:table-cell text-xs'>
                                     <span className='inline-block w-1/3 md:hidden font-bold text-xs'>Item</span>
                                     <span className='flex items-center justify-between w-full'>
                                         <span>
@@ -34,8 +34,8 @@ function EditOrderTable({ register }) {
                                         </span>
                                     </span>
                                 </td>
-                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs md:text-center'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Cost</span>${order.price.toLocaleString()}</td>
-                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs md:text-center'>
+                                <td className='p-2 md:border md:border-t-0 md:border-deepOrange text-left block md:table-cell text-xs md:text-center'><span className='inline-block w-1/3 md:hidden font-bold text-xs'>Cost</span>${order.price.toLocaleString()}</td>
+                                <td className='p-2 md:border md:border-t-0 md:border-deepOrange text-left block md:table-cell text-xs md:text-center'>
                                     <span className='inline-block w-1/3 md:hidden font-bold text-xs'>Qty</span>
                                     <input 
                                         name={`${order.id}_editOrderQty`}
@@ -54,7 +54,7 @@ function EditOrderTable({ register }) {
                                         className='w-[15%] md:w-[25%] h-[33px] pr-0 text-center text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
                                     />
                                 </td>
-                                <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs md:text-center '>
+                                <td className='p-2 md:border md:border-t-0 md:border-deepOrange text-left block md:table-cell text-xs md:text-center '>
                                     <span className='md:flex md:flex-col md:flex-wrap md:items-center md:w-full'>
                                         <span className='md:flex md:w-full'>
                                             {/* <span className='inline-block w-1/3 md:w-full font-bold text-xs'>Total</span> */}

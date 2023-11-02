@@ -43,14 +43,14 @@ function EditOrderBillingDetails() {
                      />
                   </span>
                 </p>
-                <p className='flex justify-between items-center w-full mb-4'>{cityLabel.text}
+                <p className='flex justify-between items-center w-full mb-4'><span>{cityLabel.text}</span>
                   <span className='font-medium w-[165px]'>
                     <input 
                       name='editOrderAddressCity' 
                       className='h-[33px] text-xs text-deepOrange font-bold bg-offWhite caret-deepOrange rounded-lg border-borderWhite focus:border-deepOrange focus:outline-none focus:ring-0 hover:border-deepOrange' 
                       value={city}
                       onChange={(e) => cityChange(e)} 
-                    />,
+                    />
                   </span>
                 </p>
                 <p className='flex justify-between items-center w-full mb-4'>{stateLabel.text}

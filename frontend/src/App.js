@@ -10,6 +10,9 @@ import Orders from './components/Orders';
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
+// place order table on dashboard into same type of container found on the edit order page
+// add a 2nd item to the dashboard for product inventory and adding new products
+
 function App() {
 
   const { home, categoryPage, productPage, checkoutPage, dashboardPage, orderPage } = useMain()
