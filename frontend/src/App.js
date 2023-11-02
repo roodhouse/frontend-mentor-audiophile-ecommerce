@@ -37,7 +37,7 @@ function App() {
               <DashBoard />
             </div>
             <EditProvider>
-              <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-16 xl:mb-[160px]'>
+              <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-20 xl:mb-[160px]'>
                 <Orders />
               </div>
             </EditProvider>

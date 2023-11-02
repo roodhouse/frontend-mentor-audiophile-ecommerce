@@ -55,12 +55,12 @@ function EditOrderTable({ register }) {
                                     />
                                 </td>
                                 <td className='p-2 md:border md:border-deepOrange text-left block md:table-cell text-xs md:text-center '>
-                                    <span className='md:flex md:flex-col md:items-center'>
+                                    <span className='md:flex md:flex-col md:flex-wrap md:items-center md:w-full'>
                                         <span className='md:flex md:w-full'>
-                                            <span className='inline-block w-1/3 md:w-full font-bold text-xs'>Total</span>
+                                            {/* <span className='inline-block w-1/3 md:w-full font-bold text-xs'>Total</span> */}
                                             <span className='inline-block w-1/3 md:w-full font-bold text-xs'>${(order.price * order.qty).toLocaleString()}</span>
                                         </span>
-                                        <span className='inline-block w-1/3 md:w-full font-bold text-xs text-right' onClick={handleRemove} data-item={order.name}>
+                                        <span className='inline-block w-1/3 md:w-full font-bold text-xs text-right md:text-center md:pt-[10px] md:hover:text-deepOrange' onClick={handleRemove} data-item={order.name}>
                                             <button>Remove Item</button>
                                         </span>
                                     </span>
