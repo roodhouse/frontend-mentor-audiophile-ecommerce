@@ -10,6 +10,9 @@ import Orders from './components/Orders';
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
+// place order table on dashboard into same type of container found on the edit order page
+// add a 2nd item to the dashboard for product inventory and adding new products
+
 function App() {
 
   const { home, categoryPage, productPage, checkoutPage, dashboardPage, orderPage } = useMain()
@@ -33,11 +36,11 @@ function App() {
             <div id='checkoutWrapper' style={checkoutPage ? {display: 'flex'} : {display: 'none'}} className='justify-center pt-[76px] md:pt-[90px] xl:pt-[96px] px-6 md:px-10 xl:px-[165px] xl:mb-[160px] bg-offWhite'>
               <Checkout />
             </div>
-            <div id='dashboardWrapper' style={dashboardPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
-              <DashBoard />
-            </div>
             <EditProvider>
-              <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-16 xl:mb-[160px]'>
+              <div id='dashboardWrapper' style={dashboardPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-[120px] xl:mb-[160px]'>
+                <DashBoard />
+              </div>
+              <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-20 xl:mb-[160px]'>
                 <Orders />
               </div>
             </EditProvider>

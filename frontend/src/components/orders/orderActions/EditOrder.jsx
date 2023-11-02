@@ -26,21 +26,23 @@ function EditOrder({ edit, closeMenu }) {
     <>
       <form noValidate onSubmit={handleSubmit(onSubmit, onError)}>
           <div id="editOrderContainer">
-            <div id="editOrderCustomerDetailsWrapper" className='pb-6'>
+            <div id="editOrderCustomerDetailsWrapper" className='pb-6 md:flex md:flex-wrap md:justify-between'>
                 <EditOrderCustomerDetails />
               </div>
               <div id="editOrderItemDetailsWrapper" className='pb-6'>
                 <EditOrderItemDetails register={register} />
               </div>
-              <div id="editOrderTotalWrapper" className='pb-6'>
-                <ViewOrderTotal />
-              </div>
-              <div id="submitWrapper" className='pb-6 flex justify-center'>
-                <Submit />
+              <div id="TotalSubmitContainer" className='md:flex md:items-center md:justify-between'>
+                <div id="editOrderTotalWrapper" className='pb-6 md:pb-0'>
+                  <ViewOrderTotal />
+                </div>
+                <div id="submitWrapper" className='pb-6 flex justify-center md:pb-0'>
+                  <Submit />
+                </div>
               </div>
           </div>
       </form>
-        <div id="editCloseButtonWrapper" data-menu="edit" className='flex justify-center'>
+        <div id="editCloseButtonWrapper" data-menu="edit" className='flex justify-center md:pt-6'>
           <CloseButton view={edit} closeMenu={closeMenu} />
         </div>
     </>

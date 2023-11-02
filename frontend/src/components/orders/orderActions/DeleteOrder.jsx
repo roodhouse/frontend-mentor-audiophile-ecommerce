@@ -4,7 +4,7 @@ import { title } from '../../checkout/checkoutForm/styles'
 import Confirm from '../../shared/buttons/Confirm'
 import { useEdit } from '../../../context/editContext'
 
-function DeleteOrder({complete, closeMenu}) {
+function DeleteOrder({deleteMenuItem, closeMenu}) {
 
   const { currentOrder } = useEdit()
 
@@ -22,7 +22,7 @@ function DeleteOrder({complete, closeMenu}) {
             <Confirm closeMenu={closeMenu} />
           </div>
           <div id="deleteCloseButtonWrapper" data-menu="delete" className='flex justify-center'>
-            <CloseButton view={complete} closeMenu={closeMenu} />
+            <CloseButton view={deleteMenuItem} closeMenu={closeMenu} />
           </div>
         </div>
     </>

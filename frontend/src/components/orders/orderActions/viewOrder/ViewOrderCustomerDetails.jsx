@@ -28,10 +28,10 @@ function ViewOrderCustomerDetails() {
     <>
     {orderPage ? (
       <>
-        <div id="viewOrderHeadingWrapper">
+        <div id="viewOrderHeadingWrapper" className='md:w-full'>
             <ViewOrderHeading />
         </div>
-        <div id="viewOrderDateWrapper">
+        <div id="viewOrderDateWrapper" className='md:w-full'>
             <ViewOrderDate date={formattedDate} payType={currentOrder.order_cash ? 'cash' : 'eMoney'} />
         </div>
         <div id="viewOrderGeneralDetailsWrapper" className='mb-4'>
