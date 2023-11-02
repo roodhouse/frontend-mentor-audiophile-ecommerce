@@ -280,7 +280,7 @@ const EditProvider = ({ children }) => {
     
         if (currentOrder.order_items.length === 0) {
             // Handle case when the order is empty
-            deleteOrder();
+            deleteOrder(currentOrder.order_id);
             orderDeleted();
         } else {
             setItems(currentOrder.order_items.map((item) => ({
@@ -292,9 +292,11 @@ const EditProvider = ({ children }) => {
     }
 
     // delete order
-    async function deleteOrder() {
+    async function deleteOrder(id) {
+        console.log(id)
+    
         if (window.confirm('Deleting this item will delete the entire order. Are you sure you want to proceed?') === true) {
-            const response = await fetch(`http://127.0.0.1:5000/api/orders/${currentOrder.order_id}`, {
+            const response = await fetch(`http://127.0.0.1:5000/api/orders/${id}`, {
                 method: 'DELETE',
             })
             if(response.ok) {

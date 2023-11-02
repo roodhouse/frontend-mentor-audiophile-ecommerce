@@ -13,6 +13,11 @@ function OrdersTable() {
         let id = e.target.parentElement.parentElement.id
         orderClick(id)
     }
+
+    const handleDelete = (e) => {
+        let id = e.target.parentElement.parentElement.id
+        deleteOrder(id)
+    }
     
   return (
     <>
@@ -42,7 +47,7 @@ function OrdersTable() {
                             <td className='p-2 text-left md:text-center block md:table-cell'>
                                 <span className='inline-block w-1/3 md:hidden font-bold'>Actions</span>
                                 <button onClick={handleClick} id={`${order.order_id}_edit`} className='text-white font-bold py-1 px-2 rounded border border-deepOrange bg-deepOrange hover:bg-lightOrange mr-2'>Edit</button>
-                                <button id={`${order.order_id}_delete`} onClick={deleteOrder} className='text-white font-bold py-1 px-2 rounded border border-black bg-black hover:bg-offWhite hover:text-black'>Delete</button>
+                                <button id={`${order.order_id}_delete`} onClick={handleDelete} className='text-white font-bold py-1 px-2 rounded border border-black bg-black hover:bg-offWhite hover:text-black'>Delete</button>
                             </td>
                         </tr>
                     ))}
