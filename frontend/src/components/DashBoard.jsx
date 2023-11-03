@@ -21,23 +21,26 @@ function DashBoard() {
                 <DashboardHeading />
             </div>
             <div id="dashMenuOptions" className='w-[327px] md:w-full bg-offWhite p-6 rounded-lg'>
-                <div id="dashOrderOption" className='flex justify-between items-center'>
-                    <div id="dashOrderOptionText" className={`${allOrders.styles} mb-4 text-[28px] underline decoration-deepOrange`}>
-                        <p>{allOrders.text}</p>
+                <div id="dashOrderOption" className='flex flex-col justify-between items-center'>
+                    <div id="dashOrderOptionHeader" className='flex w-full justify-between'>
+                        <div id="dashOrderOptionText" className={`${allOrders.styles} ${openMenu ? '!mb-4' : '!mb-0'} text-[28px] underline decoration-deepOrange`}>
+                            <p>{allOrders.text}</p>
+                        </div>
+                        <div id="dashOrderOptionIcon" onClick={handleClick} className='cursor-pointer text-[28px]'>
+                            <p>{ !openMenu ? <HiMenu /> : <HiMenuAlt3 /> }</p>
+                        </div>
                     </div>
-                    <div id="dashOrderOptionIcon" onClick={handleClick} className='cursor-pointer text-[28px]'>
-                        <p>{ !openMenu ? <HiMenu /> : <HiMenuAlt3 /> }</p>
-                    </div>
+                    { openMenu ? (
+                        <div id="ordersContainer" className='bg-white w-full md:px-10 xl:px-[165px] custom:px-[165px]'>
+                            <div id="ordersTableWrapper">
+                                <OrdersTable />
+                            </div>
+                        </div>
+                    ): '' }
                 </div>
             </div>
 
-            { openMenu ? (
-                <div id="ordersContainer" className='bg-white px-6 md:px-10 xl:px-[165px] custom:px-[165px]'>
-                    <div id="ordersTableWrapper">
-                        <OrdersTable />
-                    </div>
-                </div>
-            ): '' }
+            
         </div>
     </>
   )
