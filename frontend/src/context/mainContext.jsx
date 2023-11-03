@@ -27,6 +27,7 @@ const MainProvider = ({ children }) => {
   const [ orders, setOrders ] = useState([])
   const [ orderUpdate, setOrderUpdate ] = useState(false)
   const [ orderDelete, setOrderDelete ] = useState(false)
+  const [ productTable, setProductTable ] = useState('')
 
   // Fetch requests
   useEffect(() => {
@@ -139,6 +140,7 @@ const MainProvider = ({ children }) => {
     setCheckoutPage('')
     setDashboardPage('')
     setOrderPage('')
+    setProductTable('')
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -155,6 +157,7 @@ const MainProvider = ({ children }) => {
     setCheckoutPage('')
     setDashboardPage('')
     setOrderPage('')
+    setProductTable('')
     setCategoryPage(categoryName)
     window.scrollTo(0,0)
     enableScroll()
@@ -173,6 +176,7 @@ const MainProvider = ({ children }) => {
     setCheckoutPage('')
     setDashboardPage('')
     setOrderPage('')
+    setProductTable('')
     setProductPage(productName)
     window.scrollTo(0,0)
     enableScroll()
@@ -189,7 +193,25 @@ const MainProvider = ({ children }) => {
     setCheckoutPage('')
     setDashboardPage('')
     setProductPage('')
+    setProductTable('')
     setOrderPage(orderNumber)
+    window.scrollTo(0,0)
+    enableScroll()
+  }
+
+  // Product table state
+  const productTableClick = (productId) => {
+    navigate(currentState())
+    setHome('')
+    setMobileMenu(false)
+    setCartMenu(false)
+    setThankYou(false)
+    setCategoryPage('')
+    setCheckoutPage('')
+    setDashboardPage('')
+    setProductPage('')
+    setOrderPage('')
+    setProductTable(productId)
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -205,6 +227,7 @@ const MainProvider = ({ children }) => {
     setCategoryPage('')
     setDashboardPage('')
     setOrderPage('')
+    setProductTable('')
     setCheckoutPage('checkout')
     window.scrollTo(0,0)
     enableScroll()
@@ -220,6 +243,7 @@ const MainProvider = ({ children }) => {
     setCategoryPage('')
     setCheckoutPage('')
     setOrderPage('')
+    setProductTable('')
     setOrderDelete(false)
     setDashboardPage('dash')
     window.scrollTo(0,0)
@@ -404,7 +428,8 @@ const MainProvider = ({ children }) => {
         singleCategory, singleProduct, categories, products, home, categoryPage, productPage, checkoutPage, mobileMenu, addToCart, 
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
         cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkout, thankYou, thankYouMenu, 
-        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick, orderUpdated, orderDelete, orderDeleted
+        theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick, orderUpdated, orderDelete, orderDeleted,
+        productTableClick, productTable
       }
     }>
     {children}
