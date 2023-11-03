@@ -4,8 +4,6 @@ import { useEdit } from '../../context/editContext'
 
 function ProductsTable() {
 
-    // add close button to bottom of this and order table
-    // work on style for expanding screen
     // hook up delete product instead of delete order
 
     const { products, productTableClick } = useMain()
@@ -54,7 +52,7 @@ function ProductsTable() {
                                     <td className='p-2 text-left md:text-center flex items-center md:table-cell'><span className='inline-block w-1/3 md:hidden font-bold'>Image</span><img className='w-16' src={product.main_image_mobile} alt={product.name} /></td>
                                     <td className='p-2 text-left md:text-center block md:table-cell'><span className='inline-block w-1/3 md:hidden font-bold'>Inventory</span>{product.inventory}</td>
                                     
-                                    <td className='p-2 text-left md:text-center block md:table-cell'>
+                                    <td className='p-2 text-left md:text-center block md:flex md:items-center md:h-[72px]'>
                                         <span className='inline-block w-1/3 md:hidden font-bold'>Actions</span>
                                         <button onClick={handleClick} id={`${product.id}_edit`} className='text-white font-bold py-1 px-2 rounded border border-deepOrange bg-deepOrange hover:bg-lightOrange mr-2'>Edit</button>
                                         <button id={`${product.id}_delete`} onClick={handleDelete} className='text-white font-bold py-1 px-2 rounded border border-black bg-black hover:bg-offWhite hover:text-black'>Delete</button>
@@ -64,7 +62,7 @@ function ProductsTable() {
                         </tbody>
                     </table>
                 </div>
-            ) : []
+            ) : []   
         }
     </>
   )

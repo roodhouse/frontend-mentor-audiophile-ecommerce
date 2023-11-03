@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import DashboardHeading from './dashboard/DashboardHeading'
 import OrdersTable from './dashboard/OrdersTable'
 import { label } from './checkout/checkoutForm/styles'
 import { HiMenu, HiMenuAlt3 } from 'react-icons/hi'
 import ProductsTable from './dashboard/ProductsTable'
+import CloseButton from './orders/orderActions/viewOrder/CloseButton'
 
 const allOrders = new label('All Orders')
 const products = new label('Products')
@@ -21,6 +22,22 @@ function DashBoard() {
     const handleProductClick = () => {
         openProductMenu ? setOpenProductMenu(false) : setOpenProductMenu(true)
         setOpenOrderMenu(false)
+    }
+
+    const closeMenuItem = (e) => {
+            let closeSelected = e.currentTarget.parentElement.getAttribute('data-menu')
+            switch (closeSelected) {
+                case 'orderMenu':
+                    setOpenOrderMenu(false)
+                    window.scrollTo(0,0)
+                    break
+                case 'productMenu':
+                    setOpenProductMenu(false)
+                    window.scrollTo(0,0)
+                    break
+                default:
+                    console.log('go')
+            }
     }
     
   return (
@@ -45,7 +62,11 @@ function DashBoard() {
                                 <div id="ordersTableWrapper">
                                     <OrdersTable />
                                 </div>
+                                <div id="orderMenuCloseButtonWrapper" data-menu="orderMenu" className='flex justify-center pt-6 bg-offWhite'>
+                                    <CloseButton view={openOrderMenu} closeMenu={closeMenuItem} />
+                                </div>
                             </div>
+                            
                         ): '' }
                     </div>
                 </div>
@@ -64,6 +85,9 @@ function DashBoard() {
                             <div id="productsContainer" className='bg-white w-full'>
                                 <div id="productsTableWrapper">
                                     <ProductsTable />
+                                </div>
+                                <div id="productsMenuCloseButtonWrapper" data-menu="productMenu" className='flex justify-center pt-6 bg-offWhite'>
+                                    <CloseButton view={openProductMenu} closeMenu={closeMenuItem} />
                                 </div>
                             </div>
                         ): '' }
