@@ -12,7 +12,7 @@ function Orders() {
             <div id="editOrderHeadingWrapper" className='mb-16 md:mb-[120px] xl:mb-[160px]'>
                 <EditOrderHeading />
             </div>
-            <div id="editOrderContent" className='flex justify-center self-center bg-white px-6 md:px-10 xl:px-[5%] md:w-[768px]'>
+            <div id="editOrderContent" className='flex justify-center self-center bg-white px-6 md:0 md:w-[768px]'>
                 <div id="editOrderActionsWrapper" className='md:w-full'>
                     <EditOrderActions />
                 </div>
