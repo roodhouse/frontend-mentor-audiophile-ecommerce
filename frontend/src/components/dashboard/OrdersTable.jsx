@@ -7,8 +7,6 @@ function OrdersTable() {
     const { orders, orderClick } = useMain()
     const { deleteOrder } = useEdit()
 
-    // error with delete order...
-
     const handleClick = (e) => {        
         let id = e.target.parentElement.parentElement.id
         orderClick(id)
@@ -37,7 +35,7 @@ function OrdersTable() {
                 </thead>
                 <tbody className='block md:table-row-group'>
                     {orders.map((order) => (
-                        <tr key={order.order_id} id={order.order_id} className={`${order.order_id % 2 === 0 ? 'bg-offWhite text-black' : 'bg-charcoal text-offWhite'} border border-deepOrange md:border-none block md:table-row`}>
+                        <tr key={order.order_id} id={order.order_id} className={`${order.order_id % 2 === 0 ? 'bg-almostWhite text-black' : 'bg-charcoal text-offWhite'} border border-deepOrange md:border-none block md:table-row`}>
                             <td onClick={handleClick} className='p-2 text-left md:text-center block md:table-cell'><span className='inline-block w-1/3 md:hidden font-bold'>Order</span><span className='cursor-pointer hover:text-deepOrange'>{order.order_id}</span></td>
                             <td className='p-2 text-left md:text-center block md:table-cell'><span className='inline-block w-1/3 md:hidden font-bold'>Date</span>{new Date(order.order_date).toLocaleDateString('en-US', { timeZone: 'UTC' }, { year: 'numeric', month: 'long', day: 'numeric'})}</td>
                             <td className='p-2 text-left md:text-center block md:table-cell'><span className='inline-block w-1/3 md:hidden font-bold'>Name</span>{order.order_name}</td>

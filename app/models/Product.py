@@ -12,6 +12,7 @@ class Product(Base):
     sku = Column(String(250), nullable=False)
     description = Column(String(250), nullable=False)
     features = Column(String(1250), nullable=False)
+    inventory = Column(Integer, nullable=False)
 
     incl_one = Column(String(250))
     incl_one_quan = Column(Integer)
