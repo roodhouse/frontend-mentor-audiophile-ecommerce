@@ -4,24 +4,21 @@ import { useEdit } from '../../context/editContext'
 
 function ProductsTable() {
 
-    // hook up delete product instead of delete order
-
     const { products, productTableClick } = useMain()
-    // create deleteProduct here
-    const { deleteOrder } = useEdit()
+    const { deleteProduct } = useEdit()
 
     console.log(products)
 
-    // need to create all product route
+    // need to create single product route to go to the view details / edit page for the product
     const handleClick = (e) => {        
         let id = e.target.parentElement.parentElement.id
         productTableClick(id)
     }
 
-    // need to create delete product route
+    // need to create delete product route / use again on the single product page
     const handleDelete = (e) => {
         let id = e.target.parentElement.parentElement.id
-        // deleteProduct(id)
+        deleteProduct(id)
     }
     
   return (

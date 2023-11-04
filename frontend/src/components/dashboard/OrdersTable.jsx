@@ -7,8 +7,6 @@ function OrdersTable() {
     const { orders, orderClick } = useMain()
     const { deleteOrder } = useEdit()
 
-    // error with delete order...
-
     const handleClick = (e) => {        
         let id = e.target.parentElement.parentElement.id
         orderClick(id)

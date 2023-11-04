@@ -7,7 +7,7 @@ const EditContext = createContext()
 // define a provider component to wrap
 const EditProvider = ({ children }) => {
 
-    const { products, orderPage, orders, orderDeleted, orderUpdated } = useMain()
+    const { products, orderPage, orders, orderDeleted, orderUpdated, productDeleted } = useMain()
     const [ orderedProducts, setOrderedProducts ] = useState([])
     const [ currentOrder, setCurrentOrder ] = useState([])
     const [ id, setId ] = useState('')
@@ -309,12 +309,31 @@ const EditProvider = ({ children }) => {
         }
     }
 
+    // delete product
+    async function deleteProduct(id) {
+        console.log(id)
+
+        if (window.confirm('This will delete the product. Are you sure you want to proceed?') === true) {
+            const response = await fetch(`http://127.0.0.1:5000/api/product/${id}`, {
+                method: 'DELETE',
+            })
+            if(response.ok) {
+                console.log('product deleted')
+                productDeleted()
+            } else {
+                alert(response.statusText)
+                console.log('Error deleting product')
+            }
+        }
+
+    }
+
     return <EditContext.Provider value=
     {
         {
             orderedProducts, currentOrder, name, address, city, state, zip, email, phone, id, convertedDate, confirmUpdate,
             updateItemQuantity, handleRemove, statusChange, dateChange, customerNameChange, stAddressChange, cityChange, stateChange, zipChange, emailChange, phoneChange, idChange,
-            updateOrder, updatedOccured, statusMenuChange, deleteOrder
+            updateOrder, updatedOccured, statusMenuChange, deleteOrder, deleteProduct
         }
     }>
         {children}

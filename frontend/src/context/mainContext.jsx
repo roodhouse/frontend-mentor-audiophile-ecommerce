@@ -27,6 +27,7 @@ const MainProvider = ({ children }) => {
   const [ orders, setOrders ] = useState([])
   const [ orderUpdate, setOrderUpdate ] = useState(false)
   const [ orderDelete, setOrderDelete ] = useState(false)
+  const [ productDelete, setProductDelete ] = useState(false)
   const [ productTable, setProductTable ] = useState('')
 
   // Fetch requests
@@ -92,8 +93,9 @@ const MainProvider = ({ children }) => {
 
       setOrderUpdate(false)
       setOrderDelete(false)
+      setProductDelete(false)
       
-  }, [cart, orderUpdate, orderDelete]);
+  }, [cart, orderUpdate, orderDelete, productDelete]);
 
   // Functions
 
@@ -329,6 +331,11 @@ const MainProvider = ({ children }) => {
     setOrderDelete(true)
     setDashboardPage('dash')
   }
+
+  const productDeleted = () => {
+    setOrderDelete(true)
+    setDashboardPage('dash')
+  }
   // **** Cart fucntionality **** // 
 
   // add item items to cart // 
@@ -429,7 +436,7 @@ const MainProvider = ({ children }) => {
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
         cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkout, thankYou, thankYouMenu, 
         theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick, orderUpdated, orderDelete, orderDeleted,
-        productTableClick, productTable
+        productTableClick, productTable, productDeleted
       }
     }>
     {children}
