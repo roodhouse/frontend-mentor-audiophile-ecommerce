@@ -7,6 +7,7 @@ import Products from './components/Products';
 import Checkout from './components/Checkout';
 import DashBoard from './components/DashBoard';
 import Orders from './components/Orders';
+import Inventory from './components/Inventory';
 import Header from './components/shared/Header'
 import Footer from './components/shared/Footer'
 
@@ -15,7 +16,7 @@ import Footer from './components/shared/Footer'
 
 function App() {
 
-  const { home, categoryPage, productPage, checkoutPage, dashboardPage, orderPage } = useMain()
+  const { home, categoryPage, productPage, checkoutPage, dashboardPage, orderPage, inventoryPage } = useMain()
 
   return (
     <div id='app' className="App font-display">
@@ -42,6 +43,9 @@ function App() {
               </div>
               <div id='ordersWrapper' style={orderPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-20 xl:mb-[160px]'>
                 <Orders />
+              </div>
+              <div id='inventoryWrapper' style={inventoryPage ? {display: 'block'} : {display: 'none'}} className='pt-[76px] mb-20 xl:mb-[160px]'>
+                <Inventory />
               </div>
             </EditProvider>
             <div id='footerWrapper' className='bg-almostBlack w-full xl:flex xl:justify-center'>

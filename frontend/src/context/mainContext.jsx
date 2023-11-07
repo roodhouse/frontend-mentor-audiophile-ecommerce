@@ -28,7 +28,7 @@ const MainProvider = ({ children }) => {
   const [ orderUpdate, setOrderUpdate ] = useState(false)
   const [ orderDelete, setOrderDelete ] = useState(false)
   const [ productDelete, setProductDelete ] = useState(false)
-  const [ productTable, setProductTable ] = useState('')
+  const [ inventoryPage, setInventoryPage ] = useState('')
 
   // Fetch requests
   useEffect(() => {
@@ -142,7 +142,7 @@ const MainProvider = ({ children }) => {
     setCheckoutPage('')
     setDashboardPage('')
     setOrderPage('')
-    setProductTable('')
+    setInventoryPage('')
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -159,7 +159,7 @@ const MainProvider = ({ children }) => {
     setCheckoutPage('')
     setDashboardPage('')
     setOrderPage('')
-    setProductTable('')
+    setInventoryPage('')
     setCategoryPage(categoryName)
     window.scrollTo(0,0)
     enableScroll()
@@ -178,7 +178,7 @@ const MainProvider = ({ children }) => {
     setCheckoutPage('')
     setDashboardPage('')
     setOrderPage('')
-    setProductTable('')
+    setInventoryPage('')
     setProductPage(productName)
     window.scrollTo(0,0)
     enableScroll()
@@ -195,14 +195,14 @@ const MainProvider = ({ children }) => {
     setCheckoutPage('')
     setDashboardPage('')
     setProductPage('')
-    setProductTable('')
+    setInventoryPage('')
     setOrderPage(orderNumber)
     window.scrollTo(0,0)
     enableScroll()
   }
 
   // Product table state
-  const productTableClick = (productId) => {
+  const inventoryClick = (productId) => {
     navigate(currentState())
     setHome('')
     setMobileMenu(false)
@@ -213,7 +213,7 @@ const MainProvider = ({ children }) => {
     setDashboardPage('')
     setProductPage('')
     setOrderPage('')
-    setProductTable(productId)
+    setInventoryPage(productId)
     window.scrollTo(0,0)
     enableScroll()
   }
@@ -229,7 +229,7 @@ const MainProvider = ({ children }) => {
     setCategoryPage('')
     setDashboardPage('')
     setOrderPage('')
-    setProductTable('')
+    setInventoryPage('')
     setCheckoutPage('checkout')
     window.scrollTo(0,0)
     enableScroll()
@@ -245,7 +245,7 @@ const MainProvider = ({ children }) => {
     setCategoryPage('')
     setCheckoutPage('')
     setOrderPage('')
-    setProductTable('')
+    setInventoryPage('')
     setOrderDelete(false)
     setDashboardPage('dash')
     window.scrollTo(0,0)
@@ -333,7 +333,7 @@ const MainProvider = ({ children }) => {
   }
 
   const productDeleted = () => {
-    setOrderDelete(true)
+    setProductDelete(true)
     setDashboardPage('dash')
   }
   // **** Cart fucntionality **** // 
@@ -436,7 +436,7 @@ const MainProvider = ({ children }) => {
         mobileMenuOn, mobileMenuOff, homeClick, categoryClick, productClick, goBack, history, quantity, addOne, reduceOne,
         cartMenuOn, cartMenuOff, cartMenu, cart, clearCart, updateCartActivity, totalCart, total, checkout, thankYou, thankYouMenu, 
         theGrandTotal, grandTotal, backHome, orders, dashboard, dashboardPage, orderPage, orderClick, orderUpdated, orderDelete, orderDeleted,
-        productTableClick, productTable, productDeleted
+        inventoryClick, inventoryPage, productDeleted, productDelete
       }
     }>
     {children}
