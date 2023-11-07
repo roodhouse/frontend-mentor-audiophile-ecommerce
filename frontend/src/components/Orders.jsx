@@ -2,8 +2,6 @@ import React from 'react'
 import EditOrderHeading from './orders/EditOrderHeading'
 import EditOrderActions from './orders/EditOrderActions'
 
-// removed custom:px-[165px] from editOrderContent..
-
 function Orders() {
 
   return (

@@ -7,7 +7,7 @@ const EditContext = createContext()
 // define a provider component to wrap
 const EditProvider = ({ children }) => {
 
-    const { products, orderPage, orders, orderDeleted, orderUpdated, productDeleted } = useMain()
+    const { products, orderPage, orders, orderDeleted, orderUpdated, productDeleted, inventoryPage } = useMain()
     const [ orderedProducts, setOrderedProducts ] = useState([])
     const [ currentOrder, setCurrentOrder ] = useState([])
     const [ id, setId ] = useState('')
@@ -26,15 +26,14 @@ const EditProvider = ({ children }) => {
     const [ total, setTotal ] = useState('')
     const [ convertedDate, setConvertedDate ] = useState('')
     const [ confirmUpdate, setConfirmUpdate ] = useState(false)
+    const [ matchingProduct, setMatchingProduct ] = useState('')
     
     useEffect(() => {
         const theCurrentOrder = orders ? orders.filter((item) => item.order_id === parseInt(orderPage)) : []
         setCurrentOrder(theCurrentOrder[0])
         setName(currentOrder ? currentOrder.order_name : '')
         setId(currentOrder ? currentOrder.order_id : '')
-        // setStatus(currentOrder ? currentOrder.order_status : '')
         setStatus(currentOrder && status === '' ? currentOrder.order_status : status)
-        // setStatus(currentOrder ? currentOrder.order_status : currentOrder && status !== 'Processing' ? status  : '')
         setAddress(currentOrder ? currentOrder.order_address : '')
         setCity(currentOrder ? currentOrder.order_city : '')
         setState(currentOrder ? currentOrder.order_state : '')
@@ -123,6 +122,12 @@ const EditProvider = ({ children }) => {
             setItems(newItems)
         }
     }
+
+    useEffect(() => {
+        if (products && inventoryPage) {
+             setMatchingProduct(products.find(product => product.id === parseInt(inventoryPage)))
+        }    
+      },[inventoryPage, products])
 
     // change status
     const statusChange = (e) => {
@@ -333,7 +338,7 @@ const EditProvider = ({ children }) => {
         {
             orderedProducts, currentOrder, name, address, city, state, zip, email, phone, id, convertedDate, confirmUpdate,
             updateItemQuantity, handleRemove, statusChange, dateChange, customerNameChange, stAddressChange, cityChange, stateChange, zipChange, emailChange, phoneChange, idChange,
-            updateOrder, updatedOccured, statusMenuChange, deleteOrder, deleteProduct
+            updateOrder, updatedOccured, statusMenuChange, deleteOrder, deleteProduct, matchingProduct
         }
     }>
         {children}

@@ -4,15 +4,13 @@ import { useEdit } from '../../context/editContext'
 
 function ProductsTable() {
 
-    const { products, productTableClick } = useMain()
+    const { products, inventoryClick } = useMain()
     const { deleteProduct } = useEdit()
-
-    console.log(products)
 
     // need to create single product route to go to the view details / edit page for the product
     const handleClick = (e) => {        
         let id = e.target.parentElement.parentElement.id
-        productTableClick(id)
+        inventoryClick(id)
     }
 
     // need to create delete product route / use again on the single product page
